@@ -224,3 +224,11 @@ h1{
 #Acciones{ 
     background: url("/Imagenes/acciones.png") no-repeat;
 }
+
+img {
+    max-width: 85%;
+    height: auto;
+    position:absolute;
+    top:40%;
+    left:8%;
+}
