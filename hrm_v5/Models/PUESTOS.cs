@@ -28,7 +28,7 @@ namespace hrm_v5.Models
         [Required, DisplayName("Puesto")]
         public string ID_PUESTO { get; set; }
 
-        [Required, DisplayName("Nombre")]
+        [Required, DisplayName("Puesto")]
         public string NOMBRE { get; set; }
 
         [Required, DisplayName("Departamento")]

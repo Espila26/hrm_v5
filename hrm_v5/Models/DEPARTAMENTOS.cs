@@ -25,7 +25,7 @@ namespace hrm_v5.Models
         [Required, DisplayName("ID del Departamento")]
         public int ID_DEPARTAMENTO { get; set; }
 
-        [Required, DisplayName("Nombre")]
+        [Required, DisplayName("Departamento")]
         public string NOMBRE { get; set; }
 
         [Required, DisplayName("Descripción")]
