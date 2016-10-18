@@ -26,7 +26,7 @@ namespace hrm_v5.Models
         [Required, DisplayName("ID de la Empresa")]
         public int ID_EMPRESA { get; set; }
 
-        [Required, DisplayName("Nombre")]
+        [Required, DisplayName("Nombre de la Empresa")]
         public string NOMBRE { get; set; }
 
         [Required, DisplayName("Razón Social")]
