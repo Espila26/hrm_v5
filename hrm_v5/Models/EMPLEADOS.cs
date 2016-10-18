@@ -11,7 +11,9 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPLEADOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,20 +27,48 @@ namespace hrm_v5.Models
             this.USUARIOS = new HashSet<USUARIOS>();
             this.VACACIONES = new HashSet<VACACIONES>();
         }
-    
+
+
         public int EMP_ID { get; set; }
+
+        [Required, DisplayName("ID del Empleado")]
         public int ID_EMPLEADO { get; set; }
+
+        [Required, DisplayName("Cédula")]
         public string CEDULA { get; set; }
+
+        [Required, DisplayName("Nombre")]
         public string NOMBRE { get; set; }
+
+        [Required, DisplayName("Primer Apellido")]
         public string APE1 { get; set; }
+
+        [Required, DisplayName("Segundo Apellido")]
         public string APE2 { get; set; }
+
+        [Required, DisplayName("Dirección")]
         public string DIRECCION { get; set; }
+
+        [Required, DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
+
+        [Required, DisplayName("Teléfono de Habitación")]
         public string TEL_HABITACION { get; set; }
+
+        [Required, DisplayName("Teléfono Móvil")]
         public string TEL_MOVIL { get; set; }
+
+        [Required, DisplayName("Correo Electrónico")]
         public string E_MAIL { get; set; }
+
+        [Required, DisplayName("Puesto")]
         public int PUESTO { get; set; }
+
+
+        [Required, DisplayName("Salario")]
         public double SALARIO { get; set; }
+
+        [Required, DisplayName("Estado")]
         public string ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

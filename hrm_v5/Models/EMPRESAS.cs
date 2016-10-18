@@ -11,7 +11,9 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPRESAS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +21,30 @@ namespace hrm_v5.Models
         {
             this.DEPARTAMENTOS = new HashSet<DEPARTAMENTOS>();
         }
-    
+
+
+        [Required, DisplayName("ID de la Empresa")]
         public int ID_EMPRESA { get; set; }
+
+        [Required, DisplayName("Nombre")]
         public string NOMBRE { get; set; }
+
+        [Required, DisplayName("Razón Social")]
         public string RAZON_SOCIAL { get; set; }
+
+        [Required, DisplayName("Cédula Jurídica")]
         public string CEDULA_JURIDICA { get; set; }
+
+        [Required, DisplayName("Fecha de Fundación")]
         public System.DateTime FECHA_FUNDACION { get; set; }
+
+        [Required, DisplayName("País de Origen")]
         public string PAIS_ORIGEN { get; set; }
+
+        [Required, DisplayName("Sede Central")]
         public string SEDE_CENTRAL { get; set; }
+
+        [Required, DisplayName("Estado")]
         public string ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
