@@ -11,6 +11,19 @@
 <h4>Departamentos</h4>
 <hr />
 
+<div class="divBuscar">
+    @using (Html.BeginForm("Index", "EMPLEADOS"))
+    {
+        <div class="form-group">
+            <label class="pNombre">Nombre</label>
+            <div class="col-md-10">
+                <input type="text" name="searchString" class="textInput" />
+            </div>
+            <button type="submit" id="Buscar" class="myButton">Buscar</button>
+        </div>
+    }
+</div>
+
 <div class="contenedor">
     <div class="divBuscar">
         <p class="pNombre">Nombre:</p>
