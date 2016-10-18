@@ -15,9 +15,17 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: EMPRESAS
-        public ActionResult Index()
+        public ActionResult Index(string searchString = " ")
         {
-            return View(db.EMPRESAS.ToList());
+            var EMP = from e in db.EMPRESAS
+                      select e;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                EMP = EMP.Where(s => s.NOMBRE.Contains(searchString));
+            }
+
+            return View(EMP);
         }
 
         // GET: EMPRESAS/Details/5
