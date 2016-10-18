@@ -15,10 +15,17 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: EMPLEADOS
-        public ActionResult Index()
+        public ActionResult Index(string searchString = " ")
         {
-            var eMPLEADOS = db.EMPLEADOS.Include(e => e.PUESTOS);
-            return View(eMPLEADOS.ToList());
+            var EMP = from e in db.EMPLEADOS
+                      select e;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
+            }
+
+            return View(EMP);
         }
 
         // GET: EMPLEADOS/Details/5
