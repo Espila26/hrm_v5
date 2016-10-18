@@ -15,7 +15,7 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: DEPARTAMENTOS
-        public ActionResult Index(string searchString = " ")
+        public ActionResult Index(string searchString)
         {
             var DEP = from d in db.DEPARTAMENTOS
                       select d;
