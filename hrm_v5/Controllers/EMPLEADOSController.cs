@@ -144,27 +144,31 @@ namespace hrm_v5.Controllers
 
         //Buscar un empleado en específico.
 
-        public string CrearID()
-        {
-            int cont = 0;
+        public int CrearID(){
+            string result;
+            int a;
+            int cont = 1;
+            string varCont = cont.ToString();
             string dia = @DateTime.Now.Day.ToString();
             string mes = @DateTime.Now.Month.ToString();
             string año = DateTime.Now.Year.ToString();
             string fecha = dia + mes + año;
             if (db.EMPLEADOS.Count() == 0)
             {
-                return cont + "-" + fecha;
+                result = varCont + fecha;
+                a = Int32.Parse(result);
+                return a;
             }
             else
             {
                 while (cont != db.EMPLEADOS.Count())
                 {
                     cont++;
-                    cont.ToString();
                 }
-                return cont + "-" + fecha;
+                result = varCont + fecha;
+                a = Int32.Parse(result);
+                return a;
             }
         }
-
     }
 }
