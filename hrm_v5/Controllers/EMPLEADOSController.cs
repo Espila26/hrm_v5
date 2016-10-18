@@ -14,13 +14,6 @@ namespace hrm_v5.Controllers
     {
         private Entities db = new Entities();
 
-        // GET: EMPLEADOS
-        public ActionResult Index()
-        {
-            var eMPLEADOS = db.EMPLEADOS.Include(e => e.PUESTOS);
-            return View(eMPLEADOS.ToList());
-        }
-
         // GET: EMPLEADOS/Details/5
         public ActionResult Details(int? id)
         {
