@@ -3,72 +3,83 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+@Styles.Render("~/Content/EstiloFormulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
 
 <div>
-    <h4>PUESTOS</h4>
+    <h4>Puestos > Detalles</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+
+    <dl class="form-group">
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.ID_PUESTO)
         </dt>
 
-        <dd>
+        <dd class="control-label">
             @Html.DisplayFor(model => model.ID_PUESTO)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.NOMBRE)
         </dt>
 
-        <dd>
+        <dd class="control-label">
             @Html.DisplayFor(model => model.NOMBRE)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.NIVEL_ACADEMICO)
         </dt>
 
-        <dd>
+        <dd class="control-label">
             @Html.DisplayFor(model => model.NIVEL_ACADEMICO)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.EXP_MIN)
         </dt>
 
-        <dd>
+        <dd class="control-label">
             @Html.DisplayFor(model => model.EXP_MIN)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.EXP_DESEADA)
         </dt>
 
-        <dd>
+        <dd class="control-label">
             @Html.DisplayFor(model => model.EXP_DESEADA)
         </dd>
-
-        <dt>
+    </dl>
+    <dl class="form-group">
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.DESCRIPCION)
         </dt>
 
-        <dd>
+        <dd class="control-label">
             @Html.DisplayFor(model => model.DESCRIPCION)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.DEPARTAMENTOS.NOMBRE)
         </dt>
 
-        <dd>
+        <dd class="control-label">
             @Html.DisplayFor(model => model.DEPARTAMENTOS.NOMBRE)
         </dd>
-
     </dl>
+    <div class="form-group">
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "Edit", new { id = Model.ID_PUESTO })'" />
+        <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "PUESTOS")'" />
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PTS_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

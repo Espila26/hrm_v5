@@ -3,67 +3,80 @@
 @{
     ViewBag.Title = "Index";
 }
+@Styles.Render("~/Content/EstiloTabla.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Scripts.Render("~/bundles/modernizr")
 
-<h2>Index</h2>
+<h4>Empresas</h4>
+<hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RAZON_SOCIAL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CEDULA_JURIDICA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHA_FUNDACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PAIS_ORIGEN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SEDE_CENTRAL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTADO)
-        </th>
-        <th></th>
-    </tr>
+<div class="datagrid">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOMBRE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RAZON_SOCIAL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CEDULA_JURIDICA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FECHA_FUNDACION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PAIS_ORIGEN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SEDE_CENTRAL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ESTADO)
+                </th>
+                <th></th>
+            </tr>
+        <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RAZON_SOCIAL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CEDULA_JURIDICA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHA_FUNDACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PAIS_ORIGEN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SEDE_CENTRAL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTADO)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_EMPRESA }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_EMPRESA }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_EMPRESA })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOMBRE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RAZON_SOCIAL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CEDULA_JURIDICA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FECHA_FUNDACION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PAIS_ORIGEN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SEDE_CENTRAL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ESTADO)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID_EMPRESA }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID_EMPRESA }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID_EMPRESA })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </tbody>
+    </table>
+</div>
+
+<br />
+
+<div class="myButton">
+    @Html.ActionLink("Crear Nuevo", "Create")
+</div>

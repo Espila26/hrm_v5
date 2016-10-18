@@ -3,67 +3,79 @@
 @{
     ViewBag.Title = "Index";
 }
+@Styles.Render("~/Content/EstiloTabla.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Scripts.Render("~/bundles/modernizr")
 
-<h2>Index</h2>
+<h4>Puestos</h4>
+<hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_PUESTO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NIVEL_ACADEMICO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EXP_MIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EXP_DESEADA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DEPARTAMENTOS.NOMBRE)
-        </th>
-        <th></th>
-    </tr>
+<div class="datagrid">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID_PUESTO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOMBRE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NIVEL_ACADEMICO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EXP_MIN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EXP_DESEADA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DESCRIPCION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DEPARTAMENTOS.NOMBRE)
+                </th>
+                <th></th>
+            </tr>
+        <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_PUESTO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NIVEL_ACADEMICO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EXP_MIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EXP_DESEADA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DEPARTAMENTOS.NOMBRE)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PTS_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PTS_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PTS_ID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_PUESTO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOMBRE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIVEL_ACADEMICO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EXP_MIN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EXP_DESEADA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIPCION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DEPARTAMENTOS.NOMBRE)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PTS_ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PTS_ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PTS_ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-</table>
+<br />
+
+<div class="myButton">
+    @Html.ActionLink("Crear Nuevo", "Create")
+</div>
