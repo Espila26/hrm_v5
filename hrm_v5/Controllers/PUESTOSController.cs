@@ -45,6 +45,7 @@ namespace hrm_v5.Controllers
         // GET: PUESTOS/Create
         public ActionResult Create()
         {
+            ViewData["ID"] = CrearID();
             ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE");
             return View();
         }
@@ -133,6 +134,28 @@ namespace hrm_v5.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public string CrearID()
+        {
+            int cont = 0;
+            string dia = @DateTime.Now.Day.ToString();
+            string mes = @DateTime.Now.Month.ToString();
+            string año = DateTime.Now.Year.ToString();
+            string fecha = dia + mes + año;
+            if (db.PUESTOS.Count() == 0)
+            {
+                return cont + "-" + fecha;
+            }
+            else
+            {
+                while (cont != db.PUESTOS.Count())
+                {
+                    cont++;
+                    cont.ToString();
+                }
+                return cont + "-" + fecha;
+            }
         }
     }
 }
