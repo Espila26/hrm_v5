@@ -28,7 +28,7 @@
                 </tr>
                 <tr class="TrOpciones">
                     <td class="Seleccion"></td>
-                    <td><spam class="Icono" id="Personal"></spam> @Html.ActionLink("Personal", "Expediente", "EMPLEADOS")</td>
+                    <td><spam class="Icono" id="Personal"></spam> @Html.ActionLink("Personal", "Index", "EMPLEADOS")</td>
                 </tr>
                 <tr class="TrOpciones">
                     <td class="Seleccion"></td>
@@ -38,20 +38,7 @@
 
                 <tr class="TrOpciones">
                     <td class="Seleccion"></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropbtn"></button>
-                            <div class="dropdown-content">
-                                @Html.ActionLink("Amonestaciones", "Index", "DEPARTAMENTOS")
-                                @Html.ActionLink("Suspenciones", "Index", "DEPARTAMENTOS")
-                                @Html.ActionLink("Ascensos", "Index", "DEPARTAMENTOS")
-                                @Html.ActionLink("Vacaciones", "Index", "DEPARTAMENTOS")
-                                @Html.ActionLink("Permisos", "Index", "DEPARTAMENTOS")
-                                @Html.ActionLink("Dar de Baja", "Index", "DEPARTAMENTOS")
-                            </div>
-                            <a><spam class="Icono" id="Acciones"></spam> Acciones de Personal</a>
-                        </div>
-                    </td>
+                    <td><spam class="Icono" id="Acciones"></spam> @Html.ActionLink("Expediente Laboral", "Expediento", "EMPLEADOS")</td>
                 </tr>
             </table>
 
