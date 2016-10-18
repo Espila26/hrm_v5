@@ -15,10 +15,16 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: PUESTOS
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var pUESTOS = db.PUESTOS.Include(p => p.DEPARTAMENTOS);
-            return View(pUESTOS.ToList());
+            var PUE = from e in db.PUESTOS
+                      select e;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                PUE = PUE.Where(s => s.NOMBRE.Contains(searchString));
+            }
+
+            return View(PUE);
         }
 
         // GET: PUESTOS/Details/5
