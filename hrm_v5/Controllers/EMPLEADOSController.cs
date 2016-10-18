@@ -134,5 +134,7 @@ namespace hrm_v5.Controllers
         }
 
 
+        //Buscar un empleado en específico.
+
     }
 }
