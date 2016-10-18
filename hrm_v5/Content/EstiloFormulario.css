@@ -1,0 +1,61 @@
+﻿.form-horizontal{
+    font-family:Arial;
+    width: 100%;
+    height: 93%;
+    position:absolute;
+}
+
+.form-group{
+    height: 10%;
+    width: 80%;
+    float:left;
+
+}
+
+.control-label{
+    float:left;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.form-control{
+    padding-left: 6px;
+    height: 5%;
+    width: 30%;
+    position:absolute;
+    left: 20%;
+    border: #9998A1 3px solid;
+    border-radius: 5px; 
+}
+
+.form-control:focus{
+    border:3px solid #6594EC;
+    background-color:#F0F8FF;
+    margin-right:10px;
+}
+.formDetails{
+    height: 5%;
+    width: 30%;
+    position:absolute;
+    left: 15%;
+}
+
+.scrollVertical{
+    overflow-y:auto;
+    overflow-x:auto;
+}
+
+.text-danger{
+    color: black;
+    position: absolute;
+    left: 53%;
+}
+ .field-validation-error {
+        color:red;
+ }
+
+::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
+::-webkit-datetime-edit-month-field { color: blue; }
+::-webkit-datetime-edit-day-field { color: green; }
+::-webkit-datetime-edit-year-field { color: purple; }
+::-webkit-calendar-picker-indicator { background: #fff; }

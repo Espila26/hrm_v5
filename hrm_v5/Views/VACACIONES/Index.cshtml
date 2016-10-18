@@ -1,0 +1,45 @@
+﻿@model IEnumerable<hrm_v5.Models.VACACIONES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.INICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FINAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.INICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FINAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADOS.CEDULA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_SOLICITUD }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_SOLICITUD }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_SOLICITUD })
+        </td>
+    </tr>
+}
+
+</table>

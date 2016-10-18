@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HR-Manager</title>
+    @Styles.Render("~/Content/EstiloPrincipal.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="Home"></span>
+            <h1>@Html.ActionLink("HR-Manager", "Index", "Home", null, new { @class = "h1Letra" })</h1>
+            <h2>Bienvenido(a): Usuario</h2>
+            <a class='boton' href='URL-DEL-BOTON'></a>
+        </header>
+        <aside>
+            <table>
+
+                <tr class="TrOpciones">
+                    <td class="Seleccion"></td>
+                    <td><spam class="Icono" id="Departamentos"></spam>@Html.ActionLink("Departamentos", "Index", "DEPARTAMENTOS")</td>
+                </tr>
+                <tr class="TrOpciones">
+                    <td class="Seleccion"></td>
+                    <td><spam class="Icono" id="Empresas"></spam> @Html.ActionLink("Empresas", "Index", "EMPRESAS")</td>
+                </tr>
+                <tr class="TrOpciones">
+                    <td class="Seleccion"></td>
+                    <td><spam class="Icono" id="Personal"></spam> @Html.ActionLink("Personal", "Expediente", "EMPLEADOS")</td>
+                </tr>
+                <tr class="TrOpciones">
+                    <td class="Seleccion"></td>
+                    <td><spam class="Icono" id="Puestos"></spam> @Html.ActionLink("Puestos", "Index", "PUESTOS")</td>
+
+                </tr>
+
+                <tr class="TrOpciones">
+                    <td class="Seleccion"></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropbtn"></button>
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Amonestaciones", "Index", "DEPARTAMENTOS")
+                                @Html.ActionLink("Suspenciones", "Index", "DEPARTAMENTOS")
+                                @Html.ActionLink("Ascensos", "Index", "DEPARTAMENTOS")
+                                @Html.ActionLink("Vacaciones", "Index", "DEPARTAMENTOS")
+                                @Html.ActionLink("Permisos", "Index", "DEPARTAMENTOS")
+                                @Html.ActionLink("Dar de Baja", "Index", "DEPARTAMENTOS")
+                            </div>
+                            <a><spam class="Icono" id="Acciones"></spam> Acciones de Personal</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </aside>
+    </div>
+    <section class="scrollVertical">
+        <article>
+            @RenderBody()
+            <footer>
+                @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+            </footer>
+        </article>
+    </section>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

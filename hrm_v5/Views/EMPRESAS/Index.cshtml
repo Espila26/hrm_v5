@@ -1,0 +1,69 @@
+﻿@model IEnumerable<hrm_v5.Models.EMPRESAS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RAZON_SOCIAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEDULA_JURIDICA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_FUNDACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PAIS_ORIGEN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SEDE_CENTRAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RAZON_SOCIAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEDULA_JURIDICA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_FUNDACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PAIS_ORIGEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SEDE_CENTRAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTADO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_EMPRESA }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_EMPRESA }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_EMPRESA })
+        </td>
+    </tr>
+}
+
+</table>

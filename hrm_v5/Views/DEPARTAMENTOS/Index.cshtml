@@ -1,0 +1,72 @@
+﻿@model IEnumerable<hrm_v5.Models.DEPARTAMENTOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/Content/EstiloTabla.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/EstiloFormulario.css")
+
+<h4>Departamentos</h4>
+<hr />
+
+<div class="contenedor">
+    <div class="divBuscar">
+        <p class="pNombre">Nombre:</p>
+        <div class="col-md-10">
+            <input type="text" name="Nombre" class="textInput">
+        </div>
+        @Html.ActionLink("Buscar", "Index", "Home", null, new { @class = "myButton", @id = "Buscar" })
+    </div>
+    <div class="separador"></div>
+    <div class="datagrid">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NOMBRE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DESCRIPCION)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EMPRESAS.NOMBRE)
+                    </th>
+                    <th></th>
+                </tr>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOMBRE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DESCRIPCION)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EMPRESAS.NOMBRE)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="myButton">
+        @Html.ActionLink("Crear Nuevo", "Create")
+    </div>
+    <div class="myButton">
+        @Html.ActionLink("Editar", "Edit")
+    </div>
+    <div class="myButton">
+        @Html.ActionLink("Detalles", "Details")
+    </div>
+    <div class="myButton">
+        @Html.ActionLink("Eliminar", "Delete")
+    </div>
+</div>

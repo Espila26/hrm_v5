@@ -1,0 +1,69 @@
+﻿@model IEnumerable<hrm_v5.Models.PUESTOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_PUESTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NIVEL_ACADEMICO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EXP_MIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EXP_DESEADA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEPARTAMENTOS.NOMBRE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_PUESTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NIVEL_ACADEMICO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXP_MIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXP_DESEADA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEPARTAMENTOS.NOMBRE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PTS_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PTS_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PTS_ID })
+        </td>
+    </tr>
+}
+
+</table>

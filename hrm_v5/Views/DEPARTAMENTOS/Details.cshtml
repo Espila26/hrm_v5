@@ -1,0 +1,46 @@
+﻿@model hrm_v5.Models.DEPARTAMENTOS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Styles.Render("~/Content/EstiloFormulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+
+<div>
+    <h4>Departamentos > Detalles</h4>
+    <hr />
+    <dl class="form-group">
+        <dt class="control-label">
+            <th>@Html.DisplayNameFor(model => model.NOMBRE)</th>
+        </dt>
+
+        <dd class="formDetails">
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+    </dl>
+    <dl class="form-group">
+        <dt class="control-label">
+            <th>@Html.DisplayNameFor(model => model.DESCRIPCION)</th>
+        </dt>
+
+        <dd class="formDetails">
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+    </dl>
+    <dl class="form-group">
+        <dt class="control-label">
+            <th>@Html.DisplayNameFor(model => model.EMPRESAS.NOMBRE)</th>
+        </dt>
+
+        <dd class="formDetails">
+            @Html.DisplayFor(model => model.EMPRESAS.NOMBRE)
+        </dd>
+
+    </dl>
+    <div class="form-group">
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "Edit", new { id = Model.ID_DEPARTAMENTO })'" />
+        <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "DEPARTAMENTOS")'" />
+    </div>
+</div>

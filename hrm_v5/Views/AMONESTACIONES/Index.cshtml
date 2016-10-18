@@ -1,0 +1,63 @@
+﻿@model IEnumerable<hrm_v5.Models.AMONESTACIONES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_INICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_FINAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GOCE_SALARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VERB_ESC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_INICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_FINAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GOCE_SALARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VERB_ESC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADOS.CEDULA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_AMONESTACION }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_AMONESTACION }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_AMONESTACION })
+        </td>
+    </tr>
+}
+
+</table>

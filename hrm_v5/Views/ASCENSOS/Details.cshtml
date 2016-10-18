@@ -1,0 +1,58 @@
+﻿@model hrm_v5.Models.ASCENSOS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ASCENSOS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PUESTO_ANT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTO_ANT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PUESTO_NVO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTO_NVO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADOS.CEDULA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_ASCENSO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

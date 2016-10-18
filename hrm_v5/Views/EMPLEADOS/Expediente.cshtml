@@ -1,0 +1,162 @@
+﻿@model hrm_v5.Models.EMPLEADOS
+
+@{
+    ViewBag.Title = "Expediente";
+}
+@Styles.Render("~/Content/EstiloExpediente.css")
+@Styles.Render("~/Content/Formulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Styles.Render("~/Content/EstiloMantenimiento.css")
+
+
+<script src="~/Scripts/jquery-Expediente.js" type="text/html">
+</script>
+
+<div>
+    <div>
+        <div id="lettertext">
+            <span class="label label-default">Empleado: </span>
+            <input id="Empleado" type="text" />
+                @Html.ActionLink("Buscar", "Index", "Home", null, new { @class = "myButton", @id = "Buscar" })
+        </div>
+    </div>
+    <hr />
+    <div>
+        <ul class="tab-links">
+            <li class="active"><a href="#tab1" data-toggle="tab"><div id="lettertext">Datos Personales.</div></a></li>
+            <li><a href="#tab2" data-toggle="tab"><div id="lettertext">Amonestaciones.</div></a></li>
+            <li><a href="#tab3" data-toggle="tab"><div id="lettertext">Ascensos.</div></a></li>
+            <li><a href="#tab4" data-toggle="tab"><div id="lettertext">Permisos.</div></a></li>
+            <li><a href="#tab5" data-toggle="tab"><div id="lettertext">Suspensiones.</div></a></li>
+            <li><a href="#tab6" data-toggle="tab"><div id="lettertext">Vacaciones.</div></a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="tab1" class="tab active">
+                <h4><div id="lettertext">Datos Personales.</div></h4>
+                <table>
+                    <tr>
+                        <td width=30%><span class="label label-default">Cédula: </span></td>
+                        <td width=70%>@Html.DisplayFor(model => model.CEDULA)</td>
+                    <tr>
+
+                    <tr>
+                        <td width=30%><span class="label label-default">Nombre: </span></td>
+                        <td width=70%>@Html.DisplayFor(model => model.NOMBRE)</td>
+                    <tr>
+
+                    <tr>
+                        <td width=30%><span class="label label-default">Primer Apellido: </span></td>
+                        <td width=70%>@Html.DisplayFor(model => model.APE1)</td>
+                    <tr>
+
+                    <tr>
+                        <td width=30%><span class="label label-default">Segundo Apellido: </span></tdwidth=30%>
+                        <td width=70%>@Html.DisplayFor(model => model.APE2)</td>
+                    <tr>
+
+                    <tr>
+                        <td width=30%><span class="label label-default">Teléfono: </span></td>
+                        <td width=70%>@Html.DisplayFor(model => model.TEL_MOVIL)</td>
+                    <tr>
+
+                    <tr>
+                        <td width=30%><span class="label label-default">Dirección: </span></td>
+                        <td width=70%>@Html.DisplayFor(model => model.DIRECCION)</td>
+                    <tr>
+
+                </table>
+            </div>
+
+            <div id="tab2" class="tab">
+                <h4><div id="lettertext">Amonestaciones.</div></h4>
+                <div id="text">
+                    <div ="articulo">
+                        <div id="title">Modulo en desarrollo</div>
+                        <div>
+                            <p>
+                                Disculpe los incovenientes, este modulo se encuentra en desarrollo.
+                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
+                                Muchas Gracias.
+                            </p>
+                            <p>Grupo No.32 Ingenieria en Sistemas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab3" class="tab">
+                <h4><div id="lettertext">Ascensos.</div></h4>
+                <div id="text">
+                    <div ="articulo">
+                        <div id="title">Modulo en desarrollo</div>
+                        <div>
+                            <p>
+                                Disculpe los incovenientes, este modulo se encuentra en desarrollo.
+                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
+                                Muchas Gracias.
+                            </p>
+                            <p>Grupo No.32 Ingenieria en Sistemas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab4" class="tab">
+                <h4><div id="lettertext">Permisos.</div></h4>
+                <div id="text">
+                    <div ="articulo">
+                        <div id="title">Modulo en desarrollo</div>
+                        <div>
+                            <p>
+                                Disculpe los incovenientes, este modulo se encuentra en desarrollo.
+                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
+                                Muchas Gracias.
+                            </p>
+                            <p>Grupo No.32 Ingenieria en Sistemas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab5" class="tab">
+                <h4><div id="lettertext">Suspensiones.</div></h4>
+                <div id="text">
+                    <div ="articulo">
+                        <div id="title">Modulo en desarrollo</div>
+                        <div>
+                            <p>
+                                Disculpe los incovenientes, este modulo se encuentra en desarrollo.
+                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
+                                Muchas Gracias.
+                            </p>
+                            <p>Grupo No.32 Ingenieria en Sistemas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab6" class="tab">
+                <h4><div id="lettertext">Vacaciones.</div></h4>
+                <div id="text">
+                    <div ="articulo">
+                        <div id="title">Modulo en desarrollo</div>
+                        <div>
+                            <p>
+                                Disculpe los incovenientes, este modulo se encuentra en desarrollo.
+                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
+                                Muchas Gracias.
+                            </p>
+                            <p>Grupo No.32 Ingenieria en Sistemas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

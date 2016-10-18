@@ -1,0 +1,74 @@
+﻿@model hrm_v5.Models.PUESTOS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PUESTOS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_PUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_PUESTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIVEL_ACADEMICO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIVEL_ACADEMICO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXP_MIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXP_MIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXP_DESEADA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXP_DESEADA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTAMENTOS.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTAMENTOS.NOMBRE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PTS_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

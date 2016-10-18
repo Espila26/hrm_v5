@@ -1,0 +1,66 @@
+﻿@model hrm_v5.Models.AMONESTACIONES
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AMONESTACIONES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_INICIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_INICIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_FINAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_FINAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GOCE_SALARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GOCE_SALARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VERB_ESC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VERB_ESC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADOS.CEDULA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_AMONESTACION }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

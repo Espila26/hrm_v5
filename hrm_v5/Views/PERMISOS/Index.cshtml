@@ -1,0 +1,63 @@
+﻿@model IEnumerable<hrm_v5.Models.PERMISOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.INICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FINAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GOCE_SALARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANT_HORAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANT_DIAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.INICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FINAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GOCE_SALARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANT_HORAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANT_DIAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADOS.CEDULA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_PERMISO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_PERMISO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_PERMISO })
+        </td>
+    </tr>
+}
+
+</table>

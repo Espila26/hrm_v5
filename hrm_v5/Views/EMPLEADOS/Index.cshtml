@@ -1,0 +1,99 @@
+﻿@model IEnumerable<hrm_v5.Models.EMPLEADOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/Content/EstiloTabla.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Scripts.Render("~/bundles/modernizr")
+
+<h4>Personal</h4>
+<hr />
+
+<div class="datagrid">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID_EMPLEADO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CEDULA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOMBRE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.APE1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.APE2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TEL_HABITACION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TEL_MOVIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.E_MAIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ESTADO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PUESTOS.ID_PUESTO)
+                </th>
+                <th></th>
+            </tr>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_EMPLEADO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CEDULA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOMBRE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.APE1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.APE2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEL_HABITACION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEL_MOVIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_MAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ESTADO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PUESTOS.ID_PUESTO)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EMP_ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.EMP_ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EMP_ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+
+<div class="myButton">
+    @Html.ActionLink("Crear Nuevo", "Create")
+</div>
