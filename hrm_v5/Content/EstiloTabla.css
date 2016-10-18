@@ -132,7 +132,10 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
 .pNombre{
     float:left;
     font-weight:bold;
+    font-family:sans-serif;
     font-size:16px;
+    position:absolute;
+    top:15.5%;
 }
 
 .textInput{
