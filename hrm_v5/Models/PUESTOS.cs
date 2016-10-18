@@ -22,25 +22,25 @@ namespace hrm_v5.Models
             this.EMPLEADOS = new HashSet<EMPLEADOS>();
         }
 
-        [Required, DisplayName("ID del Puesto")]
+        [Required]
         public int PTS_ID { get; set; }
 
-        [Required, DisplayName("Puesto")]
+        [Required, DisplayName("ID del Puesto")]
         public string ID_PUESTO { get; set; }
 
-        [Required, DisplayName("Puesto")]
+        [Required, DisplayName("Nombre del Puesto"), MaxLength(45)]
         public string NOMBRE { get; set; }
 
         [Required, DisplayName("Departamento")]
         public int DEPARTAMENTO { get; set; }
 
-        [Required, DisplayName("Nivel Académico")]
+        [Required, DisplayName("Nivel Académico"), MaxLength(250)]
         public string NIVEL_ACADEMICO { get; set; }
 
-        [Required, DisplayName("Experiencia Mínima")]
+        [Required, DisplayName("Experiencia Mínima"), MaxLength(25)]
         public string EXP_MIN { get; set; }
 
-        [Required, DisplayName("Experiencia Deseada")]
+        [Required, DisplayName("Experiencia Deseada"), MaxLength(25)]
         public string EXP_DESEADA { get; set; }
 
         [Required, DisplayName("Descripción")]

@@ -34,41 +34,40 @@ namespace hrm_v5.Models
         [Required, DisplayName("ID del Empleado")]
         public int ID_EMPLEADO { get; set; }
 
-        [Required, DisplayName("Cédula")]
+        [Required, DisplayName("Cédula"), MaxLength(15)]
         public string CEDULA { get; set; }
 
-        [Required, DisplayName("Nombre")]
+        [Required, DisplayName("Nombre"), MaxLength(30)]
         public string NOMBRE { get; set; }
 
-        [Required, DisplayName("Primer Apellido")]
+        [Required, DisplayName("Primer Apellido"), MaxLength(30)]
         public string APE1 { get; set; }
 
-        [Required, DisplayName("Segundo Apellido")]
+        [Required, DisplayName("Segundo Apellido"), MaxLength(30)]
         public string APE2 { get; set; }
 
-        [Required, DisplayName("Dirección")]
+        [Required, DisplayName("Dirección"), MaxLength(100)]
         public string DIRECCION { get; set; }
 
         [Required, DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
 
-        [Required, DisplayName("Teléfono de Habitación")]
+        [Required, DisplayName("Teléfono de Habitación"), MaxLength(15)]
         public string TEL_HABITACION { get; set; }
 
-        [Required, DisplayName("Teléfono Móvil")]
+        [Required, DisplayName("Teléfono Móvil"), MaxLength(15)]
         public string TEL_MOVIL { get; set; }
 
-        [Required, DisplayName("Correo Electrónico")]
+        [Required, DisplayName("Correo Electrónico"), MaxLength(30)]
         public string E_MAIL { get; set; }
 
         [Required, DisplayName("Puesto")]
         public int PUESTO { get; set; }
 
-
         [Required, DisplayName("Salario")]
         public double SALARIO { get; set; }
 
-        [Required, DisplayName("Estado")]
+        [Required, DisplayName("Estado"), MaxLength(30)]
         public string ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

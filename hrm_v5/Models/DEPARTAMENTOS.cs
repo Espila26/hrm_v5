@@ -22,10 +22,10 @@ namespace hrm_v5.Models
             this.PUESTOS = new HashSet<PUESTOS>();
         }
 
-        [Required, DisplayName("ID del Departamento")]
+        [Required, DisplayName("ID del Departamento"),]
         public int ID_DEPARTAMENTO { get; set; }
 
-        [Required, DisplayName("Departamento")]
+        [Required, DisplayName("Departamento"), MaxLength(45)]
         public string NOMBRE { get; set; }
 
         [Required, DisplayName("Descripción")]

@@ -26,25 +26,25 @@ namespace hrm_v5.Models
         [Required, DisplayName("ID de la Empresa")]
         public int ID_EMPRESA { get; set; }
 
-        [Required, DisplayName("Empresa")]
+        [Required, DisplayName("Nombre de la Empresa"), MaxLength(45)]
         public string NOMBRE { get; set; }
 
         [Required, DisplayName("Razón Social")]
         public string RAZON_SOCIAL { get; set; }
 
-        [Required, DisplayName("Cédula Jurídica")]
+        [Required, DisplayName("Cédula Jurídica"), MaxLength(25)]
         public string CEDULA_JURIDICA { get; set; }
 
         [Required, DisplayName("Fecha de Fundación")]
         public System.DateTime FECHA_FUNDACION { get; set; }
 
-        [Required, DisplayName("País de Origen")]
+        [Required, DisplayName("País de Origen"), MaxLength(25)]
         public string PAIS_ORIGEN { get; set; }
 
-        [Required, DisplayName("Sede Central")]
+        [Required, DisplayName("Sede Central"), MaxLength(25)]
         public string SEDE_CENTRAL { get; set; }
 
-        [Required, DisplayName("Estado")]
+        [Required, DisplayName("Estado"), MaxLength(30)]
         public string ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
