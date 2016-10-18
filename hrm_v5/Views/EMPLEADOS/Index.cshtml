@@ -57,6 +57,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.PUESTOS.ID_PUESTO)
                 </th>
+                <th></th>
             </tr>
         <tbody>
 
@@ -92,6 +93,11 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PUESTOS.ID_PUESTO)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EMP_ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.EMP_ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EMP_ID })
                     </td>
                 </tr>
             }
