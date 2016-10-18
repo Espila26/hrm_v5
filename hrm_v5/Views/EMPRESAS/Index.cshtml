@@ -49,7 +49,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ESTADO)
                 </th>
-                <th></th>
             </tr>
         <tbody>
 
@@ -76,11 +75,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ESTADO)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID_EMPRESA }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID_EMPRESA }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID_EMPRESA })
                     </td>
                 </tr>
             }
