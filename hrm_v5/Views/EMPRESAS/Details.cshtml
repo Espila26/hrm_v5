@@ -1,74 +1,86 @@
 ﻿@model hrm_v5.Models.EMPRESAS
-
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+@Styles.Render("~/Content/EstiloFormulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
 
 <div>
-    <h4>EMPRESAS</h4>
+    <h4>Empresas > Detalles</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+
+    <dl class="form-group">
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.NOMBRE)
         </dt>
 
-        <dd>
+        <dd class="formDetails">
             @Html.DisplayFor(model => model.NOMBRE)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.RAZON_SOCIAL)
         </dt>
 
-        <dd>
+        <dd class="formDetails">
             @Html.DisplayFor(model => model.RAZON_SOCIAL)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.CEDULA_JURIDICA)
         </dt>
 
-        <dd>
+        <dd class="formDetails">
             @Html.DisplayFor(model => model.CEDULA_JURIDICA)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.FECHA_FUNDACION)
         </dt>
 
-        <dd>
+        <dd class="formDetails">
             @Html.DisplayFor(model => model.FECHA_FUNDACION)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.PAIS_ORIGEN)
         </dt>
 
-        <dd>
+        <dd class="formDetails">
             @Html.DisplayFor(model => model.PAIS_ORIGEN)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.SEDE_CENTRAL)
         </dt>
 
-        <dd>
+        <dd class="formDetails">
             @Html.DisplayFor(model => model.SEDE_CENTRAL)
         </dd>
+    </dl>
+    <dl class="form-group">
 
-        <dt>
+        <dt class="control-label">
             @Html.DisplayNameFor(model => model.ESTADO)
         </dt>
 
-        <dd>
+        <dd class="formDetails">
             @Html.DisplayFor(model => model.ESTADO)
         </dd>
 
     </dl>
+    <div class="form-group">
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "Edit", new { id = Model.ID_EMPRESA })'" />
+        <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "EMPRESAS")'" />
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_EMPRESA }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
