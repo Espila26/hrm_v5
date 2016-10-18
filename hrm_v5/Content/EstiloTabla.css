@@ -14,13 +14,8 @@
     border: 1px solid #000000; 
     -webkit-border-radius: 8px; 
     -moz-border-radius: 8px; 
-    border-radius: 8px; 
+    order-radius: 8px; 
 
-}
-
-.contenedor{
-    position:absolute;
-    top: 30%;
 }
 
 .datagrid table td, .datagrid table th { 
