@@ -24,58 +24,66 @@
     }
 </div>
 
-<div class="contenedor">
+<br></br>
+<br></br>
+
 <div class="datagrid">
     <table>
         <thead>
             <tr>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.ID_PUESTO)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.NOMBRE)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.NIVEL_ACADEMICO)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.EXP_MIN)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.EXP_DESEADA)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.DESCRIPCION)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.DEPARTAMENTOS.NOMBRE)
                 </th>
+                <th align="center">Acciones</th>
             </tr>
         <tbody>
 
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.ID_PUESTO)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.NOMBRE)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.NIVEL_ACADEMICO)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.EXP_MIN)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.EXP_DESEADA)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.DESCRIPCION)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.DEPARTAMENTOS.NOMBRE)
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.PTS_ID }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.PTS_ID }) |
+                        @Html.ActionLink("Inhabilitar", "Delete", new { id = item.PTS_ID })
                     </td>
                 </tr>
             }
@@ -87,15 +95,4 @@
 
 <div class="myButton">
     @Html.ActionLink("Crear Nuevo", "Create")
-</div>
-    
-    <div class="myButton">
-        @Html.ActionLink("Editar", "Edit")
-    </div>
-    <div class="myButton">
-        @Html.ActionLink("Detalles", "Details")
-    </div>
-    <div class="myButton">
-        @Html.ActionLink("Eliminar", "Delete")
-    </div>
 </div>

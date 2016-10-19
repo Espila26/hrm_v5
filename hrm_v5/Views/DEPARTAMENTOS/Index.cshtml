@@ -24,123 +24,49 @@
         </div>
     }
 </div>
+<br></br>
+<br></br>
+    <div class="datagrid">
+    <table align="center">
+        <thead>
+            <tr>
+                <th align="center">
+                    @Html.DisplayNameFor(model => model.NOMBRE)
+                </th>
+                <th align="center">
+                    @Html.DisplayNameFor(model => model.DESCRIPCION)
+                </th>
+                <th align="center">
+                    @Html.DisplayNameFor(model => model.EMPRESAS.NOMBRE)
+                </th>
+                <th align="center">Acciones</th>
+            </tr>
+        <tbody>
 
-<div class="contenedor">
-    <style type="text/css">
-        .webGrid {
-            margin: 4px;
-            border-collapse: collapse;
-            width: 620px;
-            font-family: Tahoma;
-            font-size: small;
-        }
-
-        .grid-header {
-            background-color: #5C5C5C;
-            font-weight: bold;
-            color: White !important;
-        }
-
-        .webGrid th a {
-            color: White;
-            text-decoration: none;
-        }
-
-        .webGrid th, .webGrid td {
-            border: 1px solid black;
-            padding: 5px;
-        }
-
-        .alt {
-            background-color: #F2F2F2;
-        }
-
-        .webGrid th a:hover {
-            text-decoration: underline;
-        }
-
-        .to-the-right {
-            text-align: center;
-        }
-    </style>
-    @using (Html.BeginForm("formAction", "DEPARTAMENTOS"))
-    {
-
-        var grid = new WebGrid(source: Model,
-          rowsPerPage: 6);
-        @grid.GetHtml(
-                    tableStyle: "webGrid",
-                    htmlAttributes: new { id = "checkableGrid" },
-                    headerStyle: "grid-header",
-                    rowStyle: "gridRow",
-                    alternatingRowStyle: "alt",
-                    mode: WebGridPagerModes.All,
-                    firstText: "<< First",
-                    previousText: " < Previous",
-                    nextText: "Next >",
-                    lastText: "Last >>",
-                    columns: grid.Columns(
-                    grid.Column(
-                    format: @<text>
-                            <input type="checkbox" value="@item.ID_DEPARTAMENTO" name="ids" />
-                    </text>,
-                    header: "{checkall}"),
-                    grid.Column("NOMBRE", "NOMBRE"),
-                    grid.Column("DESCRIPCION", "DESCRIPCION"),
-                    grid.Column("EMPRESA", "EMPRESA")
-                    ))
-        <div class="separador">
-            <div class="myButton">
-                @Html.ActionLink("Crear Nuevo", "Create")
-            </div>
-            <div class="myButton">
-                <input type="submit" name="Editar" value="Editar" />
-            </div>
-            <div class="myButton">
-                <input type="submit" name="Detalles" value="Detalles" />
-            </div>
-        </div>
-    }
-
-    @section Scripts{
-        <script>
-                    $(document).ready(function () {
-
-                        // 1st replace first column header text with checkbox
-
-                        $("#checkableGrid th").each(function () {
-                            if ($.trim($(this).text().toString().toLowerCase()) === "{checkall}") {
-                                $(this).text('');
-                                $("<input/>", { type: "checkbox", id: "cbSelectAll", value: "" }).appendTo($(this));
-                                $(this).append("<span>Seleccionar</span>");
-                            }
-                        });
-
-                        //2nd click event for header checkbox for select /deselect all
-                        $("#cbSelectAll").live("click", function () {
-                            var ischecked = this.checked;
-                            $('#checkableGrid').find("input:checkbox").each(function () {
-                                this.checked = ischecked;
-                            });
-                        });
-
-
-                        //3rd click event for checkbox of each row
-                        $("input[name='ids']").click(function () {
-                            var totalRows = $("#checkableGrid td :checkbox").length;
-                            var checked = $("#checkableGrid td :checkbox:checked").length;
-
-                            if (checked == totalRows) {
-                                $("#checkableGrid").find("input:checkbox").each(function () {
-                                    this.checked = true;
-                                });
-                            }
-                            else {
-                                $("#cbSelectAll").removeAttr("checked");
-                            }
-                        });
-
-                    });
-        </script>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.NOMBRE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIPCION)
+                    </td>
+                    <td align="center">
+                        @Html.DisplayFor(modelItem => item.EMPRESAS.NOMBRE)
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID_DEPARTAMENTO }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ID_DEPARTAMENTO }) |
+                        @Html.ActionLink("Inhabilitar", "Delete", new { id = item.ID_DEPARTAMENTO })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+<br></br>
+<div class="myButton">
+    @Html.ActionLink("Crear Nuevo", "Create")
+</div>
+

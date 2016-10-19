@@ -22,59 +22,65 @@
         </div>
     }
 </div>
-
-<div class="contenedor">
+<br></br>
+<br></br>
 <div class="datagrid">
     <table>
         <thead>
             <tr>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.NOMBRE)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.RAZON_SOCIAL)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.CEDULA_JURIDICA)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.FECHA_FUNDACION)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.PAIS_ORIGEN)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.SEDE_CENTRAL)
                 </th>
-                <th>
+                <th align="center">
                     @Html.DisplayNameFor(model => model.ESTADO)
                 </th>
+                <th align="center">Acciones</th>
             </tr>
         <tbody>
 
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.NOMBRE)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.RAZON_SOCIAL)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.CEDULA_JURIDICA)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.FECHA_FUNDACION)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.PAIS_ORIGEN)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.SEDE_CENTRAL)
                     </td>
-                    <td>
+                    <td align="center">
                         @Html.DisplayFor(modelItem => item.ESTADO)
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID_EMPRESA }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ID_EMPRESA }) |
+                        @Html.ActionLink("Inhabilitar", "Delete", new { id = item.ID_EMPRESA })
                     </td>
                 </tr>
             }
@@ -87,15 +93,4 @@
 
 <div class="myButton">
     @Html.ActionLink("Crear Nuevo", "Create")
-</div>
-
-    <div class="myButton">
-        @Html.ActionLink("Editar", "Edit")
-    </div>
-    <div class="myButton">
-        @Html.ActionLink("Detalles", "Details")
-    </div>
-    <div class="myButton">
-        @Html.ActionLink("Eliminar", "Delete")
-    </div>
 </div>
