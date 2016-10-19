@@ -14,11 +14,12 @@
 </script>
 
 <div>
+    <h4><div id="lettertext">Expediente Laboral.</div></h4>
     <div class="divBuscar">
         @using (Html.BeginForm("Expediente", "EMPLEADOS"))
         {
             <div class="form-group">
-                <label class="pNombre">Emleados</label>
+                <label class="pNombre">Empleado: </label>
                 <div class="col-md-10">
                     <input type="text" name="searchString" class="textInput" placeholder="Número de Identificación del Empleado (#########)" />
                 </div>
@@ -26,6 +27,8 @@
             </div>
         }
     </div>
+    <br></br>
+    <br></br>
     <hr />
     <div>
         <ul class="tab-links">
