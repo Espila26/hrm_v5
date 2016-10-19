@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Expediente";
 }
+
 @Styles.Render("~/Content/EstiloExpediente.css")
 @Styles.Render("~/Content/Formulario.css")
 @Styles.Render("~/Content/EstiloBoton.css")
@@ -13,12 +14,17 @@
 </script>
 
 <div>
-    <div>
-        <div id="lettertext">
-            <span class="label label-default">Empleado: </span>
-            <input id="Empleado" type="text" />
-                @Html.ActionLink("Buscar", "Index", "Home", null, new { @class = "myButton", @id = "Buscar" })
-        </div>
+    <div class="divBuscar">
+        @using (Html.BeginForm("Expediente", "EMPLEADOS"))
+        {
+            <div class="form-group">
+                <label class="pNombre">Emleados</label>
+                <div class="col-md-10">
+                    <input type="text" name="searchString" class="textInput" placeholder="Número de Identificación del Empleado (#########)" />
+                </div>
+                <button type="submit" id="Buscar" class="myButton">Buscar</button>
+            </div>
+        }
     </div>
     <hr />
     <div>
