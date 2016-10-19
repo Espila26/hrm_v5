@@ -28,7 +28,7 @@ namespace hrm_v5.Models
         [Required, DisplayName("Departamento"), MaxLength(45)]
         public string NOMBRE { get; set; }
 
-        [Required, DisplayName("Descripción")]
+        [DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
 
         [Required, DisplayName("Empresa")]

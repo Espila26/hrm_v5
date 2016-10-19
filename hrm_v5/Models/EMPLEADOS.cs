@@ -49,16 +49,16 @@ namespace hrm_v5.Models
         [Required, DisplayName("Dirección"), MaxLength(100)]
         public string DIRECCION { get; set; }
 
-        [Required, DisplayName("Descripción")]
+        [DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
 
-        [Required, DisplayName("Teléfono de Habitación"), MaxLength(15)]
+        [DisplayName("Teléfono de Habitación"), MaxLength(15)]
         public string TEL_HABITACION { get; set; }
 
-        [Required, DisplayName("Teléfono Móvil"), MaxLength(15)]
+        [DisplayName("Teléfono Móvil"), MaxLength(15)]
         public string TEL_MOVIL { get; set; }
 
-        [Required, DisplayName("Correo Electrónico"), MaxLength(30)]
+        [Required,DisplayName("Correo Electrónico"), MaxLength(30)]
         public string E_MAIL { get; set; }
 
         [Required, DisplayName("Puesto")]
