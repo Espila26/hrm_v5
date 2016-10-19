@@ -13,7 +13,7 @@
 <hr />
 
 <div class="divBuscar">
-    @using (Html.BeginForm("Index", "DEPARTAMENTOS"))
+    @using (Html.BeginForm())
     {
         <div class="form-group">
             <label class="pNombre">Nombre</label>
@@ -26,53 +26,121 @@
 </div>
 
 <div class="contenedor">
-    <div class="separador"></div>
-    <div class="datagrid">
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.NOMBRE)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DESCRIPCION)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.EMPRESAS.NOMBRE)
-                    </th>
-                </tr>
-            <tbody>
+    <style type="text/css">
+        .webGrid {
+            margin: 4px;
+            border-collapse: collapse;
+            width: 620px;
+            font-family: Tahoma;
+            font-size: small;
+        }
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NOMBRE)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EMPRESAS.NOMBRE)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+        .grid-header {
+            background-color: #5C5C5C;
+            font-weight: bold;
+            color: White !important;
+        }
 
-    <br />
+        .webGrid th a {
+            color: White;
+            text-decoration: none;
+        }
 
-    <div class="myButton">
-        @Html.ActionLink("Crear Nuevo", "Create")
-    </div>
-    <div class="myButton">
-        @Html.ActionLink("Editar", "Edit")
-    </div>
-    <div class="myButton">
-        @Html.ActionLink("Detalles", "Details")
-    </div>
-    <div class="myButton">
-        @Html.ActionLink("Eliminar", "Delete")
-    </div>
+        .webGrid th, .webGrid td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .alt {
+            background-color: #F2F2F2;
+        }
+
+        .webGrid th a:hover {
+            text-decoration: underline;
+        }
+
+        .to-the-right {
+            text-align: center;
+        }
+    </style>
+    @using (Html.BeginForm("Index", "User", FormMethod.Post, new { @class = "formGrid" }))
+    {
+
+        var grid = new WebGrid(source: Model,
+          rowsPerPage: 6);
+        @grid.GetHtml(
+                    tableStyle: "webGrid",
+                    htmlAttributes: new { id = "checkableGrid" },
+                    headerStyle: "grid-header",
+                    rowStyle: "gridRow",
+                    alternatingRowStyle: "alt",
+                    mode: WebGridPagerModes.All,
+                    firstText: "<< First",
+                    previousText: " < Previous",
+                    nextText: "Next >",
+                    lastText: "Last >>",
+                    columns: grid.Columns(
+                    grid.Column(
+                    format: @<text>
+                            <input type="checkbox" value="@item.ID_DEPARTAMENTO" name="ids" />
+                    </text>,
+                    header: "{checkall}"),
+                    grid.Column("NOMBRE", "NOMBRE"),
+                    grid.Column("DESCRIPCION", "DESCRIPCION"),
+                    grid.Column("EMPRESA", "EMPRESA")
+                    ))
+        <div class="separador">
+            <div class="myButton">
+                @Html.ActionLink("Crear Nuevo", "Create")
+            </div>
+            <div class="myButton">
+                <input type="submit" name="Editar" value="Editar" />
+            </div>
+            <div class="myButton">
+                <input type="submit" name="Detalles" value="Detalles" />
+            </div>
+        </div>
+    }
+
+    @section Scripts{
+        <script>
+                    $(document).ready(function () {
+
+                        // 1st replace first column header text with checkbox
+
+                        $("#checkableGrid th").each(function () {
+                            if ($.trim($(this).text().toString().toLowerCase()) === "{checkall}") {
+                                $(this).text('');
+                                $("<input/>", { type: "checkbox", id: "cbSelectAll", value: "" }).appendTo($(this));
+                                $(this).append("<span>Seleccionar</span>");
+                            }
+                        });
+
+                        //2nd click event for header checkbox for select /deselect all
+                        $("#cbSelectAll").live("click", function () {
+                            var ischecked = this.checked;
+                            $('#checkableGrid').find("input:checkbox").each(function () {
+                                this.checked = ischecked;
+                            });
+                        });
+
+
+                        //3rd click event for checkbox of each row
+                        $("input[name='ids']").click(function () {
+                            var totalRows = $("#checkableGrid td :checkbox").length;
+                            var checked = $("#checkableGrid td :checkbox:checked").length;
+
+                            if (checked == totalRows) {
+                                $("#checkableGrid").find("input:checkbox").each(function () {
+                                    this.checked = true;
+                                });
+                            }
+                            else {
+                                $("#cbSelectAll").removeAttr("checked");
+                            }
+                        });
+
+                    });
+        </script>
+    }
 </div>

@@ -18,6 +18,10 @@
 
 }
 
+.contenedor{
+    position:absolute;
+    top: 30%;
+}
 
 .datagrid table td, .datagrid table th { 
     padding: 7px 9px; 
@@ -152,15 +156,17 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
 }
 
 .contenedor{
-    width: 100%;
+    width: 50%;
     height: 50%;
-    position:absolute;
-    top: 30%;
+    position: absolute;
+    top: 25%;
+    left: 8%;
 }
 
 .separador{
-    width: 100%;
+    width: 60%;
     height: 20%;
     position: absolute;
-    top: 20%;
+    top: 90%;
+    left: 33%;
 }
