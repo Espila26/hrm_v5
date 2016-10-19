@@ -63,7 +63,7 @@
             text-align: center;
         }
     </style>
-    @using (Html.BeginForm("Index", "User", FormMethod.Post, new { @class = "formGrid" }))
+    @using (Html.BeginForm("formAction", "DEPARTAMENTOS"))
     {
 
         var grid = new WebGrid(source: Model,
