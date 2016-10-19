@@ -13,7 +13,7 @@
     <div class="form-horizontal">
         <div><h5 style="float:right; color:red; width:20%">*Campo Requerido</h5><h4>Departamentos > Crear</h4></div>
         <hr />
-        @Html.ValidationSummary(true, "**", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "*", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
