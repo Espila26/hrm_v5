@@ -35,7 +35,7 @@ namespace hrm_v5.Models
         [Required, DisplayName("Cédula Jurídica"), MaxLength(25)]
         public string CEDULA_JURIDICA { get; set; }
 
-        [Required, DisplayName("Fecha de Fundación")]
+        [Required, DisplayName("Fecha de Fundación"), DataType(DataType.DateTime)]
         public System.DateTime FECHA_FUNDACION { get; set; }
 
         [Required, DisplayName("País de Origen"), MaxLength(25)]
