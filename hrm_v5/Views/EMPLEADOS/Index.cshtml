@@ -7,7 +7,7 @@
 @Styles.Render("~/Content/EstiloBoton.css")
 @Scripts.Render("~/bundles/modernizr")
 
-<h4>Personal</h4>
+<p><font face="sans-serif" size="3px">Personal</font></p>
 <hr />
 
  <div class="divBuscar">
@@ -80,9 +80,9 @@
                         @Html.DisplayFor(modelItem => item.PUESTOS.ID_PUESTO)
                     </td>
                     <td align="center">
-                        @Html.ActionLink("Editar", "Edit", new { id = item.EMP_ID }) |
-                        @Html.ActionLink("Detalles", "Details", new { id = item.EMP_ID }) |
-                        @Html.ActionLink("Inhabilitar", "Delete", new { id = item.EMP_ID })
+                        <div class="myButton">@Html.ActionLink("Editar", "Edit", new { id = item.EMP_ID })</div>|
+                        <div class="myButton">@Html.ActionLink("Detalles", "Details", new { id = item.EMP_ID })</div>|
+                        <div class="myButton">@Html.ActionLink("Inhabilitar", "Delete", new { id = item.EMP_ID })</div>
                     </td>
                 </tr>
             }

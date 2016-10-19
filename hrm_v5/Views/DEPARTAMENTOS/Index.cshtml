@@ -9,7 +9,7 @@
 @Scripts.Render("~/bundles/modernizr")
 @Styles.Render("~/Content/EstiloFormulario.css")
 
-<h4>Departamentos</h4>
+<p><font face="sans-serif" size="3px">Puestos</font></p>
 <hr />
 
 <div class="divBuscar">
@@ -56,9 +56,9 @@
                         @Html.DisplayFor(modelItem => item.EMPRESAS.NOMBRE)
                     </td>
                     <td align="center">
-                        @Html.ActionLink("Editar", "Edit", new { id = item.ID_DEPARTAMENTO }) |
-                        @Html.ActionLink("Detalles", "Details", new { id = item.ID_DEPARTAMENTO }) |
-                        @Html.ActionLink("Inhabilitar", "Delete", new { id = item.ID_DEPARTAMENTO })
+                        <div class="myButton">@Html.ActionLink("Editar", "Edit", new { id = item.ID_DEPARTAMENTO })</div>|
+                        <div class="myButton">@Html.ActionLink("Detalles", "Details", new { id = item.ID_DEPARTAMENTO })</div>|
+                        <div class="myButton">@Html.ActionLink("Inhabilitar", "Delete", new { id = item.ID_DEPARTAMENTO })</div>
                     </td>
                 </tr>
             }
