@@ -135,5 +135,23 @@ namespace hrm_v5.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (Request.Form["Detalles"] != null)
+            {
+                if (childChkbox.Count() == 1)
+                    return RedirectToAction("Details", "Departamentos", new { id = childChkbox.First() });
+            }
+            else if (Request.Form["Editar"] != null)
+            {
+                if (childChkbox.Count() == 1)
+                {
+                    return RedirectToAction("Edit", "Departamentos", new { id = childChkbox.First() });
+                }
+            }
+            return View();
+        }
     }
 }
