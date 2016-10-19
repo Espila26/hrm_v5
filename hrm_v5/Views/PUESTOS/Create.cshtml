@@ -43,7 +43,7 @@
             @Html.LabelFor(model => model.NIVEL_ACADEMICO, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NIVEL_ACADEMICO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NIVEL_ACADEMICO, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.NIVEL_ACADEMICO, "*", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -51,7 +51,7 @@
             @Html.LabelFor(model => model.EXP_MIN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EXP_MIN, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EXP_MIN, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.EXP_MIN, "*", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -59,7 +59,7 @@
             @Html.LabelFor(model => model.EXP_DESEADA, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EXP_DESEADA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EXP_DESEADA, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.EXP_DESEADA, "*", new { @class = "text-danger" })
             </div>
         </div>
 

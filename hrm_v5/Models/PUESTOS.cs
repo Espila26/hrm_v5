@@ -43,7 +43,7 @@ namespace hrm_v5.Models
         [Required, DisplayName("Experiencia Deseada"), MaxLength(25)]
         public string EXP_DESEADA { get; set; }
 
-        [Required, DisplayName("Descripción")]
+        [DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
     
         public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }

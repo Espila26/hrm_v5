@@ -64,10 +64,10 @@ namespace hrm_v5.Models
         [Required, DisplayName("Puesto")]
         public int PUESTO { get; set; }
 
-        [Required, DisplayName("Salario")]
+        [DisplayName("Salario")]
         public double SALARIO { get; set; }
 
-        [Required, DisplayName("Estado"), MaxLength(30)]
+        [DisplayName("Estado"), MaxLength(30)]
         public string ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
