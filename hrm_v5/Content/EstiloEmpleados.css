@@ -1,69 +1,56 @@
-﻿.form-horizontal{
-    font-family:Arial;
-    width: 100%;
-    height: 93%;
-    position:absolute;
+﻿/*Posiciones y tamanos de los div*/
+.form-horizontal{
+    width:100%;
+    height:100%;
 }
 
-.form-group{
-    height: 10%;
-    width: 80%;
-    float:left;
+.div1{
+    padding-top:0.7em;
+    width:100%;
+    height:50%;
+    column-count: 3;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
 }
 
-.control-label{
-    float:left;
-    font-weight:bold;
-    font-size:16px;
+.div2{
+    padding-top:0em;
+    width:100%;
+    height:100%;
 }
+
+.div3{
+    padding-top:2em;
+    width:100%;
+    height:100%;
+}
+.divBotones{
+    padding-top:2em;
+}
+
+/*Inputs*/
 
 .form-control{
-    display:inline-block;
-    float:right;
-    height: 5%;
-    width: 50%;
-    left: 20%;
-    border: #9998A1 3px solid;
-    border-radius: 5px; 
+    padding:1%;
+    height: 80%;
+    width: 80%;
+    font-size:15px;
+    border: #9998A1 0px solid; 
+    border-radius: 3px; 
+    border-bottom: #000000 1px solid;
 }
 
 .form-control:focus{
-    border:3px solid #6594EC;
+    border:2px solid #6594EC;
     background-color:#F0F8FF;
-    margin-right:10px;
-}
-.formDetails{
-    height: 5%;
-    width: 30%;
-    position:absolute;
-    left: 15%;
 }
 
-.scrollVertical{
-    overflow-y:auto;
-    overflow-x:auto;
+.control-label{
+    font-family:sans-serif;
+    font-weight: bold;
+    font-size:16px;
 }
 
-.text-danger{
-    display:inline-block;
-    float:right;
-    color: red;
-    position: relative;
-    left: 53%;
+h3{
+    font-family:sans-serif;
 }
-
- .field-validation-error {
-        color:red;
- }
-
- .div1{
-      width:50%; 
-      float:left; 
-      height:458px;
- }
-
- .div2{
-     width:50%; 
-     float:left; 
-     height:458px;
- }

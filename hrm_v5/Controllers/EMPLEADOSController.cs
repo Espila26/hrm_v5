@@ -144,9 +144,8 @@ namespace hrm_v5.Controllers
 
         //Buscar un empleado en específico.
 
-        public int CrearID(){
+        public string CrearID(){
             string result;
-            int a;
             int cont = 1;
             string varCont = cont.ToString();
             string dia = @DateTime.Now.Day.ToString();
@@ -155,9 +154,8 @@ namespace hrm_v5.Controllers
             string fecha = dia + mes + año;
             if (db.EMPLEADOS.Count() == 0)
             {
-                result = varCont + fecha;
-                a = Int32.Parse(result);
-                return a;
+                result = varCont + " - " + fecha;
+                return result;
             }
             else
             {
@@ -165,10 +163,24 @@ namespace hrm_v5.Controllers
                 {
                     cont++;
                 }
-                result = varCont + fecha;
-                a = Int32.Parse(result);
-                return a;
+                result = varCont + " - " + fecha;
+                return result;
             }
+        }
+
+        [HttpPost]
+        public JsonResult doesUserNameExist(string UserName)
+        {
+
+            var user = from e in db.EMPLEADOS
+                      select e;
+
+            if (!String.IsNullOrEmpty(UserName))
+            {
+                user = user.Where(s => s.NOMBRE.Contains(UserName));
+            }
+
+            return Json(user == null);
         }
     }
 }

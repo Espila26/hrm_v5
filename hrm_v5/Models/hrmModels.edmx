@@ -42,10 +42,10 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EMPLEADO" Type="varchar" MaxLength="15" />
+          <Property Name="ID_EMPLEADO" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="CEDULA" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="APE1" Type="varchar" MaxLength="15" />
+          <Property Name="APE1" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="APE2" Type="varchar" MaxLength="15" />
           <Property Name="DIRECCION" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
@@ -114,16 +114,6 @@
           <Property Name="FINAL" Type="date" Nullable="false" />
           <Property Name="DESCRIPCION" Type="text" Nullable="false" />
           <Property Name="GOCE_SALARIO" Type="char" MaxLength="1" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -285,7 +275,6 @@
           <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PUESTOS" EntityType="Self.PUESTOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUSPENSIONES" EntityType="Self.SUSPENSIONES" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VACACIONES" EntityType="Self.VACACIONES" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AMONESTACION_EMPLEADO" Association="Self.FK_AMONESTACION_EMPLEADO">
@@ -378,10 +367,10 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_EMPLEADO" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ID_EMPLEADO" Type="String" MaxLength="15" Unicode="false" FixedLength="false" Nullable="false" />
           <Property Name="CEDULA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="APE1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="APE1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="APE2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
@@ -465,16 +454,6 @@
           <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GOCE_SALARIO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_SUSPENSION_EMPLEADO" FromRole="SUSPENSIONES" ToRole="EMPLEADOS" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -639,7 +618,6 @@
           <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" />
           <EntitySet Name="PUESTOS" EntityType="Self.PUESTOS" />
           <EntitySet Name="SUSPENSIONES" EntityType="Self.SUSPENSIONES" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
           <EntitySet Name="VACACIONES" EntityType="Self.VACACIONES" />
           <AssociationSet Name="FK_AMONESTACION_EMPLEADO" Association="Self.FK_AMONESTACION_EMPLEADO">
@@ -809,17 +787,6 @@
                 <ScalarProperty Name="FINAL" ColumnName="FINAL" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="GOCE_SALARIO" ColumnName="GOCE_SALARIO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="hrm_dbModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
