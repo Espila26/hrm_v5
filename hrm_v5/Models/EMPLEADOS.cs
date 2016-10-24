@@ -11,7 +11,7 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class EMPLEADOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -38,6 +38,7 @@ namespace hrm_v5.Models
         public string TEL_MOVIL { get; set; }
         public string E_MAIL { get; set; }
         public int PUESTO { get; set; }
+        [Required(AllowEmptyStrings =false, ErrorMessage ="Ingrese un salario")]
         public double SALARIO { get; set; }
         public string ESTADO { get; set; }
     
