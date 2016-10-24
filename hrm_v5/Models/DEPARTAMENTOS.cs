@@ -11,7 +11,8 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DEPARTAMENTOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace hrm_v5.Models
         }
     
         public int ID_DEPARTAMENTO { get; set; }
+        [Required]
         public string NOMBRE { get; set; }
         public string DESCRIPCION { get; set; }
         public int EMPRESA { get; set; }
