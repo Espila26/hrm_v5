@@ -11,7 +11,8 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPRESAS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,9 @@ namespace hrm_v5.Models
         public string NOMBRE { get; set; }
         public string RAZON_SOCIAL { get; set; }
         public string CEDULA_JURIDICA { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_FUNDACION { get; set; }
         public string PAIS_ORIGEN { get; set; }
         public string SEDE_CENTRAL { get; set; }

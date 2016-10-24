@@ -11,7 +11,10 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Net.Http;
+    using System.Web.Mvc;
+
     public partial class EMPLEADOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,11 +32,17 @@ namespace hrm_v5.Models
         public int EMP_ID { get; set; }
         public string ID_EMPLEADO { get; set; }
         public string CEDULA { get; set; }
+        [Required]
+        [Display(Name = "User name")]
         public string NOMBRE { get; set; }
         public string APE1 { get; set; }
         public string APE2 { get; set; }
         public string DIRECCION { get; set; }
+        [DataType(DataType.MultilineText)]
         public string DESCRIPCION { get; set; }
+
+        [Required(ErrorMessage = "Your must provide a PhoneNumber")]
+        [Phone]
         public string TEL_HABITACION { get; set; }
         public string TEL_MOVIL { get; set; }
         public string E_MAIL { get; set; }
