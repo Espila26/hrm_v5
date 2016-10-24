@@ -10,8 +10,10 @@
 {
     @Html.AntiForgeryToken()
 
+    <h4 class="titulos">Editar Departamento</h4>
+
     <div class="form-horizontal">
-        <h4>Departamentos > Editar</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID_DEPARTAMENTO)

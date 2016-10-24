@@ -8,13 +8,14 @@
 }
 
 .datagrid {
-    font: normal 12px/150% Arial, Helvetica, sans-serif; 
-    background: #fff; 
-    overflow: auto; 
-    border: 1px solid #000000; 
-    -webkit-border-radius: 8px; 
-    -moz-border-radius: 8px; 
-    border-radius: 8px; 
+    font: normal 12px/150% Arial;
+    background: #fff;
+    overflow: auto;
+    border: 1px solid #000000;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
 
 }
 
@@ -161,6 +162,7 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
     position: absolute;
     top: 25%;
     left: 8%;
+   
 }
 
 .separador{
@@ -169,4 +171,12 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
     position: absolute;
     top: 90%;
     left: 33%;
+}
+
+.titulos{
+
+    font:sans-serif;
+    font-size: 25px;
+    position: fixed;
+    left: 50%;
 }
