@@ -11,9 +11,7 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class EMPLEADOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,47 +25,20 @@ namespace hrm_v5.Models
             this.USUARIOS = new HashSet<USUARIOS>();
             this.VACACIONES = new HashSet<VACACIONES>();
         }
-
-
+    
         public int EMP_ID { get; set; }
-
-        [Required, DisplayName("ID del Empleado")]
-        public int ID_EMPLEADO { get; set; }
-
-        [Required, DisplayName("Cédula"), MaxLength(15)]
+        public string ID_EMPLEADO { get; set; }
         public string CEDULA { get; set; }
-
-        [Required, DisplayName("Nombre"), MaxLength(30)]
         public string NOMBRE { get; set; }
-
-        [Required, DisplayName("Primer Apellido"), MaxLength(30)]
         public string APE1 { get; set; }
-
-        [Required, DisplayName("Segundo Apellido"), MaxLength(30)]
         public string APE2 { get; set; }
-
-        [Required, DisplayName("Dirección"), MaxLength(100)]
         public string DIRECCION { get; set; }
-
-        [DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
-
-        [DisplayName("Teléfono de Habitación"), MaxLength(15)]
         public string TEL_HABITACION { get; set; }
-
-        [DisplayName("Teléfono Móvil"), MaxLength(15)]
         public string TEL_MOVIL { get; set; }
-
-        [Required,DisplayName("Correo Electrónico"), MaxLength(30)]
         public string E_MAIL { get; set; }
-
-        [Required, DisplayName("Puesto")]
         public int PUESTO { get; set; }
-
-        [DisplayName("Salario")]
         public double SALARIO { get; set; }
-
-        [DisplayName("Estado"), MaxLength(30)]
         public string ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

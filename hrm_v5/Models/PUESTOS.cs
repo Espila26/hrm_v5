@@ -11,9 +11,7 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class PUESTOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,29 +19,14 @@ namespace hrm_v5.Models
         {
             this.EMPLEADOS = new HashSet<EMPLEADOS>();
         }
-
-        [Required]
+    
         public int PTS_ID { get; set; }
-
-        [Required, DisplayName("ID del Puesto")]
         public string ID_PUESTO { get; set; }
-
-        [Required, DisplayName("Nombre del Puesto"), MaxLength(45)]
         public string NOMBRE { get; set; }
-
-        [Required, DisplayName("Departamento")]
         public int DEPARTAMENTO { get; set; }
-
-        [Required, DisplayName("Nivel Académico"), MaxLength(250)]
         public string NIVEL_ACADEMICO { get; set; }
-
-        [Required, DisplayName("Experiencia Mínima"), MaxLength(25)]
         public string EXP_MIN { get; set; }
-
-        [Required, DisplayName("Experiencia Deseada"), MaxLength(25)]
         public string EXP_DESEADA { get; set; }
-
-        [DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
     
         public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }

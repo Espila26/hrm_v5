@@ -11,9 +11,7 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class DEPARTAMENTOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,17 +19,10 @@ namespace hrm_v5.Models
         {
             this.PUESTOS = new HashSet<PUESTOS>();
         }
-
-        [Required, DisplayName("ID del Departamento"),]
+    
         public int ID_DEPARTAMENTO { get; set; }
-
-        [Required, DisplayName("Departamento"), MaxLength(45)]
         public string NOMBRE { get; set; }
-
-        [DisplayName("Descripción")]
         public string DESCRIPCION { get; set; }
-
-        [Required, DisplayName("Empresa")]
         public int EMPRESA { get; set; }
     
         public virtual EMPRESAS EMPRESAS { get; set; }

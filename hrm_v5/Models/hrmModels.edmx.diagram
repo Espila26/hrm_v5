@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="hrm_dbModel.PERMISOS" Width="1.5" PointX="9.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="hrm_dbModel.PUESTOS" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="hrm_dbModel.SUSPENSIONES" Width="1.5" PointX="9.75" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="hrm_dbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="hrm_dbModel.USUARIOS" Width="1.5" PointX="9.75" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="hrm_dbModel.VACACIONES" Width="1.5" PointX="9.75" PointY="22.25" IsExpanded="true" />
         <AssociationConnector Association="hrm_dbModel.FK_AMONESTACION_EMPLEADO" ManuallyRouted="false" />
