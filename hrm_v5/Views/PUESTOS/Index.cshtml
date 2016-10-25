@@ -127,12 +127,12 @@
                         <input type="checkbox" value="@item.ID_PUESTO" name="childChkbox" />
                 </text>,
                  header: ""),
-                 grid.Column("NOMBRE", "Nombre del puesto"),
-                 grid.Column("NIVEL_ACADEMICO", "Nivel academico requerido"),
-                 grid.Column("EXP_MIN", "Experiencia minima"),
-                 grid.Column("EXP_DESEADA", "Experiencia deseada"),
-                 grid.Column("DESCRIPCION", "Descripcion"),
-                 grid.Column("DEPARTAMENTOS.NOMBRE", "Departamento")
+                 grid.Column("NOMBRE", "Nombre del Puesto"),
+                 grid.Column("NIVEL_ACADEMICO", "Nivel Académico", canSort: false),
+                 grid.Column("EXP_MIN", "Experiencia Mínima", canSort: false),
+                 grid.Column("EXP_DESEADA", "Experiencia Deseada", canSort: false),
+                 grid.Column("DESCRIPCION", "Descripción del Puesto", canSort: false),
+                 grid.Column("DEPARTAMENTOS.NOMBRE", "Nombre del Departamento", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()

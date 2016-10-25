@@ -126,10 +126,10 @@
                         <input type="checkbox" value="@item.ID_EMPRESA" name="childChkbox" />
                 </text>,
                  header: ""),
-                 grid.Column("NOMBRE", "Nombre de la empresa"),
-                 grid.Column("RAZON_SOCIAL", "Razon social"),
-                 grid.Column("FECHA_FUNDACION", "Fecha de fundacion"),
-                 grid.Column("PAIS_ORIGEN", "Pais de origen")
+                 grid.Column("NOMBRE", "Nombre de la Empresa"),
+                 grid.Column("RAZON_SOCIAL", "Razón Social", canSort: false),
+                 grid.Column("FECHA_FUNDACION", "Fecha de Fundación", canSort: false),
+                 grid.Column("PAIS_ORIGEN", "País de Origen", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()

@@ -126,13 +126,13 @@
                         <input type="checkbox" value="@item.ID_EMPLEADO" name="childChkbox" />
                 </text>,
                  header: ""),
-                 grid.Column("CEDULA", "Cedula"),
-                 grid.Column("NOMBRE", "Nombre"),
-                 grid.Column("APE1", "Primer apellido"),
-                 grid.Column("APE2", "Segundo pellido"),
-                 grid.Column("TEL_MOVIL", "Numero de celular"),
-                 grid.Column("E_MAIL", "Correo electronico"),
-                 grid.Column("PUESTOS.NOMBRE", "Puesto")
+                 grid.Column("CEDULA", "Cédula", canSort: false),
+                 grid.Column("NOMBRE", "Nombre", canSort: false),
+                 grid.Column("APE1", "Primer Apellido", canSort: false),
+                 grid.Column("APE2", "Segundo Apellido", canSort: false),
+                 grid.Column("TEL_MOVIL", "Teléfono Móvil", canSort: false),
+                 grid.Column("E_MAIL", "Correo Electrónico", canSort: false),
+                 grid.Column("PUESTOS.NOMBRE", "Nombre del Puesto", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()
