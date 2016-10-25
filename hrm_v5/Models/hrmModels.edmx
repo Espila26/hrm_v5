@@ -42,7 +42,7 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EMPLEADO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="varchar" MaxLength="15" />
           <Property Name="CEDULA" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="APE1" Type="varchar" MaxLength="15" Nullable="false" />
@@ -378,7 +378,7 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_EMPLEADO" Type="String" MaxLength="15" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="CEDULA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="APE1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
