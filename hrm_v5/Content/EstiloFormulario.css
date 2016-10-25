@@ -59,9 +59,16 @@
 .titulos{
 
     font:Arial;
+    font-weight:bold;
     font-size: 25px;
     position: fixed;
     left: 50%;
+}
+
+h5{
+    float:right; 
+    color:black;
+    width:20%
 }
 
 ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }

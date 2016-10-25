@@ -11,9 +11,7 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class PUESTOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,18 +21,12 @@ namespace hrm_v5.Models
         }
     
         public int PTS_ID { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID del Puesto")]
         public string ID_PUESTO { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un nombre válido"), DisplayName("Nombre del Puesto"), StringLength(45, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 45 caracteres."), RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Formato Inválido.")]
         public string NOMBRE { get; set; }
         public int DEPARTAMENTO { get; set; }
-        [DisplayName("Nivel Académico"), StringLength(45, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 45 caracteres."), RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Formato Inválido.")]
         public string NIVEL_ACADEMICO { get; set; }
-        [DisplayName("Experiencia Mínima"), StringLength(45, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 45 caracteres."), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Formato Inválido (Ingrese números.)")]
         public string EXP_MIN { get; set; }
-        [DisplayName("Experiencia Deseada") StringLength(45, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 45 caracteres."), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Formato Inválido (Ingrese números.)")]
         public string EXP_DESEADA { get; set; }
-        [DisplayName("Descripción del puesto"), DataType(DataType.MultilineText)]
         public string DESCRIPCION { get; set; }
     
         public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }
