@@ -257,9 +257,6 @@
     <Compile Include="Models\SUSPENSIONES.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>hrmModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\USUARIOS.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
@@ -299,6 +296,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <EntityDeploy Include="Models\hrmModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

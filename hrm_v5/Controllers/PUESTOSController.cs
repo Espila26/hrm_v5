@@ -61,11 +61,51 @@ namespace hrm_v5.Controllers
             {
                 db.PUESTOS.Add(pUESTOS);
                 db.SaveChanges();
+                TempData["Success"] = "El puesto ha sido creada exitosamente";
                 return RedirectToAction("Index");
             }
 
             ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE", pUESTOS.DEPARTAMENTO);
             return View(pUESTOS);
+        }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "Se debe de seleccionar al menos un puesto";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Request.Form["Detalles"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "PUESTOS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Solamente es posible ver los detalles de un puesto a la vez";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Editar"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "PUESTOS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Solamente es posible editar un puesto a la vez";
+                        return RedirectToAction("Index");
+                    }
+                }
+                return View();
+            }
         }
 
         // GET: PUESTOS/Edit/5

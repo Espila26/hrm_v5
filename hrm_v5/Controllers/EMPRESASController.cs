@@ -60,10 +60,50 @@ namespace hrm_v5.Controllers
             {
                 db.EMPRESAS.Add(eMPRESAS);
                 db.SaveChanges();
+                TempData["Success"] = "La empresa ha sido creada exitosamente";
                 return RedirectToAction("Index");
             }
 
             return View(eMPRESAS);
+        }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "Se debe de seleccionar al menos una empresa";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Request.Form["Detalles"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "EMPRESAS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Solamente es posible ver los detalles de una empresa a la vez";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Editar"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "EMPRESAS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Solamente es posible editar una empresa a la vez";
+                        return RedirectToAction("Index");
+                    }
+                }
+                return View();
+            }
         }
 
         // GET: EMPRESAS/Edit/5

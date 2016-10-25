@@ -61,11 +61,13 @@ namespace hrm_v5.Controllers
             {
                 db.DEPARTAMENTOS.Add(dEPARTAMENTOS);
                 db.SaveChanges();
+                TempData["Success"] = "El departamento ha sido creado exitosamente";
                 return RedirectToAction("Index");
             }
 
             ViewBag.EMPRESA = new SelectList(db.EMPRESAS, "ID_EMPRESA", "NOMBRE", dEPARTAMENTOS.EMPRESA);
             return View(dEPARTAMENTOS);
+
         }
 
         // GET: DEPARTAMENTOS/Edit/5
@@ -139,19 +141,41 @@ namespace hrm_v5.Controllers
         [HttpPost]
         public ActionResult formAction(string[] childChkbox)
         {
-            if (Request.Form["Detalles"] != null)
+            if (childChkbox == null)
             {
-                if (childChkbox.Count() == 1)
-                    return RedirectToAction("Details", "Departamentos", new { id = childChkbox.First() });
+                TempData["Error"] = "Se debe de seleccionar al menos un departamento";
+                return RedirectToAction("Index");
             }
-            else if (Request.Form["Editar"] != null)
+            else
             {
-                if (childChkbox.Count() == 1)
+                if (Request.Form["Detalles"] != null)
                 {
-                    return RedirectToAction("Edit", "Departamentos", new { id = childChkbox.First() });
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "Departamentos", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Solamente es posible ver los detalles de un departamento a la vez";
+                        return RedirectToAction("Index");
+                    }
                 }
+                else if (Request.Form["Editar"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "Departamentos", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Solamente es posible editar un departamento a la vez";
+                        return RedirectToAction("Index");
+                    }
+                }
+                return View();
             }
-            return View();
         }
+
     }
 }
