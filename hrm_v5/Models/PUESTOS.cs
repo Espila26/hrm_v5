@@ -23,7 +23,7 @@ namespace hrm_v5.Models
         }
     
         public int PTS_ID { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"),DisplayName("ID del Puesto")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID del Puesto")]
         public string ID_PUESTO { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un nombre válido"), DisplayName("Nombre del Puesto"), StringLength(45, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 45 caracteres."), RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Formato Inválido.")]
         public string NOMBRE { get; set; }

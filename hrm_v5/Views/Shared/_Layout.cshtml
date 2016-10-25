@@ -6,6 +6,10 @@
     <title>@ViewBag.Title - HR-Manager</title>
     @Styles.Render("~/Content/EstiloPrincipal.css")
     @Scripts.Render("~/bundles/modernizr")
+    @*librerias de alertify*@
+    <script type="text/javascript" src="~/Scripts/alertify.min.js"></script>
+    <link rel="stylesheet" href="~/Content/alertify.core.css" />
+    <link rel="stylesheet" href="~/Content/alertify.default.css" />
 </head>
 <body>
     <div class="container">
@@ -56,5 +60,23 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    @if (TempData["Error"] != null)
+    {
+        string alert = "Your custom error message";
+        alert = TempData["Error"].ToString();
+        <script type="text/javascript">
+            alertify.error('@alert');
+        </script>
+    }
+    @if (TempData["Success"] != null)
+    {
+        string alert = "Your custom error message";
+        alert = TempData["Success"].ToString();
+        <script type="text/javascript">
+            alertify.success('@alert');
+        </script>
+    }
+
 </body>
 </html>
