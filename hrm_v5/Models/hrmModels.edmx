@@ -42,10 +42,10 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EMPLEADO" Type="varchar" MaxLength="15" />
+          <Property Name="ID_EMPLEADO" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="CEDULA" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="APE1" Type="varchar" MaxLength="15" />
+          <Property Name="APE1" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="APE2" Type="varchar" MaxLength="15" />
           <Property Name="DIRECCION" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
@@ -367,10 +367,10 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_EMPLEADO" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ID_EMPLEADO" Type="String" MaxLength="15" Unicode="false" FixedLength="false" Nullable="false" />
           <Property Name="CEDULA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="APE1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="APE1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="APE2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
