@@ -55,7 +55,6 @@
 	-webkit-border-radius:6px;
 	border-radius:6px;
 	border:1px solid #dcdcdc;
-	display:inline-block;
 	cursor:pointer;
 	color:#777777;
 	font-family:Arial;
@@ -64,6 +63,8 @@
 	padding:2px 12px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
+    width: 100px;
+    height: 26px;
 }
 .myButton:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
