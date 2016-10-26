@@ -7,8 +7,14 @@
 @Styles.Render("~/Content/EstiloBoton.css")
 
 <div>
-    <h4>Personal > Detalles</h4>
+    <div class="titulo">
+        <p>Detalles del Empleado</p>
+    </div>
+
+    <br></br>
+    <br></br>
     <hr />
+
     <dl class="form-group">
         <dt class="control-label">
             @Html.DisplayNameFor(model => model.ID_EMPLEADO)
@@ -138,7 +144,7 @@
 
     </dl>
     <div class="form-group">
-        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "Edit", new { id = Model.ID_EMPLEADO })'" />
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "EMPLEADOS", new { id = Model.EMP_ID })'" />
         <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "EMPLEADOS")'" />
     </div>
 </div>

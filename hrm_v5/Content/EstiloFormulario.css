@@ -37,6 +37,7 @@
     margin-right:10px;
 }
 .formDetails{
+    padding-top:0.5em;
     height: 5%;
     width: 30%;
     position:absolute;
@@ -59,8 +60,7 @@
  }
 
 .titulos{
-
-    font:sans-serif;
+    font-family:sans-serif;
     font-weight:bold;
     font-size: 25px;
     position: fixed;

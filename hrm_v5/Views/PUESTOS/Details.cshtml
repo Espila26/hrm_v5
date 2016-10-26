@@ -6,9 +6,13 @@
 @Styles.Render("~/Content/EstiloFormulario.css")
 @Styles.Render("~/Content/EstiloBoton.css")
 
-<h4 class="titulos">Detalles del Puesto</h4>
+<div class="titulo">
+    <p>Detalles del Puesto</p>
+</div>
 
-<div>
+<br></br>
+<br></br>
+<hr />
     
     <hr />
 
@@ -81,7 +85,7 @@
         </dd>
     </dl>
     <div class="form-group">
-        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "Edit", new { id = Model.ID_PUESTO })'" />
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "PUESTOS", new { id = Model.PTS_ID })'" />
         <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "PUESTOS")'" />
     </div>
 </div>

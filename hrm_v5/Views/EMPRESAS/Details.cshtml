@@ -5,10 +5,14 @@
 @Styles.Render("~/Content/EstiloFormulario.css")
 @Styles.Render("~/Content/EstiloBoton.css")
 
-<h4 class="titulos">Detalles de la Empresa</h4>
-<div>
-    
-    <hr />
+
+<div class="titulo">
+    <p>Detalles de la Empresa</p>
+</div>
+
+<br></br>
+<br></br>
+<hr />
 
     <dl class="form-group">
         <dt class="control-label">
@@ -78,10 +82,12 @@
         <dd class="formDetails">
             @Html.DisplayFor(model => model.ESTADO)
         </dd>
-
     </dl>
+
+    <br></br>
+    <br></br>
     <div class="form-group">
-        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "Edit", new { id = Model.ID_EMPRESA })'" />
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "EMPRESAS", new { id = Model.ID_EMPRESA })'" />
         <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "EMPRESAS")'" />
     </div>
 </div>
