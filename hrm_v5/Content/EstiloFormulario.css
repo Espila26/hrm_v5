@@ -37,6 +37,7 @@
     margin-right:10px;
 }
 .formDetails{
+    padding-top:0.5em;
     height: 5%;
     width: 30%;
     position:absolute;
@@ -59,8 +60,15 @@
  }
 
 .titulos{
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size: 25px;
+    position: fixed;
+    left: 50%;
+}
 
-    font:sans-serif;
+#TitleDetails{
+    font-family:sans-serif;
     font-weight:bold;
     font-size: 25px;
     position: fixed;
@@ -68,10 +76,6 @@
 }
 
  
-
-
-
-
 ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
 ::-webkit-datetime-edit-month-field { color: blue; }
 ::-webkit-datetime-edit-day-field { color: green; }

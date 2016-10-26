@@ -24,7 +24,8 @@ namespace hrm_v5.Controllers
             {
                 DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
                 if (DEP.Count() == 0)
-                    TempData["Error"] = "Los datos ingresados no pertenecen a ningun departamento asociado a la empresa";
+                    TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún departamento asociado a la empresa!";
+                return RedirectToAction("Index");
             }
 
             return View(DEP);
@@ -63,7 +64,7 @@ namespace hrm_v5.Controllers
             {
                 db.DEPARTAMENTOS.Add(dEPARTAMENTOS);
                 db.SaveChanges();
-                TempData["Success"] = "El departamento ha sido creado exitosamente";
+                TempData["Success"] = "¡El Departamento ha sido creado exitosamente!";
                 return RedirectToAction("Index");
             }
 
@@ -145,7 +146,7 @@ namespace hrm_v5.Controllers
         {
             if (childChkbox == null)
             {
-                TempData["Error"] = "Se debe de seleccionar al menos un departamento";
+                TempData["Error"] = "¡Se debe seleccionar al menos un departamento!";
                 return RedirectToAction("Index");
             }
             else
@@ -158,7 +159,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible ver los detalles de un departamento a la vez";
+                        TempData["Error"] = "¡Solamente es posible ver detalles de un departamento a la vez!";
                         return RedirectToAction("Index");
                     }
                 }
@@ -171,7 +172,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible editar un departamento a la vez";
+                        TempData["Error"] = "¡Solamente es posible editar un departamento a la vez!";
                         return RedirectToAction("Index");
                     }
                 }
