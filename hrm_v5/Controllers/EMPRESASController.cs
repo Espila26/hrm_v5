@@ -23,6 +23,8 @@ namespace hrm_v5.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 EMP = EMP.Where(s => s.NOMBRE.Contains(searchString));
+                if (EMP.Count() == 0)
+                    TempData["Error"] = "Los datos ingresados no pertenecen a ninguna empresa";
             }
 
             return View(EMP);
