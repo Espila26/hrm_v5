@@ -47,7 +47,7 @@ namespace hrm_v5.Controllers
         public ActionResult Create()
         {
             ViewData["ID"] = CrearID();
-            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
+            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", eMPLEADOS.PUESTO);
+            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE", eMPLEADOS.PUESTO);
             return View(eMPLEADOS);
 
         }
