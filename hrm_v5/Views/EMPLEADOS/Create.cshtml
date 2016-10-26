@@ -11,13 +11,13 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <div><h5 style="float:right; color:red; width:20%">*Campo Requerido</h5><h4>Empleados > Crear</h4></div>
+        <div><h4>Empleados > Crear</h4></div>
         <hr />
 
         <div class="div2">
             <h3>DATOS PERSONALES</h3>
             <div class="div1">
-                @Html.ValidationSummary(true, "*", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.ID_EMPLEADO, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -31,7 +31,7 @@
                     @Html.LabelFor(model => model.CEDULA, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.CEDULA, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CEDULA, "*", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.CEDULA, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                     @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.NOMBRE, "*", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     @Html.LabelFor(model => model.APE1, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.APE1, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.APE1, "*", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.APE1, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@
                     @Html.LabelFor(model => model.APE2, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.APE2, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.APE2, "*", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.APE2, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@
                     @Html.LabelFor(model => model.E_MAIL, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.E_MAIL, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.E_MAIL, "*", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.E_MAIL, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                     @Html.LabelFor(model => model.DIRECCION, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.DIRECCION, new { htmlAttributes = new { @class = "form-descripcion" } })
-                        @Html.ValidationMessageFor(model => model.DIRECCION, "*", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.DIRECCION, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

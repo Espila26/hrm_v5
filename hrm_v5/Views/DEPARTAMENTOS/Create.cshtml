@@ -10,12 +10,12 @@
 {
     @Html.AntiForgeryToken()
 
-    <div><h5>(*)Indica que los campos son obligatorios</h5><h4 class="titulos">Nuevo Departamento</h4></div>
+    <div><h4 class="titulos">Nuevo Departamento</h4></div>
 
     <div class="form-horizontal">
         
         <hr />
-        @Html.ValidationSummary(true, "*", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
