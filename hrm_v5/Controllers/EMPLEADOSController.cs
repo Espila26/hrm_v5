@@ -23,6 +23,8 @@ namespace hrm_v5.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
+                if (EMP.Count() == 0)
+                    TempData["Error"] = "Los datos ingresados no pertenecen a ningun empleado asociado a la empresa";
             }
 
             return View(EMP);
@@ -47,7 +49,7 @@ namespace hrm_v5.Controllers
         public ActionResult Create()
         {
             ViewData["ID"] = CrearID();
-            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
+            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE");
             return View();
         }
 
@@ -66,7 +68,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", eMPLEADOS.PUESTO);
+            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE", eMPLEADOS.PUESTO);
             return View(eMPLEADOS);
 
         }

@@ -13,6 +13,7 @@ namespace hrm_v5.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+
     public partial class EMPRESAS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,11 +30,14 @@ namespace hrm_v5.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una cédula jurídica"), DisplayName("Razón Social"), StringLength(25, ErrorMessage = "Longitud de la razón social es muy extensa. Por favor no exceda los 25 caracteres."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string RAZON_SOCIAL { get; set; }
 
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una cédula jurídica"), DisplayName("Cédula Jurídica"), StringLength(25, ErrorMessage = "Longitud de la cédula jurídica es muy extensa. Por favor no exceda los 25 caracteres."), RegularExpression("^[0-9a-zA-Z;/?'*@-]*", ErrorMessage = "Formato Inválido.")]
         public string CEDULA_JURIDICA { get; set; }
 
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una fecha de fundación"), DisplayName("Fecha de Fundación"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_FUNDACION { get; set; }
+
 
         [DisplayName("País de Orígen"), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string PAIS_ORIGEN { get; set; }
@@ -43,6 +47,7 @@ namespace hrm_v5.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese el estado de la empresa"), DisplayName("Estado")]
         public string ESTADO { get; set; }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DEPARTAMENTOS> DEPARTAMENTOS { get; set; }

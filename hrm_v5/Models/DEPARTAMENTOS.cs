@@ -13,6 +13,7 @@ namespace hrm_v5.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+
     public partial class DEPARTAMENTOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,11 +28,14 @@ namespace hrm_v5.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un nombre"), DisplayName("Nombre del Departamento"), StringLength(45, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 45 caracteres."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string NOMBRE { get; set; }
 
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una Descripción"), DisplayName("Descripción del Departamento"), DataType(DataType.MultilineText)]
         public string DESCRIPCION { get; set; }
 
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una empresa"), DisplayName("Nombre de la Empresa")]
         public int EMPRESA { get; set; }
+
 
         public virtual EMPRESAS EMPRESAS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
