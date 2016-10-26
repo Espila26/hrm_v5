@@ -23,7 +23,8 @@ namespace hrm_v5.Controllers
             {
                 PUE = PUE.Where(s => s.NOMBRE.Contains(searchString));
                 if (PUE.Count() == 0)
-                    TempData["Error"] = "Los datos ingresados no pertenecen a ningun puesto asociado a la empresa";
+                    TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún puesto asociado a la empresa!";
+                return RedirectToAction("Index");
             }
 
             return View(PUE);
@@ -63,7 +64,7 @@ namespace hrm_v5.Controllers
             {
                 db.PUESTOS.Add(pUESTOS);
                 db.SaveChanges();
-                TempData["Success"] = "El puesto ha sido creada exitosamente";
+                TempData["Success"] = "¡El puesto ha sido creado exitosamente!";
                 return RedirectToAction("Index");
             }
 
@@ -76,7 +77,7 @@ namespace hrm_v5.Controllers
         {
             if (childChkbox == null)
             {
-                TempData["Error"] = "Se debe de seleccionar al menos un puesto";
+                TempData["Error"] = "¡Se debe seleccionar al menos un puesto!";
                 return RedirectToAction("Index");
             }
             else
@@ -89,7 +90,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible ver los detalles de un puesto a la vez";
+                        TempData["Error"] = "¡Solamente es posible ver los detalles de un puesto a la vez!";
                         return RedirectToAction("Index");
                     }
                 }
@@ -102,7 +103,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible editar un puesto a la vez";
+                        TempData["Error"] = "¡Solamente es posible editar un puesto a la vez!";
                         return RedirectToAction("Index");
                     }
                 }

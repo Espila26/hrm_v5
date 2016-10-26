@@ -24,7 +24,8 @@ namespace hrm_v5.Controllers
             {
                 EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
                 if (EMP.Count() == 0)
-                    TempData["Error"] = "Los datos ingresados no pertenecen a ningun empleado asociado a la empresa";
+                    TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún empleado asociado a la empresa!";
+                return RedirectToAction("Index");
             }
 
             return View(EMP);
@@ -64,7 +65,7 @@ namespace hrm_v5.Controllers
             {
                 db.EMPLEADOS.Add(eMPLEADOS);
                 db.SaveChanges();
-                TempData["Success"] = "El empleado ha sido creado exitosamente";
+                TempData["Success"] = "¡El empleado ha sido creado exitosamente!";
                 return RedirectToAction("Index");
             }
 
@@ -78,7 +79,7 @@ namespace hrm_v5.Controllers
         {
             if (childChkbox == null)
             {
-                TempData["Error"] = "Se debe de seleccionar al menos un empleado";
+                TempData["Error"] = "¡Se debe seleccionar al menos un empleado!";
                 return RedirectToAction("Index");
             }
             else
@@ -91,7 +92,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible ver los detalles de un empleado a la vez";
+                        TempData["Error"] = "¡Solamente es posible ver los detalles de un empleado a la vez!";
                         return RedirectToAction("Index");
                     }
                 }
@@ -104,7 +105,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible editar un empleado a la vez";
+                        TempData["Error"] = "¡Solamente es posible editar un empleado a la vez!";
                         return RedirectToAction("Index");
                     }
                 }

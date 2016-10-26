@@ -24,7 +24,8 @@ namespace hrm_v5.Controllers
             {
                 EMP = EMP.Where(s => s.NOMBRE.Contains(searchString));
                 if (EMP.Count() == 0)
-                    TempData["Error"] = "Los datos ingresados no pertenecen a ninguna empresa";
+                    TempData["Error"] = "¡Los datos ingresados no pertenecen a ninguna empresa!";
+                return RedirectToAction("Index");
             }
 
             return View(EMP);
@@ -62,7 +63,7 @@ namespace hrm_v5.Controllers
             {
                 db.EMPRESAS.Add(eMPRESAS);
                 db.SaveChanges();
-                TempData["Success"] = "La empresa ha sido creada exitosamente";
+                TempData["Success"] = "¡La empresa ha sido creada exitosamente!";
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +75,7 @@ namespace hrm_v5.Controllers
         {
             if (childChkbox == null)
             {
-                TempData["Error"] = "Se debe de seleccionar al menos una empresa";
+                TempData["Error"] = "¡Se debe seleccionar al menos una empresa!";
                 return RedirectToAction("Index");
             }
             else
@@ -87,7 +88,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible ver los detalles de una empresa a la vez";
+                        TempData["Error"] = "!Solamente es posible ver los detalles de una empresa a la vez!";
                         return RedirectToAction("Index");
                     }
                 }
@@ -100,7 +101,7 @@ namespace hrm_v5.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "Solamente es posible editar una empresa a la vez";
+                        TempData["Error"] = "¡Solamente es posible editar una empresa a la vez!";
                         return RedirectToAction("Index");
                     }
                 }
