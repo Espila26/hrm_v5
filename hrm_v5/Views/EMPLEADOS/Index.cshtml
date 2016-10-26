@@ -139,10 +139,10 @@
         </div>
         <br />
         <div class="myButton">
-            @Html.ActionLink("Crear Nuevo", "Create")
+            <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "EMPLEADOS")'" class="myButton" />
+            <input type="submit" name="Editar" value="Editar" class="myButton" />
+            <input type="submit" name="Detalles" value="Detalles" class="myButton" />
         </div>
-        <input type="submit" name="Editar" value="Editar" class="myButton" />
-        <input type="submit" name="Detalles" value="Detalles" class="myButton" />
     }
 </div>
 
