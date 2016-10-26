@@ -67,6 +67,14 @@
     left: 50%;
 }
 
+#TitleDetails{
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size: 25px;
+    position: fixed;
+    left: 50%;
+}
+
  
 ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
 ::-webkit-datetime-edit-month-field { color: blue; }
