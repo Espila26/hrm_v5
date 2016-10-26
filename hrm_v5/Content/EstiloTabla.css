@@ -152,7 +152,8 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
     top: 16%;
     border: #9998A1 3px solid;
     border-radius: 5px;
-    padding-top:10px;
+    padding-top:0px;
+    
 }
 
 #Buscar{

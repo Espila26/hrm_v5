@@ -125,13 +125,12 @@
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="form-group">
-                            <select class="form-control" id="form-group-select">
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
-                            </select>
+                            @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), new { @class = "form-control" })
+
                         </div>
+
                         @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
                     </div>
                 </div>
