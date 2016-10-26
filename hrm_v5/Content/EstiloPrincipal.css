@@ -21,6 +21,7 @@ aside{
 }
 body{
     background-color: white;
+    overflow:auto;
 }
 table{
     width: 100%;
@@ -103,11 +104,11 @@ a{
     height: 5%
 }  
 section{
-    overflow-x:auto;
-    width: 75%;
-    height: 83%;
+    overflow:auto;
+    width: 80%;
+    height: 90%;
     position: absolute;
-    top: 15%; 
+    top: 10%; 
     left: 20%; 
 }
 h1{

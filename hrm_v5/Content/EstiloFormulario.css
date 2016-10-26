@@ -15,6 +15,7 @@
 }
 
 .control-label{
+    padding-top:0.5em;
     float:left;
     font-weight:bold;
     font-size:16px;
@@ -25,7 +26,7 @@
     height: 5%;
     width: 30%;
     position:absolute;
-    left: 20%;
+    left: 25%;
     border: #9998A1 3px solid;
     border-radius: 5px; 
 }
@@ -48,9 +49,10 @@
 }
 
 .text-danger{
+    padding-top:0.5em;
     color: black;
     position: absolute;
-    left: 53%;
+    left: 57%;
 }
  .field-validation-error {
         color:red;
@@ -58,11 +60,17 @@
 
 .titulos{
 
-    font:Arial;
+    font:sans-serif;
+    font-weight:bold;
     font-size: 25px;
     position: fixed;
     left: 50%;
 }
+
+ 
+
+
+
 
 ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
 ::-webkit-datetime-edit-month-field { color: blue; }

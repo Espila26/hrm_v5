@@ -10,8 +10,11 @@
 @Styles.Render("~/Content/EstiloFormulario.css")
 
 <p class="titulos">Todos los Departamentos</p>
-<hr />
+
 <br></br>
+<br></br>
+<hr />
+
 <div class="divBuscar">
     @using (Html.BeginForm("Index", "DEPARTAMENTOS"))
     {
@@ -136,9 +139,9 @@
                             <input type="checkbox" value="@item.ID_DEPARTAMENTO" name="childChkbox" />
                     </text>,
                     header: ""),
-                    grid.Column("NOMBRE", "Nombre del departamento"),
-                    grid.Column("DESCRIPCION", "Descripcion", canSort:false),
-                    grid.Column("EMPRESAS.NOMBRE", "Empresa")
+                    grid.Column("NOMBRE", "Nombre del Departamento"),
+                    grid.Column("DESCRIPCION", "Descripción del Departamento", canSort:false),
+                    grid.Column("EMPRESAS.NOMBRE", "Empresa", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()
