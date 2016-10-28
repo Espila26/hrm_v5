@@ -138,6 +138,7 @@ namespace hrm_v5.Controllers
             {
                 db.Entry(pUESTOS).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "¡La información del Puesto ha sido editada exitosamente!";
                 return RedirectToAction("Index");
             }
             ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE", pUESTOS.DEPARTAMENTO);

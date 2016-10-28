@@ -17,7 +17,7 @@
             <span class="Home"></span>
             <h1>@Html.ActionLink("HR-Manager", "Index", "Home", null, new { @class = "h1Letra" })</h1>
             <h2>Bienvenido(a): Usuario</h2>
-            <a class='boton' href='URL-DEL-BOTON'></a>
+            <a class='boton' href='@Url.Action("Index","Home")'></a>
         </header>
         <aside>
             <table>

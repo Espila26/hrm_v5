@@ -135,6 +135,7 @@ namespace hrm_v5.Controllers
             {
                 db.Entry(eMPRESAS).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "¡La informacion de la Empresa ha sido editada exitosamente!";
                 return RedirectToAction("Index");
             }
             return View(eMPRESAS);
