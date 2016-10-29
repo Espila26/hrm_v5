@@ -36,6 +36,5 @@ namespace hrm_v5.Models
         public virtual DbSet<SUSPENSIONES> SUSPENSIONES { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
         public virtual DbSet<VACACIONES> VACACIONES { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
