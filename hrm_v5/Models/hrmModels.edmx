@@ -36,6 +36,7 @@
           <Property Name="NOMBRE" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="DESCRIPCION" Type="text" />
           <Property Name="EMPRESA" Type="int" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPLEADOS">
           <Key>
@@ -47,6 +48,7 @@
           <Property Name="NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="APE1" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="APE2" Type="varchar" MaxLength="15" />
+          <Property Name="FECHA_NAC" Type="date" Nullable="false" />
           <Property Name="DIRECCION" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="TEL_HABITACION" Type="varchar" MaxLength="15" />
@@ -103,6 +105,7 @@
           <Property Name="EXP_MIN" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="EXP_DESEADA" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="DESCRIPCION" Type="text" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="SUSPENSIONES">
           <Key>
@@ -123,6 +126,7 @@
           <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="CONTRASEÑA" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="VACACIONES">
           <Key>
@@ -361,6 +365,7 @@
           <Property Name="EMPRESA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EMPRESAS" Relationship="Self.FK_DEPARTAMENTO_EMPRESA" FromRole="DEPARTAMENTOS" ToRole="EMPRESAS" />
           <NavigationProperty Name="PUESTOS" Relationship="Self.FK_PUESTO_DEPARTAMENTO" FromRole="DEPARTAMENTOS" ToRole="PUESTOS" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="EMPLEADOS">
           <Key>
@@ -388,6 +393,7 @@
           <NavigationProperty Name="SUSPENSIONES" Relationship="Self.FK_SUSPENSION_EMPLEADO" FromRole="EMPLEADOS" ToRole="SUSPENSIONES" />
           <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="EMPLEADOS" ToRole="USUARIOS" />
           <NavigationProperty Name="VACACIONES" Relationship="Self.FK_VACACIONES_EMPLEADO" FromRole="EMPLEADOS" ToRole="VACACIONES" />
+          <Property Name="FECHA_NAC" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="EMPRESAS">
           <Key>
@@ -442,6 +448,7 @@
           <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DEPARTAMENTOS" Relationship="Self.FK_PUESTO_DEPARTAMENTO" FromRole="PUESTOS" ToRole="DEPARTAMENTOS" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_EMPLEADO_PUESTO" FromRole="PUESTOS" ToRole="EMPLEADOS" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SUSPENSIONES">
           <Key>
@@ -465,6 +472,7 @@
           <Property Name="CONTRASEÑA" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="USUARIOS" ToRole="EMPLEADOS" />
           <NavigationProperty Name="HISTORIALES" Relationship="Self.FK_HISTORIAL_USUARIO" FromRole="USUARIOS" ToRole="HISTORIALES" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VACACIONES">
           <Key>
@@ -699,6 +707,7 @@
           <EntitySetMapping Name="DEPARTAMENTOS">
             <EntityTypeMapping TypeName="hrm_dbModel.DEPARTAMENTOS">
               <MappingFragment StoreEntitySet="DEPARTAMENTOS">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -709,6 +718,7 @@
           <EntitySetMapping Name="EMPLEADOS">
             <EntityTypeMapping TypeName="hrm_dbModel.EMPLEADOS">
               <MappingFragment StoreEntitySet="EMPLEADOS">
+                <ScalarProperty Name="FECHA_NAC" ColumnName="FECHA_NAC" />
                 <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
@@ -767,6 +777,7 @@
           <EntitySetMapping Name="PUESTOS">
             <EntityTypeMapping TypeName="hrm_dbModel.PUESTOS">
               <MappingFragment StoreEntitySet="PUESTOS">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="PTS_ID" ColumnName="PTS_ID" />
                 <ScalarProperty Name="ID_PUESTO" ColumnName="ID_PUESTO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
@@ -793,6 +804,7 @@
           <EntitySetMapping Name="USUARIOS">
             <EntityTypeMapping TypeName="hrm_dbModel.USUARIOS">
               <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />

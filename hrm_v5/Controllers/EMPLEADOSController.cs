@@ -50,7 +50,7 @@ namespace hrm_v5.Controllers
         public ActionResult Create()
         {
             ViewData["ID"] = CrearID();
-            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE");
+            viewBagPuestos();
             return View();
         }
 
@@ -109,6 +109,17 @@ namespace hrm_v5.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                else if (Request.Form["Inhabilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var emp = db.EMPLEADOS.Find(Int32.Parse(i));
+                        emp.ESTADO = "Inactivo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    return RedirectToAction("Index");
+                }
                 return View();
             }
         }
@@ -125,7 +136,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", eMPLEADOS.PUESTO);
+            viewBagPuestos();
             return View(eMPLEADOS);
         }
 
@@ -226,6 +237,22 @@ namespace hrm_v5.Controllers
             }
 
             return Json(user == null);
+        }
+
+        public void viewBagPuestos()
+        {
+            List<object> PUESTOS = new List<Object>();
+            var PTS = db.PUESTOS;
+            foreach (var i in PTS)
+            {
+                var DEP = db.DEPARTAMENTOS.Find(i.DEPARTAMENTO);
+                var EMP = db.EMPRESAS.Find(DEP.EMPRESA);
+                if (EMP.ESTADO.Equals("Activo"))
+                {
+                    PUESTOS.Add(i);
+                }
+            }
+            ViewBag.PUESTO = new SelectList(PUESTOS, "PTS_ID", "NOMBRE");
         }
     }
 }
