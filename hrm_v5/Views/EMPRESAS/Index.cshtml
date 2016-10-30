@@ -118,22 +118,23 @@
         var grid = new WebGrid(source: Model,
         rowsPerPage: 6, ajaxUpdateCallback: "addCheck");
         @grid.GetHtml(
-                 tableStyle: "webGrid",
-                 htmlAttributes: new { id = "checkableGrid" },
-                 headerStyle: "webgrid-header",
-                 footerStyle: "webgrid-footer",
-                 rowStyle: "webgridRow",
-                 alternatingRowStyle: "alt",
-                 columns: grid.Columns(
-                 grid.Column(
-                 format: @<text>
+              tableStyle: "webGrid",
+              htmlAttributes: new { id = "checkableGrid" },
+              headerStyle: "webgrid-header",
+              footerStyle: "webgrid-footer",
+              rowStyle: "webgridRow",
+              alternatingRowStyle: "alt",
+              columns: grid.Columns(
+              grid.Column(
+              format: @<text>
                         <input type="checkbox" value="@item.ID_EMPRESA" name="childChkbox" />
                 </text>,
-                 header: ""),
-                 grid.Column("NOMBRE", "Nombre de la Empresa"),
-                 grid.Column("RAZON_SOCIAL", "Razón Social", canSort: false),
-                 grid.Column("FECHA_FUNDACION", "Fecha de Fundación", canSort: false),
-                 grid.Column("PAIS_ORIGEN", "País de Origen", canSort: false)
+              header: ""),
+              grid.Column("NOMBRE", "Nombre de la Empresa"),
+              grid.Column("RAZON_SOCIAL", "Razón Social", canSort: false),
+              grid.Column("FECHA_FUNDACION", "Fecha de Fundación", canSort: false),
+              grid.Column("PAIS_ORIGEN", "País de Origen", canSort: false),
+              grid.Column("ESTADO", "Estado (Activo o inactivo)", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()
@@ -143,6 +144,7 @@
             <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "EMPRESAS")'" class="myButton" />
             <input type="submit" name="Editar" value="Editar" class="myButton" />
             <input type="submit" name="Detalles" value="Detalles" class="myButton" />
+            <input type="submit" name="Inhabilitar" value="Inhabilitar" class="myButton" />
         </div>
     }
 </div>

@@ -135,7 +135,7 @@
                  grid.Column("APE2", "Segundo Apellido", canSort: false),
                  grid.Column("TEL_MOVIL", "Teléfono Móvil", canSort: false),
                  grid.Column("E_MAIL", "Correo Electrónico", canSort: false),
-                 grid.Column("PUESTOS.NOMBRE", "Nombre del Puesto", canSort: false)
+                 grid.Column("ESTADO", "Estado (Activo o Inactivo)", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()
@@ -145,6 +145,7 @@
             <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "EMPLEADOS")'" class="myButton" />
             <input type="submit" name="Editar" value="Editar" class="myButton" />
             <input type="submit" name="Detalles" value="Detalles" class="myButton" />
+            <input type="submit" name="Inhabilitar" value="Inhabilitar" class="myButton" />
         </div>
     }
 </div>

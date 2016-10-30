@@ -105,6 +105,21 @@ namespace hrm_v5.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                else if(Request.Form["Inhabilitar"] != null)
+                {
+                    foreach(var i in childChkbox)
+                    {
+                        var emp = db.EMPRESAS.Find(i);
+                        emp.ESTADO = "Inactivo";
+                        //var DEP = from d in db.DEPARTAMENTOS
+                        //          select d;
+                        //DEP = DEP.Where(s => s.EMPRESA==Int32.Parse(emp.ToString()));
+
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    return RedirectToAction("Index");
+                }
                 return View();
             }
         }
