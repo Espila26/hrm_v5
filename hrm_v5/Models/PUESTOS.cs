@@ -28,6 +28,7 @@ namespace hrm_v5.Models
         public string EXP_MIN { get; set; }
         public string EXP_DESEADA { get; set; }
         public string DESCRIPCION { get; set; }
+        public string ESTADO { get; set; }
     
         public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

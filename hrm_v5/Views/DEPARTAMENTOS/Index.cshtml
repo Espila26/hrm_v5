@@ -141,7 +141,8 @@
                     header: ""),
                     grid.Column("NOMBRE", "Nombre del Departamento"),
                     grid.Column("DESCRIPCION", "Descripción del Departamento", canSort:false),
-                    grid.Column("EMPRESAS.NOMBRE", "Empresa", canSort: false)
+                    grid.Column("EMPRESAS.NOMBRE", "Empresa", canSort: false),
+                    grid.Column("ESTADO", "Estado (Activo o Inactivo)", canSort: false)
                     ))
         <div id="pager">
             @grid.Pager()

@@ -24,6 +24,7 @@ namespace hrm_v5.Models
         public string NOMBRE { get; set; }
         public string DESCRIPCION { get; set; }
         public int EMPRESA { get; set; }
+        public string ESTADO { get; set; }
     
         public virtual EMPRESAS EMPRESAS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

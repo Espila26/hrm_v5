@@ -49,7 +49,7 @@ namespace hrm_v5.Controllers
         public ActionResult Create()
         {
             ViewData["ID"] = CrearID();
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE");
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE","ESTADO");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PTS_ID,ID_PUESTO,NOMBRE,DEPARTAMENTO,NIVEL_ACADEMICO,EXP_MIN,EXP_DESEADA,DESCRIPCION")] PUESTOS pUESTOS)
+        public ActionResult Create([Bind(Include = "PTS_ID,ID_PUESTO,NOMBRE,DEPARTAMENTO,NIVEL_ACADEMICO,EXP_MIN,EXP_DESEADA,DESCRIPCION,ESTADO")] PUESTOS pUESTOS)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE", pUESTOS.DEPARTAMENTO);
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE","ESTADO", pUESTOS.DEPARTAMENTO);
             return View(pUESTOS);
         }
 
@@ -123,7 +123,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE", pUESTOS.DEPARTAMENTO);
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE","ESTADO", pUESTOS.DEPARTAMENTO);
             return View(pUESTOS);
         }
 
@@ -132,7 +132,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PTS_ID,ID_PUESTO,NOMBRE,DEPARTAMENTO,NIVEL_ACADEMICO,EXP_MIN,EXP_DESEADA,DESCRIPCION")] PUESTOS pUESTOS)
+        public ActionResult Edit([Bind(Include = "PTS_ID,ID_PUESTO,NOMBRE,DEPARTAMENTO,NIVEL_ACADEMICO,EXP_MIN,EXP_DESEADA,DESCRIPCION,ESTADO")] PUESTOS pUESTOS)
         {
             if (ModelState.IsValid)
             {

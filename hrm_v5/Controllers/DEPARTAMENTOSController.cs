@@ -58,7 +58,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_DEPARTAMENTO,NOMBRE,DESCRIPCION,EMPRESA")] DEPARTAMENTOS dEPARTAMENTOS)
+        public ActionResult Create([Bind(Include = "ID_DEPARTAMENTO,NOMBRE,DESCRIPCION,EMPRESA,ESTADO")] DEPARTAMENTOS dEPARTAMENTOS)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_DEPARTAMENTO,NOMBRE,DESCRIPCION,EMPRESA")] DEPARTAMENTOS dEPARTAMENTOS)
+        public ActionResult Edit([Bind(Include = "ID_DEPARTAMENTO,NOMBRE,DESCRIPCION,EMPRESA,ESTADO")] DEPARTAMENTOS dEPARTAMENTOS)
         {
             if (ModelState.IsValid)
             {
