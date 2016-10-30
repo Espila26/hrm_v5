@@ -49,7 +49,7 @@ namespace hrm_v5.Controllers
         public ActionResult Create()
         {
             ViewData["ID"] = CrearID();
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE","ESTADO");
+            viewBagDepartamentos();
             return View();
         }
 
@@ -63,12 +63,20 @@ namespace hrm_v5.Controllers
             if (ModelState.IsValid)
             {
                 db.PUESTOS.Add(pUESTOS);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    TempData["Error"] = "Se debe de seleccionar un departamento.Si no es posible seleccionar alguno, probablemente, los departamentos existentes se encuentren inactivos o no existe ninguno.";
+                    return RedirectToAction("Index");
+                }
                 TempData["Success"] = "¡El puesto ha sido creado exitosamente!";
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE","ESTADO", pUESTOS.DEPARTAMENTO);
+            viewBagDepartamentos();
             return View(pUESTOS);
         }
 
@@ -107,6 +115,26 @@ namespace hrm_v5.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                else if (Request.Form["Inhabilitar"] != null)
+                {
+                    var EMPL = from e in db.EMPLEADOS
+                               select e;
+                    foreach (var i in childChkbox)
+                    {
+                        var pts = db.PUESTOS.Find(Int32.Parse(i));
+                        pts.ESTADO = "Inactivo";
+                        foreach (var e in EMPL)
+                        {
+                            if (e.PUESTO == pts.PTS_ID)
+                            {
+                                e.ESTADO = "Inactivo";
+                            }
+                        }
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    return RedirectToAction("Index");
+                }
                 return View();
             }
         }
@@ -123,7 +151,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE","ESTADO", pUESTOS.DEPARTAMENTO);
+            viewBagDepartamentos();
             return View(pUESTOS);
         }
 
@@ -137,11 +165,19 @@ namespace hrm_v5.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(pUESTOS).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    TempData["Error"] = "Se debe de seleccionar un departamento.Si no es posible seleccionar alguno, probablemente, los departamentos existentes se encuentren inactivos o no existe ninguno.";
+                    return RedirectToAction("Index");
+                }
                 TempData["Success"] = "¡La información del Puesto ha sido editada exitosamente!";
                 return RedirectToAction("Index");
             }
-            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE", pUESTOS.DEPARTAMENTO);
+            viewBagDepartamentos();
             return View(pUESTOS);
         }
 
@@ -200,6 +236,20 @@ namespace hrm_v5.Controllers
                 }
                 return cont + "-" + fecha;
             }
+        }
+
+        public void viewBagDepartamentos()
+        {
+            List<object> DEPARTAMENTOS = new List<Object>();
+            var DEP = db.DEPARTAMENTOS;
+            foreach (var i in DEP)
+            {
+                if (i.ESTADO.Equals("Activo"))
+                {
+                    DEPARTAMENTOS.Add(i);
+                }
+            }
+            ViewBag.DEPARTAMENTO = new SelectList(DEPARTAMENTOS, "ID_DEPARTAMENTO", "NOMBRE", "ESTADO");
         }
     }
 }

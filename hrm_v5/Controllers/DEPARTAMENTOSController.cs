@@ -49,7 +49,7 @@ namespace hrm_v5.Controllers
         // GET: DEPARTAMENTOS/Create
         public ActionResult Create()
         {
-            ViewBag.EMPRESA = new SelectList(db.EMPRESAS, "ID_EMPRESA", "NOMBRE");
+            viewBagEmpresas();
             return View();
         }
 
@@ -63,12 +63,20 @@ namespace hrm_v5.Controllers
             if (ModelState.IsValid)
             {
                 db.DEPARTAMENTOS.Add(dEPARTAMENTOS);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
+                    return RedirectToAction("Index");
+                }
                 TempData["Success"] = "¡El Departamento ha sido creado exitosamente!";
                 return RedirectToAction("Index");
-            }
+                }
 
-            ViewBag.EMPRESA = new SelectList(db.EMPRESAS, "ID_EMPRESA", "NOMBRE", dEPARTAMENTOS.EMPRESA);
+            viewBagEmpresas();
             return View(dEPARTAMENTOS);
 
         }
@@ -85,7 +93,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EMPRESA = new SelectList(db.EMPRESAS, "ID_EMPRESA", "NOMBRE", dEPARTAMENTOS.EMPRESA);
+            viewBagEmpresas();
             return View(dEPARTAMENTOS);
         }
 
@@ -99,11 +107,20 @@ namespace hrm_v5.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(dEPARTAMENTOS).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
+                    return RedirectToAction("Index");
+                }
                 db.SaveChanges();
                 TempData["Success"] = "¡La información del departamento ha sido editada exitosamente!";
                 return RedirectToAction("Index");
             }
-            ViewBag.EMPRESA = new SelectList(db.EMPRESAS, "ID_EMPRESA", "NOMBRE", dEPARTAMENTOS.EMPRESA);
+            viewBagEmpresas();
             return View(dEPARTAMENTOS);
         }
 
@@ -177,8 +194,49 @@ namespace hrm_v5.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                else if (Request.Form["Inhabilitar"] != null)
+                {
+                    var PTS = from p in db.PUESTOS
+                              select p;
+                    var EMPL = from e in db.EMPLEADOS
+                               select e;
+                    foreach (var i in childChkbox)
+                    {
+                        var dep = db.DEPARTAMENTOS.Find(Int32.Parse(i));
+                        dep.ESTADO = "Inactivo";
+                        foreach (var p in PTS)
+                        {
+                            if (p.DEPARTAMENTO == dep.ID_DEPARTAMENTO)
+                            {
+                                p.ESTADO = "Inactivo";
+                                foreach (var e in EMPL)
+                                {
+                                    if (e.PUESTO == p.PTS_ID)
+                                        e.ESTADO = "Inactivo";
+                                }
+                            }
+                        }
+                    db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    return RedirectToAction("Index");
+                }
                 return View();
             }
+        }
+
+        public void viewBagEmpresas()
+        {
+            List<object> EMPRESAS = new List<Object>();
+            var EMP = db.EMPRESAS;
+            foreach (var i in EMP)
+            {
+                if (i.ESTADO.Equals("Activo"))
+                {
+                    EMPRESAS.Add(i);
+                }
+            }
+            ViewBag.EMPRESA = new SelectList(EMPRESAS, "ID_EMPRESA", "NOMBRE");
         }
 
     }

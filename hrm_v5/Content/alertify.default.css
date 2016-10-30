@@ -5,7 +5,7 @@
 .alertify-log {
 	font-family: sans-serif;
     position: absolute;
-    top: 85%;
+    top: 84%;
 }
 .alertify {
 	background: #FFF;
@@ -76,14 +76,14 @@
 	.alertify-log-error {
 		background: #FE1A00;
 		background: rgba(254,26,0,.9);
-        width: 30%;
+        width: 35%;
         position: absolute;
         left: 61%;
 	}
 	.alertify-log-success {
 		background: #5CB811;
 		background: rgba(92,184,17,.9);
-        width: 30%;
+        width: 35%;
         position: absolute;
         left: 61%;
 	}

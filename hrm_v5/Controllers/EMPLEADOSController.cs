@@ -64,7 +64,15 @@ namespace hrm_v5.Controllers
             if (ModelState.IsValid)
             {
                 db.EMPLEADOS.Add(eMPLEADOS);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    TempData["Error"] = "Se debe de seleccionar un puesto.Si no es posible seleccionar alguno, probablemente, los puestos existentes se encuentren inactivas o no existe ninguno.";
+                    return RedirectToAction("Index");
+                }
                 TempData["Success"] = "¡El empleado ha sido creado exitosamente!";
                 return RedirectToAction("Index");
             }
@@ -150,7 +158,15 @@ namespace hrm_v5.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(eMPLEADOS).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    TempData["Error"] = "Se debe de seleccionar un puesto.Si no es posible seleccionar alguno, probablemente, los puestos existentes se encuentren inactivas o no existe ninguno.";
+                    return RedirectToAction("Index");
+                }
                 TempData["Success"] = "¡La información del empleado ha sido editada exitosamente!";
                 return RedirectToAction("Index");
             }

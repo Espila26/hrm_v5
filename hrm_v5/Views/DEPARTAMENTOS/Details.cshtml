@@ -45,6 +45,16 @@
         </dd>
 
     </dl>
+    <dl class="form-group">
+        <dt class="control-label">
+            <th>@Html.DisplayNameFor(model => model.ESTADO)</th>
+        </dt>
+
+        <dd class="formDetails">
+            @Html.DisplayFor(model => model.ESTADO)
+        </dd>
+
+    </dl>
     <div class="form-group">
         <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "DEPARTAMENTOS", new { id = Model.ID_DEPARTAMENTO })'" />
         <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "DEPARTAMENTOS")'" />

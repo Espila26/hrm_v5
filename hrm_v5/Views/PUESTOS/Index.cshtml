@@ -134,6 +134,7 @@
                  grid.Column("EXP_MIN", "Experiencia Mínima", canSort: false),
                  grid.Column("EXP_DESEADA", "Experiencia Deseada", canSort: false),
                  grid.Column("DESCRIPCION", "Descripción del Puesto", canSort: false),
+                 grid.Column("ESTADO", "Estado (Activo o inactivo)", canSort: false),
                  grid.Column("DEPARTAMENTOS.NOMBRE", "Nombre del Departamento", canSort: false)
                     ))
         <div id="pager">
@@ -144,6 +145,7 @@
             <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "PUESTOS")'" class="myButton" />
             <input type="submit" name="Editar" value="Editar" class="myButton" />
             <input type="submit" name="Detalles" value="Detalles" class="myButton" />
+            <input type="submit" name="Inhabilitar" value="Inhabilitar" class="myButton" />
         </div>
     }
 </div>

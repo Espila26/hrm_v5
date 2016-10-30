@@ -82,6 +82,16 @@
             @Html.DisplayFor(model => model.DEPARTAMENTOS.NOMBRE)
         </dd>
     </dl>
+    <dl class="form-group">
+
+        <dt class="control-label">
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </dt>
+
+        <dd class="control-label">
+            @Html.DisplayFor(model => model.DEPARTAMENTOS.ESTADO)
+        </dd>
+    </dl>
     <div class="form-group">
         <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "PUESTOS", new { id = Model.PTS_ID })'" />
         <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "PUESTOS")'" />

@@ -107,13 +107,36 @@ namespace hrm_v5.Controllers
                 }
                 else if(Request.Form["Inhabilitar"] != null)
                 {
-                    foreach(var i in childChkbox)
+                    var DEP = from d in db.DEPARTAMENTOS
+                              select d;
+                    var PTS = from p in db.PUESTOS
+                              select p;
+                    var EMPL = from e in db.EMPLEADOS
+                              select e;
+                    foreach (var i in childChkbox)
                     {
-                        var emp = db.EMPRESAS.Find(i);
+                        var emp = db.EMPRESAS.Find(Int32.Parse(i));
                         emp.ESTADO = "Inactivo";
-                        //var DEP = from d in db.DEPARTAMENTOS
-                        //          select d;
-                        //DEP = DEP.Where(s => s.EMPRESA==Int32.Parse(emp.ToString()));
+                        foreach(var d in DEP)
+                        {
+                            if (d.EMPRESA == emp.ID_EMPRESA)
+                            {
+                                d.ESTADO = "Inactivo";
+                                foreach (var p in PTS)
+                                {
+                                    if (p.DEPARTAMENTO == d.ID_DEPARTAMENTO)
+                                    {
+                                        p.ESTADO = "Inactivo";
+                                        foreach (var e in EMPL)
+                                        {
+                                            if(e.PUESTO==p.PTS_ID)
+                                                e.ESTADO = "Inactivo";
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
 
                         db.SaveChanges();
                     }

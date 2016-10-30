@@ -85,18 +85,6 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-10">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), new { @class = "form-control" })
-
-                </div>
-
-                @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div>
                 <input type="submit" value="Crear" class="myButton" />
                 <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "PUESTOS")'" />
