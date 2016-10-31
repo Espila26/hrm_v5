@@ -24,8 +24,10 @@ namespace hrm_v5.Controllers
             {
                 DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
                 if (DEP.Count() == 0)
+                { 
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún departamento asociado a la empresa!";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(DEP);

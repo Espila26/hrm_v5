@@ -24,8 +24,10 @@ namespace hrm_v5.Controllers
             {
                 EMP = EMP.Where(s => s.NOMBRE.Contains(searchString));
                 if (EMP.Count() == 0)
+                {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ninguna empresa!";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(EMP);

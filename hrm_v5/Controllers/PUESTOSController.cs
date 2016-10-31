@@ -23,8 +23,10 @@ namespace hrm_v5.Controllers
             {
                 PUE = PUE.Where(s => s.NOMBRE.Contains(searchString));
                 if (PUE.Count() == 0)
+                {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún puesto asociado a la empresa!";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(PUE);

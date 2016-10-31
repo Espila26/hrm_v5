@@ -24,8 +24,12 @@ namespace hrm_v5.Controllers
             {
                 EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
                 if (EMP.Count() == 0)
+                {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún empleado asociado a la empresa!";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+
+                }
+                
             }
 
             return View(EMP);
