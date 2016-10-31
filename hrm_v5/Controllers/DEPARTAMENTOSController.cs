@@ -218,7 +218,19 @@ namespace hrm_v5.Controllers
                         }
                     db.SaveChanges();
                     }
-                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Habilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var dep = db.DEPARTAMENTOS.Find(Int32.Parse(i));
+                        dep.ESTADO = "Activo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
                     return RedirectToAction("Index");
                 }
                 return View();

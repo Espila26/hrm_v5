@@ -125,7 +125,19 @@ namespace hrm_v5.Controllers
                         emp.ESTADO = "Inactivo";
                         db.SaveChanges();
                     }
-                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Habilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var emp = db.EMPLEADOS.Find(Int32.Parse(i));
+                        emp.ESTADO = "Activo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
                     return RedirectToAction("Index");
                 }
                 return View();
