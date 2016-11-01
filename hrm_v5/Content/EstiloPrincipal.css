@@ -161,6 +161,10 @@ h1{
     left: 1.5%;
 }
 
+.TDOpciones{
+    cursor:pointer;
+}
+
 #Departamentos{
     background: url("/Imagenes/departamentos.png") no-repeat;
 }
