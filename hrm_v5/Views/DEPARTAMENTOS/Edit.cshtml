@@ -56,7 +56,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="myButton" />
+                <input type="submit" value="Guardar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea modificar la informacion de este departamento', 'guardar');" />
+                <input id="guardar" class="btnInvisible" type="submit" value="Guardar"/>
                 <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "DEPARTAMENTOS")'" />
             </div>
         </div>
