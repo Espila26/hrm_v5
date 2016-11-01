@@ -11,7 +11,8 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPLEADOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,7 +33,11 @@ namespace hrm_v5.Models
         public string NOMBRE { get; set; }
         public string APE1 { get; set; }
         public string APE2 { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string DIRECCION { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string DESCRIPCION { get; set; }
         public string TEL_HABITACION { get; set; }
         public string TEL_MOVIL { get; set; }

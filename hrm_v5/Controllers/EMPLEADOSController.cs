@@ -24,8 +24,12 @@ namespace hrm_v5.Controllers
             {
                 EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
                 if (EMP.Count() == 0)
+                {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún empleado asociado a la empresa!";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+
+                }
+                
             }
 
             return View(EMP);
@@ -125,7 +129,19 @@ namespace hrm_v5.Controllers
                         emp.ESTADO = "Inactivo";
                         db.SaveChanges();
                     }
-                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Habilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var emp = db.EMPLEADOS.Find(Int32.Parse(i));
+                        emp.ESTADO = "Activo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
                     return RedirectToAction("Index");
                 }
                 return View();
@@ -217,26 +233,23 @@ namespace hrm_v5.Controllers
         //Buscar un empleado en específico.
 
         public string CrearID(){
-            string result;
-            int cont = 1;
-            string varCont = cont.ToString();
+            int cont = 0;
             string dia = @DateTime.Now.Day.ToString();
             string mes = @DateTime.Now.Month.ToString();
             string año = DateTime.Now.Year.ToString();
             string fecha = dia + mes + año;
             if (db.EMPLEADOS.Count() == 0)
             {
-                result = varCont + " - " + fecha;
-                return result;
+                return cont + "-" + fecha;
             }
             else
             {
                 while (cont != db.EMPLEADOS.Count())
                 {
                     cont++;
+                    cont.ToString();
                 }
-                result = varCont + " - " + fecha;
-                return result;
+                return cont + "-" + fecha;
             }
         }
 

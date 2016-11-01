@@ -24,8 +24,10 @@ namespace hrm_v5.Controllers
             {
                 DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
                 if (DEP.Count() == 0)
+                { 
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún departamento asociado a la empresa!";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(DEP);
@@ -218,7 +220,19 @@ namespace hrm_v5.Controllers
                         }
                     db.SaveChanges();
                     }
-                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Habilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var dep = db.DEPARTAMENTOS.Find(Int32.Parse(i));
+                        dep.ESTADO = "Activo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
                     return RedirectToAction("Index");
                 }
                 return View();

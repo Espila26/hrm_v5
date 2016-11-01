@@ -23,8 +23,10 @@ namespace hrm_v5.Controllers
             {
                 PUE = PUE.Where(s => s.NOMBRE.Contains(searchString));
                 if (PUE.Count() == 0)
+                {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún puesto asociado a la empresa!";
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(PUE);
@@ -132,7 +134,19 @@ namespace hrm_v5.Controllers
                         }
                         db.SaveChanges();
                     }
-                    TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los puestos seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Habilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var pts = db.PUESTOS.Find(Int32.Parse(i));
+                        pts.ESTADO = "Activo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los puestos seleccionados exitosamente!";
                     return RedirectToAction("Index");
                 }
                 return View();
