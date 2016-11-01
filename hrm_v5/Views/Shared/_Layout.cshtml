@@ -79,7 +79,24 @@
             alertify.success('@alert');
         </script>
     }
-
-
+    <script>
+        function Confirmar(mensaje, boton) {
+            alertify.set({
+                labels: {
+                    ok: "Aceptar",
+                    cancel: "Cancelar"
+                }
+            });
+            alertify.confirm("" + mensaje, function (e) {
+                if (e) {
+                    $('#' + boton).click()
+                }
+                else {
+                    alertify.error('Se ha cancelado la accion')
+                }
+            });
+            return false;
+        }
+    </script>
 </body>
 </html>

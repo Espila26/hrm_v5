@@ -398,11 +398,6 @@
     <Content Include="Views\PUESTOS\Details.cshtml" />
     <Content Include="Views\PUESTOS\Edit.cshtml" />
     <Content Include="Views\PUESTOS\Index.cshtml" />
-    <Content Include="Views\DEPARTAMENTOS1\Create.cshtml" />
-    <Content Include="Views\DEPARTAMENTOS1\Delete.cshtml" />
-    <Content Include="Views\DEPARTAMENTOS1\Details.cshtml" />
-    <Content Include="Views\DEPARTAMENTOS1\Edit.cshtml" />
-    <Content Include="Views\DEPARTAMENTOS1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

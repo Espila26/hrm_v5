@@ -16,6 +16,11 @@
 	-webkit-background-clip: padding;     /* Safari 4? Chrome 6? */
 	   -moz-background-clip: padding;     /* Firefox 3.6 */
 	        background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
+    width: 30%;
+    height: 25%;
+    position: absolute;
+    top: 35%;
+    left: 65%;
 }
 	.alertify-text {
 		border: 1px solid #CCC;
@@ -79,11 +84,13 @@
         width: 35%;
         position: absolute;
         left: 61%;
+        top: 85%;
 	}
 	.alertify-log-success {
 		background: #5CB811;
 		background: rgba(92,184,17,.9);
         width: 35%;
         position: absolute;
+        top: 85%;
         left: 61%;
 	}
