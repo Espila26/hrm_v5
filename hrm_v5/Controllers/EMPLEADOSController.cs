@@ -244,7 +244,7 @@ namespace hrm_v5.Controllers
             }
             else
             {
-                while (cont != db.PUESTOS.Count())
+                while (cont != db.EMPLEADOS.Count())
                 {
                     cont++;
                     cont.ToString();
