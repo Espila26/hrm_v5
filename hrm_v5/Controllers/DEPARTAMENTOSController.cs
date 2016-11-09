@@ -14,140 +14,209 @@ namespace hrm_v5.Controllers
     {
         private Entities db = new Entities();
 
-        // GET: DEPARTAMENTOS
+        // GET: EMPLEADOS
         public ActionResult Index(string searchString)
         {
-            var DEP = from d in db.DEPARTAMENTOS
-                      select d;
+            var EMP = from e in db.EMPLEADOS
+                      select e;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
-                if (DEP.Count() == 0)
-                { 
-                    TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún departamento asociado a la empresa!";
+                EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
+                if (EMP.Count() == 0)
+                {
+                    TempData["Error"] = "�Los datos ingresados no pertenecen a ning�n empleado asociado a la empresa!";
                     return RedirectToAction("Index");
+
                 }
+
             }
 
-            return View(DEP);
+            return View(EMP);
         }
 
-        // GET: DEPARTAMENTOS/Details/5
+        // GET: EMPLEADOS/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DEPARTAMENTOS dEPARTAMENTOS = db.DEPARTAMENTOS.Find(id);
-            if (dEPARTAMENTOS == null)
+            EMPLEADOS eMPLEADOS = db.EMPLEADOS.Find(id);
+            if (eMPLEADOS == null)
             {
                 return HttpNotFound();
             }
-            return View(dEPARTAMENTOS);
+            return View(eMPLEADOS);
         }
 
-        // GET: DEPARTAMENTOS/Create
+        // GET: EMPLEADOS/Create
         public ActionResult Create()
         {
-            viewBagEmpresas();
+            ViewData["ID"] = CrearID();
+            viewBagPuestos();
             return View();
         }
 
-        // POST: DEPARTAMENTOS/Create
+        // POST: EMPLEADOS/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_DEPARTAMENTO,NOMBRE,DESCRIPCION,EMPRESA,ESTADO")] DEPARTAMENTOS dEPARTAMENTOS)
+        public ActionResult Create([Bind(Include = "EMP_ID,ID_EMPLEADO,CEDULA,NOMBRE,APE1,APE2,DIRECCION,DESCRIPCION,TEL_HABITACION,TEL_MOVIL,E_MAIL,PUESTO,SALARIO,ESTADO")] EMPLEADOS eMPLEADOS)
         {
             if (ModelState.IsValid)
             {
-                db.DEPARTAMENTOS.Add(dEPARTAMENTOS);
+                db.EMPLEADOS.Add(eMPLEADOS);
                 try
                 {
                     db.SaveChanges();
                 }
                 catch (Exception e)
                 {
-                    TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
+                    TempData["Error"] = "Se debe de seleccionar un puesto.Si no es posible seleccionar alguno, probablemente, los puestos existentes se encuentren inactivas o no existe ninguno.";
                     return RedirectToAction("Index");
                 }
-                TempData["Success"] = "¡El Departamento ha sido creado exitosamente!";
+                TempData["Success"] = "�El empleado ha sido creado exitosamente!";
                 return RedirectToAction("Index");
-                }
+            }
 
-            viewBagEmpresas();
-            return View(dEPARTAMENTOS);
+            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE", eMPLEADOS.PUESTO);
+            return View(eMPLEADOS);
 
         }
 
-        // GET: DEPARTAMENTOS/Edit/5
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "�Se debe seleccionar al menos un empleado!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Request.Form["Detalles"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "EMPLEADOS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "�Solamente es posible ver los detalles de un empleado a la vez!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Editar"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "EMPLEADOS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "�Solamente es posible editar un empleado a la vez!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Inhabilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var emp = db.EMPLEADOS.Find(Int32.Parse(i));
+                        emp.ESTADO = "Inactivo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "�Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Habilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var emp = db.EMPLEADOS.Find(Int32.Parse(i));
+                        emp.ESTADO = "Activo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "�Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
+        }
+
+        // GET: EMPLEADOS/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DEPARTAMENTOS dEPARTAMENTOS = db.DEPARTAMENTOS.Find(id);
-            if (dEPARTAMENTOS == null)
+            EMPLEADOS eMPLEADOS = db.EMPLEADOS.Find(id);
+            if (eMPLEADOS == null)
             {
                 return HttpNotFound();
             }
-            viewBagEmpresas();
-            return View(dEPARTAMENTOS);
+            viewBagPuestos();
+            return View(eMPLEADOS);
         }
 
-        // POST: DEPARTAMENTOS/Edit/5
+        // POST: EMPLEADOS/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_DEPARTAMENTO,NOMBRE,DESCRIPCION,EMPRESA,ESTADO")] DEPARTAMENTOS dEPARTAMENTOS)
+        public ActionResult Edit([Bind(Include = "EMP_ID,ID_EMPLEADO,CEDULA,NOMBRE,APE1,APE2,DIRECCION,DESCRIPCION,TEL_HABITACION,TEL_MOVIL,E_MAIL,PUESTO,SALARIO,ESTADO")] EMPLEADOS eMPLEADOS)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dEPARTAMENTOS).State = EntityState.Modified;
+                db.Entry(eMPLEADOS).State = EntityState.Modified;
                 try
                 {
                     db.SaveChanges();
                 }
                 catch (Exception e)
                 {
-                    TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
+                    TempData["Error"] = "Se debe de seleccionar un puesto.Si no es posible seleccionar alguno, probablemente, los puestos existentes se encuentren inactivas o no existe ninguno.";
                     return RedirectToAction("Index");
                 }
-                db.SaveChanges();
-                TempData["Success"] = "¡La información del departamento ha sido editada exitosamente!";
+                TempData["Success"] = "�La informaci�n del empleado ha sido editada exitosamente!";
                 return RedirectToAction("Index");
             }
-            viewBagEmpresas();
-            return View(dEPARTAMENTOS);
+            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", eMPLEADOS.PUESTO);
+            return View(eMPLEADOS);
         }
 
-        // GET: DEPARTAMENTOS/Delete/5
+        // GET: EMPLEADOS/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DEPARTAMENTOS dEPARTAMENTOS = db.DEPARTAMENTOS.Find(id);
-            if (dEPARTAMENTOS == null)
+            EMPLEADOS eMPLEADOS = db.EMPLEADOS.Find(id);
+            if (eMPLEADOS == null)
             {
                 return HttpNotFound();
             }
-            return View(dEPARTAMENTOS);
+            return View(eMPLEADOS);
         }
 
-        // POST: DEPARTAMENTOS/Delete/5
+        public ActionResult Expediente()
+        {
+            return View();
+        }
+
+        // POST: EMPLEADOS/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DEPARTAMENTOS dEPARTAMENTOS = db.DEPARTAMENTOS.Find(id);
-            db.DEPARTAMENTOS.Remove(dEPARTAMENTOS);
+            EMPLEADOS eMPLEADOS = db.EMPLEADOS.Find(id);
+            db.EMPLEADOS.Remove(eMPLEADOS);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -161,96 +230,60 @@ namespace hrm_v5.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpPost]
-        public ActionResult formAction(string[] childChkbox)
+
+        //Buscar un empleado en espec�fico.
+
+        public string CrearID()
         {
-            if (childChkbox == null)
+            int cont = 0;
+            string dia = @DateTime.Now.Day.ToString();
+            string mes = @DateTime.Now.Month.ToString();
+            string anno = DateTime.Now.Year.ToString();
+            string fecha = dia + mes + anno;
+            if (db.EMPLEADOS.Count() == 0)
             {
-                TempData["Error"] = "¡Se debe seleccionar al menos un departamento!";
-                return RedirectToAction("Index");
+                return cont + "-" + fecha;
             }
             else
             {
-                if (Request.Form["Detalles"] != null)
+                while (cont != db.EMPLEADOS.Count())
                 {
-                    if (childChkbox.Count() == 1)
-                    {
-                        return RedirectToAction("Details", "Departamentos", new { id = childChkbox.First() });
-                    }
-                    else
-                    {
-                        TempData["Error"] = "¡Solamente es posible ver detalles de un departamento a la vez!";
-                        return RedirectToAction("Index");
-                    }
+                    cont++;
+                    cont.ToString();
                 }
-                else if (Request.Form["Editar"] != null)
-                {
-
-                    if (childChkbox.Count() == 1)
-                    {
-                        return RedirectToAction("Edit", "Departamentos", new { id = childChkbox.First() });
-                    }
-                    else
-                    {
-                        TempData["Error"] = "¡Solamente es posible editar un departamento a la vez!";
-                        return RedirectToAction("Index");
-                    }
-                }
-                else if (Request.Form["Inhabilitar"] != null)
-                {
-                    var PTS = from p in db.PUESTOS
-                              select p;
-                    var EMPL = from e in db.EMPLEADOS
-                               select e;
-                    foreach (var i in childChkbox)
-                    {
-                        var dep = db.DEPARTAMENTOS.Find(Int32.Parse(i));
-                        dep.ESTADO = "Inactivo";
-                        foreach (var p in PTS)
-                        {
-                            if (p.DEPARTAMENTO == dep.ID_DEPARTAMENTO)
-                            {
-                                p.ESTADO = "Inactivo";
-                                foreach (var e in EMPL)
-                                {
-                                    if (e.PUESTO == p.PTS_ID)
-                                        e.ESTADO = "Inactivo";
-                                }
-                            }
-                        }
-                    db.SaveChanges();
-                    }
-                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
-                    return RedirectToAction("Index");
-                }
-
-                else if (Request.Form["Habilitar"] != null)
-                {
-                    foreach (var i in childChkbox)
-                    {
-                        var dep = db.DEPARTAMENTOS.Find(Int32.Parse(i));
-                        dep.ESTADO = "Activo";
-                        db.SaveChanges();
-                    }
-                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
-                    return RedirectToAction("Index");
-                }
-                return View();
+                return cont + "-" + fecha;
             }
         }
 
-        public void viewBagEmpresas()
+        [HttpPost]
+        public JsonResult doesUserNameExist(string UserName)
         {
-            List<object> EMPRESAS = new List<Object>();
-            var EMP = db.EMPRESAS;
-            foreach (var i in EMP)
+
+            var user = from e in db.EMPLEADOS
+                       select e;
+
+            if (!String.IsNullOrEmpty(UserName))
             {
-                if (i.ESTADO.Equals("Activo"))
+                user = user.Where(s => s.NOMBRE.Contains(UserName));
+            }
+
+            return Json(user == null);
+        }
+
+        public void viewBagPuestos()
+        {
+            List<object> PUESTOS = new List<Object>();
+            var PTS = db.PUESTOS;
+            foreach (var i in PTS)
+            {
+                var DEP = db.DEPARTAMENTOS.Find(i.DEPARTAMENTO);
+                var EMP = db.EMPRESAS.Find(DEP.EMPRESA);
+                if (EMP.ESTADO.Equals("Activo"))
                 {
-                    EMPRESAS.Add(i);
+                    PUESTOS.Add(i);
                 }
             }
-            ViewBag.EMPRESA = new SelectList(EMPRESAS, "ID_EMPRESA", "NOMBRE");
+            ViewBag.PUESTO = new SelectList(PUESTOS, "PTS_ID", "NOMBRE");
         }
 
     }

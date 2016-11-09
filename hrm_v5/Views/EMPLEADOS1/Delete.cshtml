@@ -1,0 +1,136 @@
+﻿@model hrm_v5.Models.EMPLEADOS
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EMPLEADOS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_EMPLEADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_EMPLEADO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CEDULA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEDULA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APE1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APE1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APE2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APE2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIRECCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIRECCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEL_HABITACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEL_HABITACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEL_MOVIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEL_MOVIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.E_MAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.E_MAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SALARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTADO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_NAC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_NAC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PUESTOS.ID_PUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTOS.ID_PUESTO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
