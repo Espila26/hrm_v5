@@ -66,7 +66,7 @@ namespace hrm_v5.Controllers
                 db.EMPRESAS.Add(eMPRESAS);
                 db.SaveChanges();
                 TempData["Success"] = "¡La empresa ha sido creada exitosamente!";
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(eMPRESAS);

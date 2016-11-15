@@ -72,10 +72,10 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create");
                 }
                 TempData["Success"] = "¡El Departamento ha sido creado exitosamente!";
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
                 }
 
             viewBagEmpresas();
