@@ -226,13 +226,28 @@ namespace hrm_v5.Controllers
 
                 else if (Request.Form["Habilitar"] != null)
                 {
+                    int cantNoActualiza = 0;
+
                     foreach (var i in childChkbox)
                     {
                         var dep = db.DEPARTAMENTOS.Find(Int32.Parse(i));
-                        dep.ESTADO = "Activo";
-                        db.SaveChanges();
+                        var emp = db.EMPRESAS.Find(dep.EMPRESAS.ID_EMPRESA);
+
+                        if (emp.ESTADO.Equals("Activo"))
+                        {
+                            dep.ESTADO = "Activo";
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            cantNoActualiza++;
+                        }
                     }
-                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
+                    if(cantNoActualiza == 0)
+                        TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
+                    else
+                        TempData["Error"] = " El estado de Algun(os) departamentos no a podido ser actualizado, debido a que la empresa a la que pertenece(en) se encuentra inactiva";
+
                     return RedirectToAction("Index");
                 }
                 return View();

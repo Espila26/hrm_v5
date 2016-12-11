@@ -18,7 +18,10 @@ namespace hrm_v5.Models
         public int ID_EMPLEADO { get; set; }
         public System.DateTime INICIO { get; set; }
         public System.DateTime FINAL { get; set; }
+        public int CANT_DIAS { get; set; }
+        public int AUTORIZACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
+        public virtual PUESTOS PUESTOS { get; set; }
     }
 }

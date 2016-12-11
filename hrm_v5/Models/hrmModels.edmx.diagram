@@ -27,6 +27,7 @@
         <AssociationConnector Association="hrm_dbModel.FK_USUARIO_EMPLEADO" ManuallyRouted="false" />
         <AssociationConnector Association="hrm_dbModel.FK_VACACIONES_EMPLEADO" ManuallyRouted="false" />
         <AssociationConnector Association="hrm_dbModel.FK_HISTORIAL_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="hrm_dbModel.FK_VACACION_PUESTO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

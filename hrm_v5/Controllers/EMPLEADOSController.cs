@@ -135,13 +135,29 @@ namespace hrm_v5.Controllers
 
                 else if (Request.Form["Habilitar"] != null)
                 {
+                    int cantNoActualiza = 0;
+
                     foreach (var i in childChkbox)
                     {
                         var emp = db.EMPLEADOS.Find(Int32.Parse(i));
-                        emp.ESTADO = "Activo";
-                        db.SaveChanges();
+                        var pts = db.PUESTOS.Find(emp.PUESTOS.PTS_ID);
+
+                        if (pts.ESTADO.Equals("Activo"))
+                        {
+                            emp.ESTADO = "Activo";
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            cantNoActualiza++;
+                        }
                     }
-                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
+
+                    if (cantNoActualiza == 0)
+                        TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
+                    else
+                        TempData["Error"] = " El estado de Algun(os) empleado(os) no a podido ser actualizado, debido a que el puesto a la que pertenece(en) se encuentra inactivo";
+
                     return RedirectToAction("Index");
                 }
                 return View();

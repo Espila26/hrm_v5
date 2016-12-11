@@ -201,7 +201,6 @@
     <Compile Include="Controllers\AMONESTACIONESController.cs" />
     <Compile Include="Controllers\ASCENSOSController.cs" />
     <Compile Include="Controllers\DEPARTAMENTOSController.cs" />
-    <Compile Include="Controllers\EMPLEADOS1Controller.cs" />
     <Compile Include="Controllers\EMPLEADOSController.cs" />
     <Compile Include="Controllers\EMPRESASController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -399,11 +398,6 @@
     <Content Include="Views\PUESTOS\Details.cshtml" />
     <Content Include="Views\PUESTOS\Edit.cshtml" />
     <Content Include="Views\PUESTOS\Index.cshtml" />
-    <Content Include="Views\EMPLEADOS1\Create.cshtml" />
-    <Content Include="Views\EMPLEADOS1\Delete.cshtml" />
-    <Content Include="Views\EMPLEADOS1\Details.cshtml" />
-    <Content Include="Views\EMPLEADOS1\Edit.cshtml" />
-    <Content Include="Views\EMPLEADOS1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
