@@ -75,10 +75,10 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar un puesto.Si no es posible seleccionar alguno, probablemente, los puestos existentes se encuentren inactivas o no existe ninguno.";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create");
                 }
                 TempData["Success"] = "¡El empleado ha sido creado exitosamente!";
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE", eMPLEADOS.PUESTO);
