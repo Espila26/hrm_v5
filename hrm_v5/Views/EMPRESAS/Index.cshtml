@@ -27,6 +27,13 @@
             <div class="col-md-10">
                 <input type="text" name="searchString" class="textInput" placeholder="Nombre de la Emprea" />
             </div>
+
+            <div class="form-group">
+                <label class="pMostrar">Mostrar Por:</label>
+                <div class="">
+                    @Html.DropDownList("searchString", new SelectList(new List<Object> { {"Seleccione"},{ "Activo" }, { "Inactivo" }, { "Todo" } }), new { onchange = "document.location.href = '/EMPRESAS/Index?searchString=' + this.options[this.selectedIndex].value;", @class = "form-control2" })
+                </div>
+            </div>
             <button type="submit" id="Buscar" class="myButton">Buscar</button>
         </div>
     }

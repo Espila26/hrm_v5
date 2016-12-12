@@ -22,7 +22,27 @@ namespace hrm_v5.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
+                if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
+                {
+                    EMP = EMP.Where(s => s.ESTADO.Equals(searchString));
+                }
+
+                else if (searchString.Equals("Todo"))
+                {
+                    EMP = EMP.Where(s => s.ESTADO.Contains("tiv"));
+                }
+
+                else if (searchString.Equals("Seleccione"))
+                {
+                    TempData["Error"] = "¡Debe seleccionar los empleados que desea ver!";
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
+                }
+                
                 if (EMP.Count() == 0)
                 {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún empleado asociado a la empresa!";

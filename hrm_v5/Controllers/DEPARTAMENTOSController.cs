@@ -20,9 +20,29 @@ namespace hrm_v5.Controllers
             var DEP = from d in db.DEPARTAMENTOS
                       select d;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if(!String.IsNullOrEmpty(searchString))
             {
-                DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
+                if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
+                {
+                    DEP = DEP.Where(s => s.ESTADO.Equals(searchString));
+                }
+
+                else if (searchString.Equals("Todo"))
+                {
+                    DEP = DEP.Where(s => s.ESTADO.Contains("tiv"));
+                }
+
+                else if (searchString.Equals("Seleccione"))
+                {
+                    TempData["Error"] = "¡Debe seleccionar los departamentos que desea ver!";
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
+                }
+
                 if (DEP.Count() == 0)
                 { 
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún departamento asociado a la empresa!";

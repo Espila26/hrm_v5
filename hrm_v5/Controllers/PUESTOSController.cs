@@ -17,19 +17,39 @@ namespace hrm_v5.Controllers
         // GET: PUESTOS
         public ActionResult Index(string searchString)
         {
-            var PUE = from e in db.PUESTOS
+            var PTO = from e in db.PUESTOS
                       select e;
             if (!String.IsNullOrEmpty(searchString))
             {
-                PUE = PUE.Where(s => s.NOMBRE.Contains(searchString));
-                if (PUE.Count() == 0)
+                if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
+                {
+                    PTO = PTO.Where(s => s.ESTADO.Equals(searchString));
+                }
+
+                else if (searchString.Equals("Todo"))
+                {
+                    PTO = PTO.Where(s => s.ESTADO.Contains("tiv"));
+                }
+
+                else if (searchString.Equals("Seleccione"))
+                {
+                    TempData["Error"] = "¡Debe seleccionar los puestos que desea ver!";
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    PTO = PTO.Where(s => s.NOMBRE.Contains(searchString));
+                }
+                
+                if (PTO.Count() == 0)
                 {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún puesto asociado a la empresa!";
                     return RedirectToAction("Index");
                 }
             }
 
-            return View(PUE);
+            return View(PTO);
         }
 
         // GET: PUESTOS/Details/5

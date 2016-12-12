@@ -21,6 +21,13 @@
             <div class="col-md-10">
                 <input type="text" name="searchString" class="textInput" placeholder="ID, Nombre, Apellidos." />
             </div>
+
+            <div class="form-group">
+                <label class="pMostrar">Mostrar Por:</label>
+                <div class="">
+                    @Html.DropDownList("searchString", new SelectList(new List<Object> { {"Seleccione"},{ "Activo" }, { "Inactivo" }, { "Todo" } }), new { onchange = "document.location.href = '/EMPLEADOS/Index?searchString=' + this.options[this.selectedIndex].value;", @class = "form-control2" })
+                </div>
+            </div>
             <button type="submit" id="Buscar" class="myButton">Buscar</button>
         </div>
     }
@@ -144,11 +151,11 @@
         <div>
             <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "EMPLEADOS")'" class="myButton" />
             <input type="submit" name="Editar" value="Editar" class="myButton" />
-            <input type="submit" name="Detalles" value="Detalles" class="myButton" />
+            @*<input type="submit" name="Detalles" value="Detalles" class="myButton" />
             <input type="submit" name="Habilitar" value="Habilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea habilitar lo(os) empleados seleccionados ', 'habilitar');" />
             <input type="submit" name="Inhabilitar" value="Inhabilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea inhabilitar lo(os) empleados seleccionados ', 'Inhabilitar');" />
             <input id="Inhabilitar" type="submit" name="Inhabilitar" value="Inhabilitar" class="btnInvisible" />
-            <input id="habilitar" type="submit" name="habilitar" value="habilitar" class="btnInvisible" />
+            <input id="habilitar" type="submit" name="habilitar" value="habilitar" class="btnInvisible" />*@
         </div>
     }
 </div>
