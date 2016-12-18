@@ -22,7 +22,27 @@ namespace hrm_v5.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
+                if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
+                {
+                    EMP = EMP.Where(s => s.ESTADO.Equals(searchString));
+                }
+
+                else if (searchString.Equals("Todo"))
+                {
+                    EMP = EMP.Where(s => s.ESTADO.Contains("tiv"));
+                }
+
+                else if (searchString.Equals("Seleccione"))
+                {
+                    TempData["Error"] = "¡Debe seleccionar los empleados que desea ver!";
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
+                }
+                
                 if (EMP.Count() == 0)
                 {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún empleado asociado a la empresa!";
@@ -63,7 +83,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EMP_ID,ID_EMPLEADO,CEDULA,NOMBRE,APE1,APE2,DIRECCION,DESCRIPCION,TEL_HABITACION,TEL_MOVIL,E_MAIL,PUESTO,SALARIO,ESTADO,FECHA_NAC")] EMPLEADOS eMPLEADOS)
+        public ActionResult Create([Bind(Include = "EMP_ID,ID_EMPLEADO,CEDULA,NOMBRE,APE1,APE2,DIRECCION,DESCRIPCION,TEL_HABITACION,TEL_MOVIL,E_MAIL,PUESTO,SALARIO,ESTADO")] EMPLEADOS eMPLEADOS)
         {
             if (ModelState.IsValid)
             {
@@ -135,29 +155,13 @@ namespace hrm_v5.Controllers
 
                 else if (Request.Form["Habilitar"] != null)
                 {
-                    int cantNoActualiza = 0;
-
                     foreach (var i in childChkbox)
                     {
                         var emp = db.EMPLEADOS.Find(Int32.Parse(i));
-                        var pts = db.PUESTOS.Find(emp.PUESTOS.PTS_ID);
-
-                        if (pts.ESTADO.Equals("Activo"))
-                        {
-                            emp.ESTADO = "Activo";
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            cantNoActualiza++;
-                        }
+                        emp.ESTADO = "Activo";
+                        db.SaveChanges();
                     }
-
-                    if (cantNoActualiza == 0)
-                        TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
-                    else
-                        TempData["Error"] = " El estado de Algun(os) empleado(os) no a podido ser actualizado, debido a que el puesto a la que pertenece(en) se encuentra inactivo";
-
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
                     return RedirectToAction("Index");
                 }
                 return View();

@@ -31,6 +31,14 @@ body{
     font-weight: bold;
     font-size:16px;
 }
+/*Posicion y letra para los titulos*/
+.titulos{
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size: 25px;
+    position: fixed;
+    left: 50%;
+}
 
 h3{
     font-family:sans-serif;

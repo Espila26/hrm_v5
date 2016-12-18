@@ -11,7 +11,9 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPRESAS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +21,31 @@ namespace hrm_v5.Models
         {
             this.DEPARTAMENTOS = new HashSet<DEPARTAMENTOS>();
         }
-    
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID de la Empresa")]
         public int ID_EMPRESA { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un nombre"), DisplayName("Nombre de la Empresa"), StringLength(45, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 45 caracteres."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string NOMBRE { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una cédula jurídica"), DisplayName("Razón Social"), StringLength(25, ErrorMessage = "Longitud de la razón social es muy extensa. Por favor no exceda los 25 caracteres."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string RAZON_SOCIAL { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una cédula jurídica"), DisplayName("Cédula Jurídica"), StringLength(25, ErrorMessage = "Longitud de la cédula jurídica es muy extensa. Por favor no exceda los 25 caracteres."), RegularExpression("^[0-9a-zA-Z;/?'*@-]*", ErrorMessage = "Formato Inválido.")]
         public string CEDULA_JURIDICA { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una fecha de fundación"), DisplayName("Fecha de Fundación"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_FUNDACION { get; set; }
+
+        [DisplayName("País de Orígen"), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string PAIS_ORIGEN { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese la sede central de la empresa"), DisplayName("Sede Central"), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string SEDE_CENTRAL { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese el estado de la empresa"), DisplayName("Estado")]
         public string ESTADO { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DEPARTAMENTOS> DEPARTAMENTOS { get; set; }
     }

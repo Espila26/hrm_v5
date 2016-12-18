@@ -20,7 +20,7 @@ namespace hrm_v5.Controllers
             var DEP = from d in db.DEPARTAMENTOS
                       select d;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if(!String.IsNullOrEmpty(searchString))
             {
                 if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
                 {
@@ -32,13 +32,19 @@ namespace hrm_v5.Controllers
                     DEP = DEP.Where(s => s.ESTADO.Contains("tiv"));
                 }
 
+                else if (searchString.Equals("Seleccione"))
+                {
+                    TempData["Error"] = "¡Debe seleccionar los departamentos que desea ver!";
+                    return RedirectToAction("Index");
+                }
+
                 else
                 {
                     DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
                 }
 
                 if (DEP.Count() == 0)
-                {
+                { 
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún departamento asociado a la empresa!";
                     return RedirectToAction("Index");
                 }
@@ -240,28 +246,13 @@ namespace hrm_v5.Controllers
 
                 else if (Request.Form["Habilitar"] != null)
                 {
-                    int cantNoActualiza = 0;
-
                     foreach (var i in childChkbox)
                     {
                         var dep = db.DEPARTAMENTOS.Find(Int32.Parse(i));
-                        var emp = db.EMPRESAS.Find(dep.EMPRESAS.ID_EMPRESA);
-
-                        if (emp.ESTADO.Equals("Activo"))
-                        {
-                            dep.ESTADO = "Activo";
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            cantNoActualiza++;
-                        }
+                        dep.ESTADO = "Activo";
+                        db.SaveChanges();
                     }
-                    if(cantNoActualiza == 0)
-                        TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
-                    else
-                        TempData["Error"] = " El estado de Algun(os) departamentos no a podido ser actualizado, debido a que la empresa a la que pertenece(en) se encuentra inactiva";
-
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
                     return RedirectToAction("Index");
                 }
                 return View();
