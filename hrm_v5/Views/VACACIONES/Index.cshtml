@@ -18,7 +18,13 @@
             @Html.DisplayNameFor(model => model.FINAL)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
+            @Html.DisplayNameFor(model => model.CANT_DIAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADOS.ID_EMPLEADO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PUESTOS.ID_PUESTO)
         </th>
         <th></th>
     </tr>
@@ -32,7 +38,13 @@
             @Html.DisplayFor(modelItem => item.FINAL)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EMPLEADOS.CEDULA)
+            @Html.DisplayFor(modelItem => item.CANT_DIAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADOS.ID_EMPLEADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PUESTOS.ID_PUESTO)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID_SOLICITUD }) |

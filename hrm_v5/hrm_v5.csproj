@@ -372,11 +372,6 @@
     <Content Include="Views\PERMISOS\Details.cshtml" />
     <Content Include="Views\PERMISOS\Edit.cshtml" />
     <Content Include="Views\PERMISOS\Index.cshtml" />
-    <Content Include="Views\VACACIONES\Create.cshtml" />
-    <Content Include="Views\VACACIONES\Delete.cshtml" />
-    <Content Include="Views\VACACIONES\Details.cshtml" />
-    <Content Include="Views\VACACIONES\Edit.cshtml" />
-    <Content Include="Views\VACACIONES\Index.cshtml" />
     <Content Include="Views\SUSPENSIONES\Create.cshtml" />
     <Content Include="Views\SUSPENSIONES\Delete.cshtml" />
     <Content Include="Views\SUSPENSIONES\Details.cshtml" />
@@ -398,6 +393,11 @@
     <Content Include="Views\PUESTOS\Details.cshtml" />
     <Content Include="Views\PUESTOS\Edit.cshtml" />
     <Content Include="Views\PUESTOS\Index.cshtml" />
+    <Content Include="Views\VACACIONES\Delete.cshtml" />
+    <Content Include="Views\VACACIONES\Details.cshtml" />
+    <Content Include="Views\VACACIONES\Edit.cshtml" />
+    <Content Include="Views\VACACIONES\Index.cshtml" />
+    <Content Include="Views\VACACIONES\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

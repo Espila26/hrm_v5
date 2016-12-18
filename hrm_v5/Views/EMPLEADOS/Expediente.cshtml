@@ -1,9 +1,8 @@
-﻿@model hrm_v5.Models.EMPLEADOS
+﻿@model IEnumerable<hrm_v5.Models.EMPLEADOS>
 
 @{
     ViewBag.Title = "Expediente";
 }
-
 @Styles.Render("~/Content/EstiloExpediente.css")
 @Styles.Render("~/Content/Formulario.css")
 @Styles.Render("~/Content/EstiloBoton.css")
@@ -43,38 +42,159 @@
         <div class="tab-content">
             <div id="tab1" class="tab active">
                 <h4><div id="lettertext">Datos Personales</div></h4>
-                <table>
-                    <tr>
-                        <td width=30%><span class="label label-default">Cédula: </span></td>
-                        <td width=70%>@Html.DisplayFor(model => model.CEDULA)</td>
-                    <tr>
+                <style type="text/css">
+                    .webGrid {
+                        font: normal 12px/150% Arial, Helvetica, sans-serif;
+                        border-collapse: collapse;
+                        width: 99%;
+                        text-align: center;
+                    }
 
-                    <tr>
-                        <td width=30%><span class="label label-default">Nombre: </span></td>
-                        <td width=70%>@Html.DisplayFor(model => model.NOMBRE)</td>
-                    <tr>
+                    .grid-header {
+                        background-color: #5C5C5C;
+                        font-weight: bold;
+                        color: White !important;
+                    }
 
-                    <tr>
-                        <td width=30%><span class="label label-default">Primer Apellido: </span></td>
-                        <td width=70%>@Html.DisplayFor(model => model.APE1)</td>
-                    <tr>
+                    .webgrid-footer {
+                        display: none;
+                    }
 
-                    <tr>
-                        <td width=30%><span class="label label-default">Segundo Apellido: </span></tdwidth=30%>
-                        <td width=70%>@Html.DisplayFor(model => model.APE2)</td>
-                    <tr>
+                    .webGrid table {
+                        background: #fff;
+                        overflow: auto;
+                        border: 1px solid #000000;
+                    }
 
-                    <tr>
-                        <td width=30%><span class="label label-default">Teléfono: </span></td>
-                        <td width=70%>@Html.DisplayFor(model => model.TEL_MOVIL)</td>
-                    <tr>
+                    .webGrid th a {
+                        color: White;
+                        text-decoration: none;
+                    }
 
-                    <tr>
-                        <td width=30%><span class="label label-default">Dirección: </span></td>
-                        <td width=70%>@Html.DisplayFor(model => model.DIRECCION)</td>
-                    <tr>
+                    .webGrid th {
+                        padding: 5px;
+                        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5C5C5C), color-stop(1, #6C6C70) );
+                        background: -moz-linear-gradient( center top, #5C5C5C 5%, #6C6C70 100% );
+                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5C5C5C', endColorstr='#6C6C70');
+                        background-color: #5C5C5C;
+                        color: #FFFFFF;
+                        font-size: 13px;
+                        font-weight: bold;
+                        border: 1px solid black;
+                        border-right: 1px solid #A3A3A3;
+                    }
 
-                </table>
+                    .webGrid td {
+                        border: 1px solid black;
+                        padding: 5px;
+                    }
+
+                    .webGrid th a:hover {
+                        text-decoration: underline;
+                    }
+
+                    .to-the-right {
+                        text-align: center;
+                    }
+
+                    .contenedorGrid {
+                        width: 100%;
+                        position: absolute;
+                        top: 37%;
+                    }
+
+                    #pager a {
+                        text-decoration: none;
+                        display: inline-block;
+                        padding: 2px 8px;
+                        margin: 1px;
+                        color: #FFFFFF;
+                        border: 1px solid #707070;
+                        -webkit-border-radius: 3px;
+                        -moz-border-radius: 3px;
+                        border-radius: 3px;
+                        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7F8C94), color-stop(1, #7F8C94) );
+                        background: -moz-linear-gradient( center top, #7F8C94 5%, #7F8C94 100% );
+                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7F8C94', endColorstr='#7F8C94');
+                        background-color: #7F8C94;
+                    }
+
+                        #pager a:hover {
+                            text-decoration: none;
+                            border-color: #FFFFFE;
+                            color: #FFFFFF;
+                            background: none;
+                            background-color: #424E54;
+                        }
+                </style>
+                <div class="contenedorGrid">
+                    @using (Html.BeginForm("formAction", "EMPLEADOS"))
+                    {
+                        var grid = new WebGrid(source: Model,
+                        rowsPerPage: 6, ajaxUpdateCallback: "addCheck");
+                        @grid.GetHtml(
+                 tableStyle: "webGrid",
+                 htmlAttributes: new { id = "checkableGrid" },
+                 headerStyle: "webgrid-header",
+                 footerStyle: "webgrid-footer",
+                 rowStyle: "webgridRow",
+                 alternatingRowStyle: "alt",
+                 columns: grid.Columns(
+                 grid.Column(
+                 format: @<text>
+                    <input type="checkbox" value="@item.EMP_ID" name="childChkbox" />
+                    </text>,
+                 header: ""),
+                 grid.Column("CEDULA", "Cédula", canSort: false),
+                 grid.Column("NOMBRE", "Nombre", canSort: false),
+                 grid.Column("APE1", "Primer Apellido", canSort: false),
+                 grid.Column("APE2", "Segundo Apellido", canSort: false),
+                 grid.Column("TEL_MOVIL", "Teléfono Móvil", canSort: false),
+                 grid.Column("E_MAIL", "Correo Electrónico", canSort: false),
+                 grid.Column("ESTADO", "Estado (Activo o Inactivo)", canSort: false)
+                    ))
+                        <div id="pager">
+                            @grid.Pager()
+                        </div>
+                        <br />
+                        <div>
+                            <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "EMPLEADOS")'" class="myButton" />
+                            <input type="submit" name="Editar" value="Editar" class="myButton" />
+                            <input type="submit" name="Detalles" value="Detalles" class="myButton" />
+                            <input type="submit" name="Habilitar" value="Habilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea habilitar lo(os) empleados seleccionados ', 'habilitar');" />
+                            <input type="submit" name="Inhabilitar" value="Inhabilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea inhabilitar lo(os) empleados seleccionados ', 'Inhabilitar');" />
+                            <input id="Inhabilitar" type="submit" name="Inhabilitar" value="Inhabilitar" class="btnInvisible" />
+                            <input id="habilitar" type="submit" name="habilitar" value="habilitar" class="btnInvisible" />
+                        </div>
+                    }
+                </div>
+
+                @section Scripts{
+                    <script>
+        $(function () {
+            addCheck();
+        });
+        function addCheck() {
+            var $chk = $('<input/>').attr({ type: 'checkbox', name: 'chkAll', id: 'chkAll', title: "Select All" });
+            $('th:first').append($chk);
+            $('#chkAll').click(function () {
+                $(':checkbox').prop('checked', $(this).is(':checked') ? true : false);
+            });
+            $(':checkbox').not('#chkAll').click(function () {
+                testCheck();
+            });
+        }
+        function testCheck() {
+            if ($(':checkbox').not('#chkAll').filter(':not(:checked)').length === 0) {
+                $('#chkAll').prop('checked', true);
+            } else {
+                $('#chkAll').prop('checked', false);
+            }
+        }
+                    </script>
+                }
+
+
             </div>
 
             <div id="tab2" class="tab">
@@ -85,7 +205,7 @@
                         <div>
                             <p>
                                 Disculpe los incovenientes, este modulo se encuentra en desarrollo.
-                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                Su entrega final ser� en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
                                 <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
                                 Muchas Gracias.
                             </p>
@@ -103,7 +223,7 @@
                         <div>
                             <p>
                                 Disculpe los incovenientes, este modulo se encuentra en desarrollo.
-                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                Su entrega final ser� en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
                                 <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
                                 Muchas Gracias.
                             </p>
@@ -121,7 +241,7 @@
                         <div>
                             <p>
                                 Disculpe los incovenientes, este modulo se encuentra en desarrollo.
-                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                Su entrega final ser� en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
                                 <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
                                 Muchas Gracias.
                             </p>
@@ -139,7 +259,7 @@
                         <div>
                             <p>
                                 Disculpe los incovenientes, este modulo se encuentra en desarrollo.
-                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
+                                Su entrega final ser� en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
                                 <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
                                 Muchas Gracias.
                             </p>
@@ -151,20 +271,10 @@
 
             <div id="tab6" class="tab">
                 <h4><div id="lettertext">Vacaciones.</div></h4>
-                <div id="text">
-                    <div ="articulo">
-                        <div id="title">Modulo en desarrollo</div>
-                        <div>
-                            <p>
-                                Disculpe los incovenientes, este modulo se encuentra en desarrollo.
-                                Su entrega final será en futuros Sprint de trabajo. Para consultar su avance ingrese al siguiente sitio.
-                                <b>https://kanbanflow.com/board/72ca36cf53eae591bd96fca290e2047b </b>,
-                                Muchas Gracias.
-                            </p>
-                            <p>Grupo No.32 Ingenieria en Sistemas</p>
-                        </div>
-                    </div>
-                </div>
+@using (Html.BeginForm("CrearVacaciones", "VACACIONES"))
+{
+    { Html.RenderAction("Create", "VACACIONES"); }
+}
             </div>
         </div>
     </div>

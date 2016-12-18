@@ -23,110 +23,118 @@
             <div class="col-md-10">
                 <input type="text" name="searchString" class="textInput" placeholder="Nombre del Departamento" />
             </div>
+
+            <div class="form-group">
+                <label class="pMostrar">Mostrar Por:</label>
+                <div class="">
+                    @Html.DropDownList("searchString", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" }, { "Todo" } }), new { onchange = "document.location.href = '/DEPARTAMENTOS/Index?searchString=' + this.options[this.selectedIndex].value;", @class = "form-control2" })
+                </div>
+            </div>
+
             <button type="submit" id="Buscar" class="myButton">Buscar</button>
         </div>
     }
 </div>
 
-<style type="text/css">
-    .webGrid {
-        font: normal 12px/150% Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 99%;
-        text-align: center;
-    }
+    <style type="text/css">
+        .webGrid {
+            font: normal 12px/150% Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 99%;
+            text-align: center;
+        }
 
-    .grid-header {
-        background-color: #5C5C5C;
-        font-weight: bold;
-        color: White !important;
-    }
+        .grid-header {
+            background-color: #5C5C5C;
+            font-weight: bold;
+            color: White !important;
+        }
 
-    .webgrid-footer {
-        display: none;
-    }
+        .webgrid-footer {
+            display: none;
+        }
 
-    .webGrid table {
-        background: #fff;
-        overflow: auto;
-        border: 1px solid #000000;
-    }
+        .webGrid table {
+            background: #fff;
+            overflow: auto;
+            border: 1px solid #000000;
+        }
 
-    .webGrid th a {
-        color: White;
-        text-decoration: none;
-    }
+        .webGrid th a {
+            color: White;
+            text-decoration: none;
+        }
 
-    .webGrid th {
-        padding: 5px;
-        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5C5C5C), color-stop(1, #6C6C70) );
-        background: -moz-linear-gradient( center top, #5C5C5C 5%, #6C6C70 100% );
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5C5C5C', endColorstr='#6C6C70');
-        background-color: #5C5C5C;
-        color: #FFFFFF;
-        font-size: 13px;
-        font-weight: bold;
-        border: 1px solid black;
-        border-right: 1px solid #A3A3A3;
-    }
+        .webGrid th {
+            padding: 5px;
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5C5C5C), color-stop(1, #6C6C70) );
+            background: -moz-linear-gradient( center top, #5C5C5C 5%, #6C6C70 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5C5C5C', endColorstr='#6C6C70');
+            background-color: #5C5C5C;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid black;
+            border-right: 1px solid #A3A3A3;
+        }
 
-    .webGrid td {
-        border: 1px solid black;
-        padding: 5px;
-    }
+        .webGrid td {
+            border: 1px solid black;
+            padding: 5px;
+        }
 
-    .webGrid th a:hover {
-        text-decoration: underline;
-    }
+        .webGrid th a:hover {
+            text-decoration: underline;
+        }
 
-    .to-the-right {
-        text-align: center;
-    }
+        .to-the-right {
+            text-align: center;
+        }
 
-    .contenedorGrid {
-        width: 100%;
-        position: absolute;
-        top: 37%;
-    }
+        .contenedorGrid {
+            width: 100%;
+            position: absolute;
+            top: 37%;
+        }
 
-    #pager a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 2px 8px;
-        margin: 1px;
-        color: #FFFFFF;
-        border: 1px solid #707070;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7F8C94), color-stop(1, #7F8C94) );
-        background: -moz-linear-gradient( center top, #7F8C94 5%, #7F8C94 100% );
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7F8C94', endColorstr='#7F8C94');
-        background-color: #7F8C94;
-    }
+        #pager a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 1px;
+            color: #FFFFFF;
+            border: 1px solid #707070;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7F8C94), color-stop(1, #7F8C94) );
+            background: -moz-linear-gradient( center top, #7F8C94 5%, #7F8C94 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7F8C94', endColorstr='#7F8C94');
+            background-color: #7F8C94;
+        }
 
-        #pager a:hover {
+            #pager a:hover {
+                text-decoration: none;
+                border-color: #FFFFFE;
+                color: #FFFFFF;
+                background: none;
+                background-color: #424E54;
+            }
+
+        #pager ul {
             text-decoration: none;
             border-color: #FFFFFE;
             color: #FFFFFF;
             background: none;
             background-color: #424E54;
         }
-
-    #pager ul {
-        text-decoration: none;
-        border-color: #FFFFFE;
-        color: #FFFFFF;
-        background: none;
-        background-color: #424E54;
-    }
-</style>
-<div class="contenedorGrid">
-    @using (Html.BeginForm("formAction", "DEPARTAMENTOS"))
-    {
-        var grid = new WebGrid(source: Model,
-        rowsPerPage: 6, ajaxUpdateCallback: "addCheck");
-        @grid.GetHtml(
+    </style>
+    <div class="contenedorGrid">
+        @using (Html.BeginForm("formAction", "DEPARTAMENTOS"))
+        {
+            var grid = new WebGrid(source: Model,
+            rowsPerPage: 6, ajaxUpdateCallback: "addCheck");
+            @grid.GetHtml(
                     tableStyle: "webGrid",
                     htmlAttributes: new { id = "checkableGrid" },
                     headerStyle: "webgrid-header",
@@ -140,49 +148,49 @@
                     </text>,
                     header: ""),
                     grid.Column("NOMBRE", "Nombre del Departamento"),
-                    grid.Column("DESCRIPCION", "Descripción del Departamento", canSort:false),
+                    grid.Column("DESCRIPCION", "Descripción del Departamento", canSort: false),
                     grid.Column("EMPRESAS.NOMBRE", "Empresa", canSort: false),
                     grid.Column("ESTADO", "Estado (Activo o Inactivo)", canSort: false)
                     ))
-        <div id="pager">
-            @grid.Pager()
-        </div>
-        <br />
-        <div>
-            <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "DEPARTAMENTOS")'" class="myButton" />
-            <input type="submit" name="Editar" value="Editar" class="myButton" />
-            <input type="submit" name="Detalles" value="Detalles" class="myButton" />
-            <input type="submit" name="Habilitar" value="Habilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea habilitar lo(os) departamentos seleccionados ', 'habilitar');" />
-            <input type="submit" name="Inhabilitar" value="Inhabilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea inhabilitar lo(os) departamentos seleccionados ', 'Inhabilitar');" />
-            <input id="Inhabilitar" type="submit" name="Inhabilitar" value="Inhabilitar" class="btnInvisible" />
-            <input id="habilitar" type="submit" name="habilitar" value="habilitar" class="btnInvisible" />
-        </div>
-    }
-</div>
+            <div id="pager">
+                @grid.Pager()
+            </div>
+            <br />
+            <div>
+                <input type="button" value="Crear nuevo" onclick="location.href='@Url.Action("Create", "DEPARTAMENTOS")'" class="myButton" />
+                <input type="submit" name="Editar" value="Editar" class="myButton" />
+                <input type="submit" name="Detalles" value="Detalles" class="myButton" />
+                <input type="submit" name="Habilitar" value="Habilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea habilitar lo(os) departamentos seleccionados ', 'habilitar');" />
+                <input type="submit" name="Inhabilitar" value="Inhabilitar" class="myButton" onClick="return Confirmar('Esta Seguro(a) de que desea inhabilitar lo(os) departamentos seleccionados ', 'Inhabilitar');" />
+                <input id="Inhabilitar" type="submit" name="Inhabilitar" value="Inhabilitar" class="btnInvisible" />
+                <input id="habilitar" type="submit" name="habilitar" value="habilitar" class="btnInvisible" />
+            </div>
+        }
+    </div>
 
-@section Scripts{
-    <script>
-        $(function () {
-            addCheck();
-        });
-        function addCheck() {
-            var $chk = $('<input/>').attr({ type: 'checkbox', name: 'chkAll', id: 'chkAll', title: "Select All" });
-            $('th:first').append($chk);
-            $('#chkAll').click(function () {
-                $(':checkbox').prop('checked', $(this).is(':checked') ? true : false);
+    @section Scripts{
+        <script>
+            $(function () {
+                addCheck();
             });
-            $(':checkbox').not('#chkAll').click(function () {
-                testCheck();
-            });
-        }
-        function testCheck() {
-            if ($(':checkbox').not('#chkAll').filter(':not(:checked)').length === 0) {
-                $('#chkAll').prop('checked', true);
-            } else {
-                $('#chkAll').prop('checked', false);
+            function addCheck() {
+                var $chk = $('<input/>').attr({ type: 'checkbox', name: 'chkAll', id: 'chkAll', title: "Select All" });
+                $('th:first').append($chk);
+                $('#chkAll').click(function () {
+                    $(':checkbox').prop('checked', $(this).is(':checked') ? true : false);
+                });
+                $(':checkbox').not('#chkAll').click(function () {
+                    testCheck();
+                });
             }
-        }
-    </script>
-}
+            function testCheck() {
+                if ($(':checkbox').not('#chkAll').filter(':not(:checked)').length === 0) {
+                    $('#chkAll').prop('checked', true);
+                } else {
+                    $('#chkAll').prop('checked', false);
+                }
+            }
+        </script>
+    }
 
 

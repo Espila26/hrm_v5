@@ -17,7 +17,7 @@ namespace hrm_v5.Controllers
         // GET: VACACIONES
         public ActionResult Index()
         {
-            var vACACIONES = db.VACACIONES.Include(v => v.EMPLEADOS);
+            var vACACIONES = db.VACACIONES.Include(v => v.EMPLEADOS).Include(v => v.PUESTOS);
             return View(vACACIONES.ToList());
         }
 
@@ -39,16 +39,16 @@ namespace hrm_v5.Controllers
         // GET: VACACIONES/Create
         public ActionResult Create()
         {
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA");
-            return View();
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
+            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
+            return PartialView();
         }
 
         // POST: VACACIONES/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL")] VACACIONES vACACIONES)
+        public ActionResult CrearVacaciones([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
         {
             if (ModelState.IsValid)
             {
@@ -57,8 +57,9 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", vACACIONES.ID_EMPLEADO);
-            return View(vACACIONES);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", vACACIONES.ID_EMPLEADO);
+            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
+            return PartialView("~/Views/VACACIONES/Create.cshtml",vACACIONES);
         }
 
         // GET: VACACIONES/Edit/5
@@ -73,7 +74,8 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", vACACIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", vACACIONES.ID_EMPLEADO);
+            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
             return View(vACACIONES);
         }
 
@@ -82,7 +84,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL")] VACACIONES vACACIONES)
+        public ActionResult Edit([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +92,8 @@ namespace hrm_v5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", vACACIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", vACACIONES.ID_EMPLEADO);
+            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
             return View(vACACIONES);
         }
 

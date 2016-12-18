@@ -221,8 +221,17 @@ namespace hrm_v5.Controllers
             return View(eMPLEADOS);
         }
 
-        public ActionResult Expediente() {
-            return View();
+        public ActionResult Expediente(string searchString)
+        {
+            var EMP = from d in db.EMPLEADOS
+                      select d;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                EMP = EMP.Where(s => s.CEDULA.Contains(searchString));
+            }
+
+            return View("Expediente", EMP);
         }
 
         // POST: EMPLEADOS/Delete/5
