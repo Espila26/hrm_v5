@@ -54,9 +54,10 @@ li.active a, li.active a:hover {
     border-color:#B40404;
 }
  
-.tab.active{
+.active{
     display:block;
-    border-color:#B40404;
+   background:#D0D0D0;
+    color:#4c4c4c;
 }
 
 #lettertext {

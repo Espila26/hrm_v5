@@ -41,25 +41,26 @@ namespace hrm_v5.Controllers
         {
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
-            return PartialView();
+            return View();
         }
 
         // POST: VACACIONES/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult CrearVacaciones([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
+        public ActionResult Create([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
         {
             if (ModelState.IsValid)
             {
                 db.VACACIONES.Add(vACACIONES);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Expediente", "EMPLEADOS");
             }
 
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", vACACIONES.ID_EMPLEADO);
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
-            return PartialView("~/Views/VACACIONES/Create.cshtml",vACACIONES);
+            TempData["Vacaciones"] = "algo";
+            return View();
         }
 
         // GET: VACACIONES/Edit/5

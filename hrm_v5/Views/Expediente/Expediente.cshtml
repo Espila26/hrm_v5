@@ -12,7 +12,7 @@
 <div>
     <h4><div id="lettertext">Expediente Laboral.</div></h4>
     <div class="divBuscar">
-        @using (Html.BeginForm("Expediente", "EMPLEADOS"))
+        @using (Html.BeginForm("Expediente", "Expediente"))
         {
             <div class="form-group">
                 <label class="pNombre">Empleado: </label>
@@ -28,12 +28,12 @@
     <hr />
     <div>
         <ul class="tab-links">
-            <li class="active" ><a href="#tab1" data-toggle="tab"><div id="tab-1">Datos Personales.</div></a></li>
+            <li class="active"><a href="#tab1" data-toggle="tab"><div id="tab-1">Datos Personales.</div></a></li>
             <li><a href="#tab2" data-toggle="tab"><div id="tab-2">Amonestaciones.</div></a></li>
             <li><a href="#tab3" data-toggle="tab"><div id="tab-3">Ascensos.</div></a></li>
             <li><a href="#tab4" data-toggle="tab"><div id="tab-4">Permisos.</div></a></li>
             <li><a href="#tab5" data-toggle="tab"><div id="tab-5">Suspensiones.</div></a></li>
-            <li><a  id="linkVacaciones" href="@Url.Action("Create", "VACACIONES")"><div>Vacaciones.</div></a></li>
+            <li><a id="linkVacaciones" href="@Url.Action("Create", "Expediente")"><div>Vacaciones.</div></a></li>
         </ul>
 
         <div class="tab-content">

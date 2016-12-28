@@ -203,6 +203,7 @@
     <Compile Include="Controllers\DEPARTAMENTOSController.cs" />
     <Compile Include="Controllers\EMPLEADOSController.cs" />
     <Compile Include="Controllers\EMPRESASController.cs" />
+    <Compile Include="Controllers\ExpedienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PERMISOSController.cs" />
@@ -255,9 +256,6 @@
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SUSPENSIONES.cs">
-      <DependentUpon>hrmModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIOS.cs">
@@ -401,6 +399,8 @@
     <Content Include="Views\VACACIONES\Edit.cshtml" />
     <Content Include="Views\VACACIONES\Index.cshtml" />
     <Content Include="Views\VACACIONES\Create.cshtml" />
+    <Content Include="Views\Expediente\Expediente.cshtml" />
+    <Content Include="Views\Expediente\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

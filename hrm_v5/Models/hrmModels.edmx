@@ -49,6 +49,9 @@
           <Property Name="APE1" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="APE2" Type="varchar" MaxLength="15" />
           <Property Name="FECHA_NAC" Type="date" Nullable="false" />
+          <Property Name="FECHA_CONTR" Type="date" Nullable="false" />
+          <Property Name="DIAS_VAC_DISP" Type="int" Nullable="false" />
+          <Property Name="DIAS_VAC_UTILIZAD" Type="int" Nullable="false" />
           <Property Name="DIRECCION" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="TEL_HABITACION" Type="varchar" MaxLength="15" />
@@ -136,6 +139,8 @@
           <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="INICIO" Type="date" Nullable="false" />
           <Property Name="FINAL" Type="date" Nullable="false" />
+          <Property Name="CANT_DIAS" Type="int" Nullable="false" />
+          <Property Name="AUTORIZACION" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_AMONESTACION_EMPLEADO">
           <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
@@ -257,6 +262,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VACACION_PUESTO">
+          <End Role="PUESTOS" Type="Self.PUESTOS" Multiplicity="1" />
+          <End Role="VACACIONES" Type="Self.VACACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUESTOS">
+              <PropertyRef Name="PTS_ID" />
+            </Principal>
+            <Dependent Role="VACACIONES">
+              <PropertyRef Name="AUTORIZACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VACACIONES_EMPLEADO">
           <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
           <End Role="VACACIONES" Type="Self.VACACIONES" Multiplicity="*" />
@@ -320,6 +337,10 @@
           <AssociationSet Name="FK_USUARIO_EMPLEADO" Association="Self.FK_USUARIO_EMPLEADO">
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
             <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VACACION_PUESTO" Association="Self.FK_VACACION_PUESTO">
+            <End Role="PUESTOS" EntitySet="PUESTOS" />
+            <End Role="VACACIONES" EntitySet="VACACIONES" />
           </AssociationSet>
           <AssociationSet Name="FK_VACACIONES_EMPLEADO" Association="Self.FK_VACACIONES_EMPLEADO">
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
@@ -394,6 +415,9 @@
           <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="EMPLEADOS" ToRole="USUARIOS" />
           <NavigationProperty Name="VACACIONES" Relationship="Self.FK_VACACIONES_EMPLEADO" FromRole="EMPLEADOS" ToRole="VACACIONES" />
           <Property Name="FECHA_NAC" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FECHA_CONTR" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DIAS_VAC_DISP" Type="Int32" Nullable="false" />
+          <Property Name="DIAS_VAC_UTILIZAD" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPRESAS">
           <Key>
@@ -449,6 +473,7 @@
           <NavigationProperty Name="DEPARTAMENTOS" Relationship="Self.FK_PUESTO_DEPARTAMENTO" FromRole="PUESTOS" ToRole="DEPARTAMENTOS" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_EMPLEADO_PUESTO" FromRole="PUESTOS" ToRole="EMPLEADOS" />
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VACACIONES" Relationship="hrm_dbModel.FK_VACACION_PUESTO" FromRole="PUESTOS" ToRole="VACACIONES" />
         </EntityType>
         <EntityType Name="SUSPENSIONES">
           <Key>
@@ -483,6 +508,9 @@
           <Property Name="INICIO" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FINAL" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_VACACIONES_EMPLEADO" FromRole="VACACIONES" ToRole="EMPLEADOS" />
+          <Property Name="CANT_DIAS" Type="Int32" Nullable="false" />
+          <Property Name="AUTORIZACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PUESTOS" Relationship="hrm_dbModel.FK_VACACION_PUESTO" FromRole="VACACIONES" ToRole="PUESTOS" />
         </EntityType>
         <Association Name="FK_AMONESTACION_EMPLEADO">
           <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
@@ -672,7 +700,23 @@
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="HISTORIALES" EntitySet="HISTORIALES" />
           </AssociationSet>
+          <AssociationSet Name="FK_VACACION_PUESTO" Association="hrm_dbModel.FK_VACACION_PUESTO">
+            <End Role="PUESTOS" EntitySet="PUESTOS" />
+            <End Role="VACACIONES" EntitySet="VACACIONES" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_VACACION_PUESTO">
+          <End Type="hrm_dbModel.PUESTOS" Role="PUESTOS" Multiplicity="1" />
+          <End Type="hrm_dbModel.VACACIONES" Role="VACACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PUESTOS">
+              <PropertyRef Name="PTS_ID" />
+            </Principal>
+            <Dependent Role="VACACIONES">
+              <PropertyRef Name="AUTORIZACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -718,6 +762,9 @@
           <EntitySetMapping Name="EMPLEADOS">
             <EntityTypeMapping TypeName="hrm_dbModel.EMPLEADOS">
               <MappingFragment StoreEntitySet="EMPLEADOS">
+                <ScalarProperty Name="DIAS_VAC_UTILIZAD" ColumnName="DIAS_VAC_UTILIZAD" />
+                <ScalarProperty Name="DIAS_VAC_DISP" ColumnName="DIAS_VAC_DISP" />
+                <ScalarProperty Name="FECHA_CONTR" ColumnName="FECHA_CONTR" />
                 <ScalarProperty Name="FECHA_NAC" ColumnName="FECHA_NAC" />
                 <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
@@ -815,6 +862,8 @@
           <EntitySetMapping Name="VACACIONES">
             <EntityTypeMapping TypeName="hrm_dbModel.VACACIONES">
               <MappingFragment StoreEntitySet="VACACIONES">
+                <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
+                <ScalarProperty Name="CANT_DIAS" ColumnName="CANT_DIAS" />
                 <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="INICIO" ColumnName="INICIO" />
