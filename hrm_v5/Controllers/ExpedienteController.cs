@@ -11,20 +11,19 @@ namespace hrm_v5.Controllers
     public class ExpedienteController : Controller
     {
         private Entities db = new Entities();
-        private EMPLEADOS Empleado;
 
         // GET: VACACIONES/Create
         public ActionResult Create()
         {
-            var EMP = db.EMPLEADOS;
-            if (Empleado != null)
+            List<object> Empleado = new List<Object>();
+            if (TempData["Empleado"] != null)
             {
-                EMP.Add(Empleado);
-                ViewBag.ID_EMPLEADO = new SelectList(EMP, "EMP_ID", "ID_EMPLEADO");
+                Empleado.Add(TempData["Empleado"]);
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
             }
-            else 
+            else
             {
-                ViewBag.ID_EMPLEADO = new SelectList(EMP, "EMP_ID", "ID_EMPLEADO");
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
             }
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
             return View();
@@ -42,15 +41,15 @@ namespace hrm_v5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Expediente", "EMPLEADOS");
             }
-            var EMP = db.EMPLEADOS;
-            if (Empleado != null)
+            List<object> Empleado = new List<Object>();
+            if (TempData["Empleado"] != null)
             {
-                EMP.Add(Empleado);
-                ViewBag.ID_EMPLEADO = new SelectList(EMP, "EMP_ID", "ID_EMPLEADO");
+                Empleado.Add(TempData["Empleado"]);
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
             }
             else
             {
-                ViewBag.ID_EMPLEADO = new SelectList(EMP, "EMP_ID", "ID_EMPLEADO");
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
             }
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
             TempData["Vacaciones"] = "algo";
@@ -65,10 +64,33 @@ namespace hrm_v5.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 EMP = EMP.Where(s => s.CEDULA.Contains(searchString));
-                Empleado = db.EMPLEADOS.Find(EMP.First().EMP_ID);
             }
 
             return View("Expediente", EMP);
+        }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "¡Se debe seleccionar al menos un empleado!";
+            }
+            else
+            {
+                if (Request.Form["Seleccionar"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        TempData["Empleado"] = db.EMPLEADOS.Find(Int32.Parse(childChkbox.First()));
+                    }
+                    else
+                    {
+                        TempData["Error"] = "¡Solamente es posible ver los detalles de un empleado a la vez!";
+                    }
+                }
+            }
+            return RedirectToAction("Expediente");
         }
 
     }
