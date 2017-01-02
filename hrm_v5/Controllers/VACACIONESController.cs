@@ -40,7 +40,7 @@ namespace hrm_v5.Controllers
         public ActionResult Create()
         {
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
-            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
+            //ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace hrm_v5.Controllers
             }
 
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", vACACIONES.ID_EMPLEADO);
-            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
+            //ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
             TempData["Vacaciones"] = "algo";
             return View();
         }
@@ -76,7 +76,7 @@ namespace hrm_v5.Controllers
                 return HttpNotFound();
             }
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", vACACIONES.ID_EMPLEADO);
-            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
+            //ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
             return View(vACACIONES);
         }
 
@@ -94,7 +94,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", vACACIONES.ID_EMPLEADO);
-            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
+            //ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
             return View(vACACIONES);
         }
 
