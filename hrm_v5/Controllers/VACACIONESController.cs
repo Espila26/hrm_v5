@@ -17,7 +17,7 @@ namespace hrm_v5.Controllers
         // GET: VACACIONES
         public ActionResult Index()
         {
-            var vACACIONES = db.VACACIONES.Include(v => v.EMPLEADOS).Include(v => v.PUESTOS);
+            var vACACIONES = db.VACACIONES.Include(v => v.EMPLEADOS);
             return View(vACACIONES.ToList());
         }
 
