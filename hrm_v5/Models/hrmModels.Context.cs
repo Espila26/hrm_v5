@@ -38,7 +38,6 @@ namespace hrm_v5.Models
         public virtual DbSet<SUSPENSIONES> SUSPENSIONES { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
         public virtual DbSet<VACACIONES> VACACIONES { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
