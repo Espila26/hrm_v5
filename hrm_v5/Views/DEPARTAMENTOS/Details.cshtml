@@ -6,57 +6,89 @@
 
 @Styles.Render("~/Content/EstiloFormulario.css")
 @Styles.Render("~/Content/EstiloBoton.css")
+@Styles.Render("~/Content/EstiloDetails.css")
 
 <div id="TitleDetails">
     <p>Detalles del Departamento</p>
 </div>
 
-<br></br>
-<br></br>
-<hr />
-
 <div>
-    <dl class="form-group">
-        <dt class="control-label">
-            <th>@Html.DisplayNameFor(model => model.NOMBRE)</th>
-        </dt>
+    <br></br>
+    <br></br>
+    <hr />
+    <button class="accordion">@Html.DisplayNameFor(model => model.NOMBRE)</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                Nombre:
+            </dt>
 
-        <dd class="formDetails">
-            @Html.DisplayFor(model => model.NOMBRE)
-        </dd>
-    </dl>
-    <dl class="form-group">
-        <dt class="control-label">
-            <th>@Html.DisplayNameFor(model => model.DESCRIPCION)</th>
-        </dt>
-
-        <dd class="formDetails">
-            @Html.DisplayFor(model => model.DESCRIPCION)
-        </dd>
-
-    </dl>
-    <dl class="form-group">
-        <dt class="control-label">
-            <th>@Html.DisplayNameFor(model => model.EMPRESAS.NOMBRE)</th>
-        </dt>
-
-        <dd class="formDetails">
-            @Html.DisplayFor(model => model.EMPRESAS.NOMBRE)
-        </dd>
-
-    </dl>
-    <dl class="form-group">
-        <dt class="control-label">
-            <th>@Html.DisplayNameFor(model => model.ESTADO)</th>
-        </dt>
-
-        <dd class="formDetails">
-            @Html.DisplayFor(model => model.ESTADO)
-        </dd>
-
-    </dl>
-    <div class="form-group">
-        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "DEPARTAMENTOS", new { id = Model.ID_DEPARTAMENTO })'" />
-        <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "DEPARTAMENTOS")'" />
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.NOMBRE)
+            </dd>
+        </dl>
     </div>
-</div>
+
+    <button class="accordion">@Html.DisplayNameFor(model => model.DESCRIPCION)</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                Descripción:
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.DESCRIPCION)
+            </dd>
+
+        </dl>
+    </div>
+
+    <button class="accordion">@Html.DisplayNameFor(model => model.EMPRESAS.NOMBRE)</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                <th>@Html.DisplayNameFor(model => model.EMPRESAS.NOMBRE)</th>
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.EMPRESAS.NOMBRE)
+            </dd>
+
+        </dl>
+    </div>
+
+    <button class="accordion">@Html.DisplayNameFor(model => model.ESTADO)</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                <th>@Html.DisplayNameFor(model => model.ESTADO)</th>
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ESTADO)
+            </dd>
+        </dl>
+    </div>
+
+    <br></br>
+    
+        <div class="form-group">
+            <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "DEPARTAMENTOS", new { id = Model.ID_DEPARTAMENTO })'" />
+            <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "DEPARTAMENTOS")'" />
+        </div>
+    </div>
+
+
+@section Scripts{
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function () {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    </script>
+}
