@@ -25,8 +25,17 @@ namespace hrm_v5.Controllers
             {
                 ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
             }
-            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
-            return View();
+                        return View();
+        }
+
+        public ActionResult ValidateIDEmp() {
+            if (TempData["Empleado"] == null){
+                TempData["Error"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Expediente", "Expediente");
+            }else{
+                //TempData["Success"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Create", "Expediente");
+            }
         }
 
         // POST: VACACIONES/Create
@@ -35,20 +44,16 @@ namespace hrm_v5.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid){
                 db.VACACIONES.Add(vACACIONES);
                 db.SaveChanges();
                 return RedirectToAction("Expediente", "EMPLEADOS");
             }
             List<object> Empleado = new List<Object>();
-            if (TempData["Empleado"] != null)
-            {
+            if (TempData["Empleado"] != null){
                 Empleado.Add(TempData["Empleado"]);
                 ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
-            }
-            else
-            {
+            }else{
                 ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
             }
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
