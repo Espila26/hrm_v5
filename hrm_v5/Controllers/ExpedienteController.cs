@@ -15,24 +15,20 @@ namespace hrm_v5.Controllers
         // GET: VACACIONES/Create
         public ActionResult Create()
         {
-            List<object> Empleado = new List<Object>();
-            if (TempData["Empleado"] != null)
+            ViewBagEmpleado();
+            ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
+            return View();
+        }
+
+        public ActionResult ValidateIDEmp()
+        {
+            if (TempData["Empleado"] == null)
             {
-                Empleado.Add(TempData["Empleado"]);
-                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
+                TempData["Error"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Expediente", "Expediente");
             }
             else
             {
-                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
-            }
-                        return View();
-        }
-
-        public ActionResult ValidateIDEmp() {
-            if (TempData["Empleado"] == null){
-                TempData["Error"] = "¡Seleccione un empleado!";
-                return RedirectToAction("Expediente", "Expediente");
-            }else{
                 //TempData["Success"] = "¡Seleccione un empleado!";
                 return RedirectToAction("Create", "Expediente");
             }
@@ -44,20 +40,14 @@ namespace hrm_v5.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
         {
-            if (ModelState.IsValid){
+            if (ModelState.IsValid)
+            {
                 db.VACACIONES.Add(vACACIONES);
                 db.SaveChanges();
-                return RedirectToAction("Expediente", "EMPLEADOS");
+                return RedirectToAction("Expediente", "Expediente");
             }
-            List<object> Empleado = new List<Object>();
-            if (TempData["Empleado"] != null){
-                Empleado.Add(TempData["Empleado"]);
-                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
-            }else{
-                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
-            }
+            ViewBagEmpleado();
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
-            TempData["Vacaciones"] = "algo";
             return View();
         }
 
@@ -83,19 +73,39 @@ namespace hrm_v5.Controllers
             }
             else
             {
-                if (Request.Form["Seleccionar"] != null)
+                if (childChkbox.Count() == 1)
                 {
-                    if (childChkbox.Count() == 1)
-                    {
-                        TempData["Empleado"] = db.EMPLEADOS.Find(Int32.Parse(childChkbox.First()));
-                    }
-                    else
-                    {
-                        TempData["Error"] = "¡Solamente es posible ver los detalles de un empleado a la vez!";
-                    }
+                    TempData["Empleado"] = db.EMPLEADOS.Find(Int32.Parse(childChkbox.First()));
+                }
+                else
+                {
+                    TempData["Error"] = "¡Solamente es posible ver los detalles de un empleado a la vez!";
                 }
             }
             return RedirectToAction("Expediente");
+        }
+
+        public void ViewBagEmpleado()
+        {
+            List<EMPLEADOS> Empleado = new List<EMPLEADOS>();
+            if (TempData["Empleado"] != null)
+            {
+                Empleado.Add((EMPLEADOS)TempData["Empleado"]);
+                CalcularDiasDisponibles(Empleado.First());
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
+            }
+            else
+            {
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
+            }
+        }
+
+        public void CalcularDiasDisponibles(EMPLEADOS empleado)
+        {
+            TimeSpan ts = DateTime.Now - empleado.FECHA_CONTR;
+            int diferenciaDias = ts.Days;
+            int diasDisponibles = (diferenciaDias / 7) / 4 - empleado.DIAS_VAC_UTILIZAD;
+            ViewBag.DiasDisponibles = diasDisponibles;
         }
 
     }
