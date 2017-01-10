@@ -1,0 +1,57 @@
+﻿@model IEnumerable<hrm_v5.Models.VACACIONES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.INICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FINAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANT_DIAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AUTORIZACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADOS.ID_EMPLEADO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.INICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FINAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANT_DIAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AUTORIZACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADOS.ID_EMPLEADO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_SOLICITUD }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_SOLICITUD }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_SOLICITUD })
+        </td>
+    </tr>
+}
+
+</table>

@@ -12,6 +12,15 @@ namespace hrm_v5.Controllers
     {
         private Entities db = new Entities();
 
+        // GET: VACACIONES
+        public ActionResult Index()
+        {
+            EMPLEADOS Emp = (EMPLEADOS)TempData["Empleado"];
+            TempData.Keep("Empleado");
+            var vACACIONES = db.VACACIONES.Where(v => v.ID_EMPLEADO.Equals(Emp.EMP_ID));
+            return View(vACACIONES.ToList());
+        }
+
         // GET: VACACIONES/Create
         public ActionResult Create()
         {
@@ -30,7 +39,7 @@ namespace hrm_v5.Controllers
             else
             {
                 //TempData["Success"] = "¡Seleccione un empleado!";
-                return RedirectToAction("Create", "Expediente");
+                return RedirectToAction("Index", "Expediente");
             }
         }
 
