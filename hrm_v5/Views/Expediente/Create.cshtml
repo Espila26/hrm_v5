@@ -81,9 +81,9 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.AUTORIZACION, "AUTORIZACION", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.AUTORIZACION, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("AUTORIZACION", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.EditorFor(model => model.AUTORIZACION, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.AUTORIZACION, "", new { @class = "text-danger" })
                     </div>
                 </div>

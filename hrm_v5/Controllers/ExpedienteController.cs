@@ -20,6 +20,20 @@ namespace hrm_v5.Controllers
             return View();
         }
 
+        public ActionResult ValidateIDEmp()
+        {
+            if (TempData["Empleado"] == null)
+            {
+                TempData["Error"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Expediente", "Expediente");
+            }
+            else
+            {
+                //TempData["Success"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Create", "Expediente");
+            }
+        }
+
         // POST: VACACIONES/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -90,7 +104,7 @@ namespace hrm_v5.Controllers
         {
             TimeSpan ts = DateTime.Now - empleado.FECHA_CONTR;
             int diferenciaDias = ts.Days;
-            int diasDisponibles = (diferenciaDias/7)/4 - empleado.DIAS_VAC_UTILIZAD;
+            int diasDisponibles = (diferenciaDias / 7) / 4 - empleado.DIAS_VAC_UTILIZAD;
             ViewBag.DiasDisponibles = diasDisponibles;
         }
 
