@@ -92,7 +92,6 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar un departamento.Si no es posible seleccionar alguno, probablemente, los departamentos existentes se encuentren inactivos o no existe ninguno.";
-                    return RedirectToAction("Create");
                 }
                 TempData["Success"] = "¡El puesto ha sido creado exitosamente!";
                 return RedirectToAction("Create");
@@ -108,7 +107,6 @@ namespace hrm_v5.Controllers
             if (childChkbox == null)
             {
                 TempData["Error"] = "¡Se debe seleccionar al menos un puesto!";
-                return RedirectToAction("Index");
             }
             else
             {
@@ -121,7 +119,6 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "¡Solamente es posible ver los detalles de un puesto a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if (Request.Form["Editar"] != null)
@@ -134,7 +131,6 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "¡Solamente es posible editar un puesto a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if (Request.Form["Inhabilitar"] != null)
@@ -155,9 +151,7 @@ namespace hrm_v5.Controllers
                         db.SaveChanges();
                     }
                     TempData["Success"] = "¡Se ha cambiado el estado de el o los puestos seleccionados exitosamente!";
-                    return RedirectToAction("Index");
                 }
-
                 else if (Request.Form["Habilitar"] != null)
                 {
                     foreach (var i in childChkbox)
@@ -167,10 +161,9 @@ namespace hrm_v5.Controllers
                         db.SaveChanges();
                     }
                     TempData["Success"] = "¡Se ha cambiado el estado de el o los puestos seleccionados exitosamente!";
-                    return RedirectToAction("Index");
                 }
-                return View();
             }
+            return RedirectToAction("Index");
         }
 
         // GET: PUESTOS/Edit/5
@@ -206,7 +199,6 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar un departamento.Si no es posible seleccionar alguno, probablemente, los departamentos existentes se encuentren inactivos o no existe ninguno.";
-                    return RedirectToAction("Index");
                 }
                 TempData["Success"] = "¡La información del Puesto ha sido editada exitosamente!";
                 return RedirectToAction("Index");
@@ -252,24 +244,12 @@ namespace hrm_v5.Controllers
 
         public string CrearID()
         {
-            int cont = 0;
             string dia = @DateTime.Now.Day.ToString();
             string mes = @DateTime.Now.Month.ToString();
             string año = DateTime.Now.Year.ToString();
             string fecha = dia + mes + año;
-            if (db.PUESTOS.Count() == 0)
-            {
-                return cont + "-" + fecha;
-            }
-            else
-            {
-                while (cont != db.PUESTOS.Count())
-                {
-                    cont++;
-                    cont.ToString();
-                }
-                return cont + "-" + fecha;
-            }
+
+            return db.PUESTOS.Count() + "-" + fecha;
         }
 
         public void viewBagDepartamentos()

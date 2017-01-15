@@ -323,7 +323,6 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\Expediente\jquery-Expediente.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -407,11 +406,6 @@
     <Content Include="Views\PUESTOS\Details.cshtml" />
     <Content Include="Views\PUESTOS\Edit.cshtml" />
     <Content Include="Views\PUESTOS\Index.cshtml" />
-    <Content Include="Views\VACACIONES\Delete.cshtml" />
-    <Content Include="Views\VACACIONES\Details.cshtml" />
-    <Content Include="Views\VACACIONES\Edit.cshtml" />
-    <Content Include="Views\VACACIONES\Index.cshtml" />
-    <Content Include="Views\VACACIONES\Create.cshtml" />
     <Content Include="Views\Expediente\Expediente.cshtml" />
     <Content Include="Views\Expediente\Create.cshtml" />
     <Content Include="Views\Expediente\Index.cshtml" />

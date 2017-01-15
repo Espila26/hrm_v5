@@ -92,7 +92,6 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
-                    return RedirectToAction("Create");
                 }
                 TempData["Success"] = "¡El Departamento ha sido creado exitosamente!";
                 return RedirectToAction("Create");
@@ -136,7 +135,6 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
-                    return RedirectToAction("Index");
                 }
                 db.SaveChanges();
                 TempData["Success"] = "¡La información del departamento ha sido editada exitosamente!";
@@ -187,7 +185,6 @@ namespace hrm_v5.Controllers
             if (childChkbox == null)
             {
                 TempData["Error"] = "¡Se debe seleccionar al menos un departamento!";
-                return RedirectToAction("Index");
             }
             else
             {
@@ -200,7 +197,6 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "¡Solamente es posible ver detalles de un departamento a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if (Request.Form["Editar"] != null)
@@ -213,7 +209,6 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "¡Solamente es posible editar un departamento a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if (Request.Form["Inhabilitar"] != null)
@@ -241,7 +236,6 @@ namespace hrm_v5.Controllers
                     db.SaveChanges();
                     }
                     TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
-                    return RedirectToAction("Index");
                 }
 
                 else if (Request.Form["Habilitar"] != null)
@@ -253,10 +247,9 @@ namespace hrm_v5.Controllers
                         db.SaveChanges();
                     }
                     TempData["Success"] = "¡Se ha cambiado el estado de el o los Departamentos seleccionados exitosamente!";
-                    return RedirectToAction("Index");
                 }
-                return View();
             }
+            return RedirectToAction("Index");
         }
 
         public void viewBagEmpresas()

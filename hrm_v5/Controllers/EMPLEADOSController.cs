@@ -95,7 +95,6 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar un puesto.Si no es posible seleccionar alguno, probablemente, los puestos existentes se encuentren inactivas o no existe ninguno.";
-                    return RedirectToAction("Create");
                 }
                 TempData["Success"] = "¡El empleado ha sido creado exitosamente!";
                 return RedirectToAction("Create");
@@ -103,7 +102,6 @@ namespace hrm_v5.Controllers
 
             ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE", eMPLEADOS.PUESTO);
             return View(eMPLEADOS);
-
         }
 
         [HttpPost]
@@ -112,7 +110,6 @@ namespace hrm_v5.Controllers
             if (childChkbox == null)
             {
                 TempData["Error"] = "¡Se debe seleccionar al menos un empleado!";
-                return RedirectToAction("Index");
             }
             else
             {
@@ -125,12 +122,10 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "¡Solamente es posible ver los detalles de un empleado a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if (Request.Form["Editar"] != null)
                 {
-
                     if (childChkbox.Count() == 1)
                     {
                         return RedirectToAction("Edit", "EMPLEADOS", new { id = childChkbox.First() });
@@ -138,7 +133,6 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "¡Solamente es posible editar un empleado a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if (Request.Form["Inhabilitar"] != null)
@@ -150,9 +144,7 @@ namespace hrm_v5.Controllers
                         db.SaveChanges();
                     }
                     TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
-                    return RedirectToAction("Index");
                 }
-
                 else if (Request.Form["Habilitar"] != null)
                 {
                     foreach (var i in childChkbox)
@@ -162,10 +154,9 @@ namespace hrm_v5.Controllers
                         db.SaveChanges();
                     }
                     TempData["Success"] = "¡Se ha cambiado el estado de el o los Empleados seleccionados exitosamente!";
-                    return RedirectToAction("Index");
                 }
-                return View();
             }
+            return RedirectToAction("Index");
         }
 
         // GET: EMPLEADOS/Edit/5
@@ -201,7 +192,6 @@ namespace hrm_v5.Controllers
                 catch (Exception e)
                 {
                     TempData["Error"] = "Se debe de seleccionar un puesto.Si no es posible seleccionar alguno, probablemente, los puestos existentes se encuentren inactivas o no existe ninguno.";
-                    return RedirectToAction("Index");
                 }
                 TempData["Success"] = "¡La información del empleado ha sido editada exitosamente!";
                 return RedirectToAction("Index");
@@ -224,20 +214,6 @@ namespace hrm_v5.Controllers
             }
             return View(eMPLEADOS);
         }
-
-        public ActionResult Expediente(string searchString)
-        {
-            var EMP = from d in db.EMPLEADOS
-                      select d;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                EMP = EMP.Where(s => s.CEDULA.Contains(searchString));
-            }
-
-            return View("Expediente", EMP);
-        }
-
         // POST: EMPLEADOS/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -258,28 +234,13 @@ namespace hrm_v5.Controllers
             base.Dispose(disposing);
         }
 
-
-        //Buscar un empleado en específico.
-
         public string CrearID(){
-            int cont = 0;
             string dia = @DateTime.Now.Day.ToString();
             string mes = @DateTime.Now.Month.ToString();
             string año = DateTime.Now.Year.ToString();
             string fecha = dia + mes + año;
-            if (db.EMPLEADOS.Count() == 0)
-            {
-                return cont + "-" + fecha;
-            }
-            else
-            {
-                while (cont != db.EMPLEADOS.Count())
-                {
-                    cont++;
-                    cont.ToString();
-                }
-                return cont + "-" + fecha;
-            }
+
+            return db.EMPLEADOS.Count() + "-" + fecha;
         }
 
         [HttpPost]

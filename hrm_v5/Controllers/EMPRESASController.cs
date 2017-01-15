@@ -98,7 +98,6 @@ namespace hrm_v5.Controllers
             if (childChkbox == null)
             {
                 TempData["Error"] = "¡Se debe seleccionar al menos una empresa!";
-                return RedirectToAction("Index");
             }
             else
             {
@@ -111,7 +110,6 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "!Solamente es posible ver los detalles de una empresa a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if (Request.Form["Editar"] != null)
@@ -124,7 +122,6 @@ namespace hrm_v5.Controllers
                     else
                     {
                         TempData["Error"] = "¡Solamente es posible editar una empresa a la vez!";
-                        return RedirectToAction("Index");
                     }
                 }
                 else if(Request.Form["Inhabilitar"] != null)
@@ -159,11 +156,9 @@ namespace hrm_v5.Controllers
                             }
 
                         }
-
                         db.SaveChanges();
                     }
                     TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
-                    return RedirectToAction("Index");
                 }
 
                 else if (Request.Form["Habilitar"] != null)
@@ -177,8 +172,8 @@ namespace hrm_v5.Controllers
                     TempData["Success"] = "¡Se ha cambiado el estado de la o las empresas seleccionadas exitosamente!";
                     return RedirectToAction("Index");
                 }
-                return View();
             }
+            return RedirectToAction("Index");
         }
 
         // GET: EMPRESAS/Edit/5
