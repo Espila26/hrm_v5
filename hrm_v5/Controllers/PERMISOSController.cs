@@ -94,32 +94,6 @@ namespace hrm_v5.Controllers
             return View(pERMISOS);
         }
 
-        // GET: PERMISOS/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PERMISOS pERMISOS = db.PERMISOS.Find(id);
-            if (pERMISOS == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pERMISOS);
-        }
-
-        // POST: PERMISOS/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            PERMISOS pERMISOS = db.PERMISOS.Find(id);
-            db.PERMISOS.Remove(pERMISOS);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

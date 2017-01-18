@@ -15,13 +15,20 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: EMPLEADOS
+        /*
+        El metodo index es el encargado de mostrar los datos de los Empleados en la pantalla principal,
+        ademas, proporciona la capacidad de hacer busquedas refinadas que le permiten al usuario manejar facilmente
+        la información de los Empleados.
+        */
         public ActionResult Index(string searchString)
         {
             var EMP = from e in db.EMPLEADOS
                       select e;
 
+            //validación para verificar la existencia del criterio de busqueda
             if (!String.IsNullOrEmpty(searchString))
             {
+                //Muestra los empleados por el estado que el usuario definió previamente
                 if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
                 {
                     EMP = EMP.Where(s => s.ESTADO.Equals(searchString));
@@ -38,11 +45,13 @@ namespace hrm_v5.Controllers
                     return RedirectToAction("Index");
                 }
 
+                //Muestra los empleados que coincidan con el nombre, apellidos o cedula que el usuario desea ver.
                 else
                 {
                     EMP = EMP.Where(s => s.NOMBRE.Contains(searchString) || s.APE1.Contains(searchString) || s.APE2.Contains(searchString) || s.CEDULA.Contains(searchString));
                 }
-                
+
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
                 if (EMP.Count() == 0)
                 {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún empleado asociado a la empresa!";
@@ -210,21 +219,6 @@ namespace hrm_v5.Controllers
             return View(eMPLEADOS);
         }
 
-        // GET: EMPLEADOS/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EMPLEADOS eMPLEADOS = db.EMPLEADOS.Find(id);
-            if (eMPLEADOS == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eMPLEADOS);
-        }
-
         public ActionResult Expediente(string searchString)
         {
             var EMP = from d in db.EMPLEADOS
@@ -236,17 +230,6 @@ namespace hrm_v5.Controllers
             }
 
             return View("Expediente", EMP);
-        }
-
-        // POST: EMPLEADOS/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EMPLEADOS eMPLEADOS = db.EMPLEADOS.Find(id);
-            db.EMPLEADOS.Remove(eMPLEADOS);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -98,32 +98,6 @@ namespace hrm_v5.Controllers
             return View(vACACIONES);
         }
 
-        // GET: VACACIONES/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            VACACIONES vACACIONES = db.VACACIONES.Find(id);
-            if (vACACIONES == null)
-            {
-                return HttpNotFound();
-            }
-            return View(vACACIONES);
-        }
-
-        // POST: VACACIONES/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            VACACIONES vACACIONES = db.VACACIONES.Find(id);
-            db.VACACIONES.Remove(vACACIONES);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

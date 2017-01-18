@@ -109,17 +109,7 @@ namespace hrm_v5.Controllers
             return View(sUSPENSIONES);
         }
 
-        // POST: SUSPENSIONES/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            SUSPENSIONES sUSPENSIONES = db.SUSPENSIONES.Find(id);
-            db.SUSPENSIONES.Remove(sUSPENSIONES);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

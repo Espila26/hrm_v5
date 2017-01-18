@@ -94,32 +94,6 @@ namespace hrm_v5.Controllers
             return View(aSCENSOS);
         }
 
-        // GET: ASCENSOS/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ASCENSOS aSCENSOS = db.ASCENSOS.Find(id);
-            if (aSCENSOS == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aSCENSOS);
-        }
-
-        // POST: ASCENSOS/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ASCENSOS aSCENSOS = db.ASCENSOS.Find(id);
-            db.ASCENSOS.Remove(aSCENSOS);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

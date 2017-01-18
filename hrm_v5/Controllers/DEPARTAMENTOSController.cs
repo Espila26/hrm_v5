@@ -15,14 +15,21 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: DEPARTAMENTOS
-        public ActionResult Index(string searchString)
+        /*
+         El metodo index es el encargado de mostrar los datos de los departamentos en la pantalla principal,
+         ademas, proporciona la capacidad de hacer busquedas refinadas que le permiten al usuario manejar facilmente
+         la información de los departamentos.
+         */
+        public ActionResult Index(string searchString) //searchString: parametro de busqueda
         {
             var DEP = from d in db.DEPARTAMENTOS
                       select d;
 
-            if(!String.IsNullOrEmpty(searchString))
+            //validación para verificar la existencia del criterio de busqueda
+            if (!String.IsNullOrEmpty(searchString)) 
             {
-                if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
+                //Muestra los departamentos por el estado que el usuario definió previamente
+                if (searchString.Equals("Inactivo") || searchString.Equals("Activo")) 
                 {
                     DEP = DEP.Where(s => s.ESTADO.Equals(searchString));
                 }
@@ -37,12 +44,14 @@ namespace hrm_v5.Controllers
                     TempData["Error"] = "¡Debe seleccionar los departamentos que desea ver!";
                     return RedirectToAction("Index");
                 }
-
+                
+                //Muestra los departamentos que coincidan con el nombre que el usuario desea ver.
                 else
                 {
                     DEP = DEP.Where(s => s.NOMBRE.Contains(searchString));
                 }
 
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
                 if (DEP.Count() == 0)
                 { 
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún departamento asociado a la empresa!";
@@ -91,7 +100,7 @@ namespace hrm_v5.Controllers
                 }
                 catch (Exception e)
                 {
-                    TempData["Error"] = "Se debe de seleccionar una empresa.Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
+                    TempData["Error"] = "Se debe de seleccionar una empresa. Si no es posible seleccionar alguna, probablemente, las empresas existentes se encuentren inactivas o no existe ninguna.";
                     return RedirectToAction("Create");
                 }
                 TempData["Success"] = "¡El Departamento ha sido creado exitosamente!";
@@ -144,32 +153,6 @@ namespace hrm_v5.Controllers
             }
             viewBagEmpresas();
             return View(dEPARTAMENTOS);
-        }
-
-        // GET: DEPARTAMENTOS/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DEPARTAMENTOS dEPARTAMENTOS = db.DEPARTAMENTOS.Find(id);
-            if (dEPARTAMENTOS == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dEPARTAMENTOS);
-        }
-
-        // POST: DEPARTAMENTOS/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            DEPARTAMENTOS dEPARTAMENTOS = db.DEPARTAMENTOS.Find(id);
-            db.DEPARTAMENTOS.Remove(dEPARTAMENTOS);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

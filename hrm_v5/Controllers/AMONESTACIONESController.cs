@@ -94,32 +94,6 @@ namespace hrm_v5.Controllers
             return View(aMONESTACIONES);
         }
 
-        // GET: AMONESTACIONES/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AMONESTACIONES aMONESTACIONES = db.AMONESTACIONES.Find(id);
-            if (aMONESTACIONES == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aMONESTACIONES);
-        }
-
-        // POST: AMONESTACIONES/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            AMONESTACIONES aMONESTACIONES = db.AMONESTACIONES.Find(id);
-            db.AMONESTACIONES.Remove(aMONESTACIONES);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

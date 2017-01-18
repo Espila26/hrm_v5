@@ -13,15 +13,23 @@
 <br></br>
 <hr />
 
+@*
+En la primera sección de la pantalla principal se presentan las opciones de busqueda que el usuario tiene diponible
+para ver la información de los puestos. La busqueda puede realizarse por nombre del puesto. La otra opcion es buscar 
+los puestos por su estado.    
+*@
+
 <div class="divBuscar">
     @using (Html.BeginForm("Index", "PUESTOS"))
     {
+        @*Campo donde el usuario ingresa el nombre del puesto que desea buscar*@
         <div class="form-group">
             <label class="pNombre">Nombre</label>
             <div class="col-md-10">
                 <input type="text" name="searchString" class="textInput" placeholder="Nombre de Puesto" />
             </div>
 
+            @*Campo donde el usuaio selecciona el estado por el que se van a mostrar los puestos*@
             <div class="form-group">
                 <label class="pMostrar">Mostrar Por:</label>
                 <div class="">

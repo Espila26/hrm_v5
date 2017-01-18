@@ -15,12 +15,20 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: PUESTOS
+        /*
+        El metodo index es el encargado de mostrar los datos de los Empleados en la pantalla principal,
+        ademas, proporciona la capacidad de hacer busquedas refinadas que le permiten al usuario manejar facilmente
+        la información de los Empleados.
+        */
         public ActionResult Index(string searchString)
         {
             var PTO = from e in db.PUESTOS
                       select e;
+
+            //validación para verificar la existencia del criterio de busqueda
             if (!String.IsNullOrEmpty(searchString))
             {
+                //Muestra los puestos por el estado que el usuario definió previamente
                 if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
                 {
                     PTO = PTO.Where(s => s.ESTADO.Equals(searchString));
@@ -37,11 +45,13 @@ namespace hrm_v5.Controllers
                     return RedirectToAction("Index");
                 }
 
+                //Muestra los puestos que coincidan con el nombre, apellidos o cedula que el usuario desea ver.
                 else
                 {
                     PTO = PTO.Where(s => s.NOMBRE.Contains(searchString));
                 }
-                
+
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
                 if (PTO.Count() == 0)
                 {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ningún puesto asociado a la empresa!";
@@ -213,32 +223,6 @@ namespace hrm_v5.Controllers
             }
             viewBagDepartamentos();
             return View(pUESTOS);
-        }
-
-        // GET: PUESTOS/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PUESTOS pUESTOS = db.PUESTOS.Find(id);
-            if (pUESTOS == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pUESTOS);
-        }
-
-        // POST: PUESTOS/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            PUESTOS pUESTOS = db.PUESTOS.Find(id);
-            db.PUESTOS.Remove(pUESTOS);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -402,6 +402,7 @@
           <Property Name="FECHA_CONTR" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DIAS_VAC_DISP" Type="Int32" Nullable="false" />
           <Property Name="DIAS_VAC_UTILIZAD" Type="Int32" Nullable="false" />
+          <Property Name="DIAS_VAC_DISP1" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPRESAS">
           <Key>
@@ -769,8 +770,8 @@
           <EntitySetMapping Name="EMPLEADOS">
             <EntityTypeMapping TypeName="hrm_dbModel.EMPLEADOS">
               <MappingFragment StoreEntitySet="EMPLEADOS">
+                <ScalarProperty Name="DIAS_VAC_DISP1" ColumnName="DIAS_VAC_DISP" />
                 <ScalarProperty Name="DIAS_VAC_UTILIZAD" ColumnName="DIAS_VAC_UTILIZAD" />
-                <ScalarProperty Name="DIAS_VAC_DISP" ColumnName="DIAS_VAC_DISP" />
                 <ScalarProperty Name="FECHA_CONTR" ColumnName="FECHA_CONTR" />
                 <ScalarProperty Name="FECHA_NAC" ColumnName="FECHA_NAC" />
                 <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />

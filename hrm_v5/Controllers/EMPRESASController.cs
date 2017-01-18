@@ -15,13 +15,20 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: EMPRESAS
+        /*
+        El metodo index es el encargado de mostrar los datos de las Empresas en la pantalla principal,
+        ademas, proporciona la capacidad de hacer busquedas refinadas que le permiten al usuario manejar facilmente
+        la información de los Empresas.
+        */
         public ActionResult Index(string searchString)
         {
             var EMP = from e in db.EMPRESAS
                       select e;
 
+            //validación para verificar la existencia del criterio de busqueda
             if (!String.IsNullOrEmpty(searchString))
             {
+                //Muestra las empresas por el estado que el usuario definió previamente
                 if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
                 {
                     EMP = EMP.Where(s => s.ESTADO.Equals(searchString));
@@ -38,11 +45,13 @@ namespace hrm_v5.Controllers
                     return RedirectToAction("Index");
                 }
 
+                //Muestra las empresas que coincidan con el nombre, apellidos o cedula que el usuario desea ver.
                 else
                 {
                     EMP = EMP.Where(s => s.NOMBRE.Contains(searchString));
                 }
-                
+
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
                 if (EMP.Count() == 0)
                 {
                     TempData["Error"] = "¡Los datos ingresados no pertenecen a ninguna empresa!";
@@ -213,32 +222,7 @@ namespace hrm_v5.Controllers
             return View(eMPRESAS);
         }
 
-        // GET: EMPRESAS/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EMPRESAS eMPRESAS = db.EMPRESAS.Find(id);
-            if (eMPRESAS == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eMPRESAS);
-        }
-
-        // POST: EMPRESAS/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EMPRESAS eMPRESAS = db.EMPRESAS.Find(id);
-            db.EMPRESAS.Remove(eMPRESAS);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

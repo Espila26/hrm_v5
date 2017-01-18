@@ -19,15 +19,23 @@
 <br></br>
 <hr />
 
+@*
+En la primera sección de la pantalla principal se presentan las opciones de busqueda que el usuario tiene diponible
+para ver la información de las Empresas. La busqueda puede realizarse por nombre de Empresa. La otra opcion es buscar
+las Empresas por su estado.
+*@
+
 <div class="divBuscar">
     @using (Html.BeginForm("Index", "EMPRESAS"))
     {
+        @*Campo donde el usuario ingresa el nombre de la Empresa que desea buscar*@
         <div class="form-group">
             <label class="pNombre">Nombre</label>
             <div class="col-md-10">
                 <input type="text" name="searchString" class="textInput" placeholder="Nombre de la Emprea" />
             </div>
 
+            @*Campo donde el usuaio selecciona el estado por el que se van a mostrar las empresas*@
             <div class="form-group">
                 <label class="pMostrar">Mostrar Por:</label>
                 <div class="">
