@@ -42,9 +42,8 @@ namespace hrm_v5.Models
         public string ESTADO { get; set; }
         public System.DateTime FECHA_NAC { get; set; }
         public System.DateTime FECHA_CONTR { get; set; }
-        public int DIAS_VAC_DISP { get; set; }
         public int DIAS_VAC_UTILIZAD { get; set; }
-        public int DIAS_VAC_DISP1 { get; set; }
+        public int DIAS_VAC_DISP { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AMONESTACIONES> AMONESTACIONES { get; set; }

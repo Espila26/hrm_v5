@@ -400,9 +400,8 @@
           <NavigationProperty Name="VACACIONES" Relationship="Self.FK_VACACIONES_EMPLEADO" FromRole="EMPLEADOS" ToRole="VACACIONES" />
           <Property Name="FECHA_NAC" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FECHA_CONTR" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DIAS_VAC_DISP" Type="Int32" Nullable="false" />
           <Property Name="DIAS_VAC_UTILIZAD" Type="Int32" Nullable="false" />
-          <Property Name="DIAS_VAC_DISP1" Type="Int32" Nullable="false" />
+          <Property Name="DIAS_VAC_DISP" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPRESAS">
           <Key>
@@ -713,12 +712,53 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_alterdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(hrm_dbModel.sp_helpdiagramdefinition1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(hrm_dbModel.sp_helpdiagrams1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams1" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition1_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams1_Result">
           <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -770,7 +810,7 @@
           <EntitySetMapping Name="EMPLEADOS">
             <EntityTypeMapping TypeName="hrm_dbModel.EMPLEADOS">
               <MappingFragment StoreEntitySet="EMPLEADOS">
-                <ScalarProperty Name="DIAS_VAC_DISP1" ColumnName="DIAS_VAC_DISP" />
+                <ScalarProperty Name="DIAS_VAC_DISP" ColumnName="DIAS_VAC_DISP" />
                 <ScalarProperty Name="DIAS_VAC_UTILIZAD" ColumnName="DIAS_VAC_UTILIZAD" />
                 <ScalarProperty Name="FECHA_CONTR" ColumnName="FECHA_CONTR" />
                 <ScalarProperty Name="FECHA_NAC" ColumnName="FECHA_NAC" />

@@ -21,10 +21,10 @@
             @Html.DisplayNameFor(model => model.CANT_DIAS)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EMPLEADOS.ID_EMPLEADO)
+            @Html.DisplayNameFor(model => model.AUTORIZACION)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PUESTOS.ID_PUESTO)
+            @Html.DisplayNameFor(model => model.EMPLEADOS.ID_EMPLEADO)
         </th>
         <th></th>
     </tr>
@@ -41,10 +41,10 @@
             @Html.DisplayFor(modelItem => item.CANT_DIAS)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EMPLEADOS.ID_EMPLEADO)
+            @Html.DisplayFor(modelItem => item.AUTORIZACION)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PUESTOS.ID_PUESTO)
+            @Html.DisplayFor(modelItem => item.EMPLEADOS.ID_EMPLEADO)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID_SOLICITUD }) |

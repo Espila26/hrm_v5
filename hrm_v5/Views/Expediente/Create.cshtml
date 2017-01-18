@@ -34,7 +34,7 @@
             <li><a href="#tab3" data-toggle="tab"><div id="tab-3">Ascensos.</div></a></li>
             <li><a href="#tab4" data-toggle="tab"><div id="tab-4">Permisos.</div></a></li>
             <li><a href="#tab5" data-toggle="tab"><div id="tab-5">Suspensiones.</div></a></li>
-            <li class="active"><a id="linkVacaciones" href="@Url.Action("Create", "Expediente")"><div>Vacaciones.</div></a></li>
+            <li class="active"><a id="linkVacaciones"><div>Vacaciones.</div></a></li>
         </ul>
 
         <h2>Create</h2>
@@ -47,6 +47,7 @@
                 <h4>VACACIONES</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <input id="Text1" type="text" value="@ViewBag.DiasDisponibles"/>
                 <div class="form-group">
                     @Html.LabelFor(model => model.ID_EMPLEADO, "ID_EMPLEADO", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
