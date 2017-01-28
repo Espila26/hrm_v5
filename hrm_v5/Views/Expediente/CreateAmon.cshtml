@@ -30,11 +30,11 @@
     <div>
         <ul class="tab-links">
             <li><a href="@Url.Action("Expediente", "Expediente")"><div>Datos Personales.</div></a></li>
-            <li><a href="#tab2" data-toggle="tab"><div id="tab-2">Amonestaciones.</div></a></li>
-            <li><a href="#tab3" data-toggle="tab"><div id="tab-3">Ascensos.</div></a></li>
-            <li><a href="#tab4" data-toggle="tab"><div id="tab-4">Permisos.</div></a></li>
-            <li class="active"><a href="linkSuspension"><div>Suspensiones.</div></a></li>
-            <li><a href="@Url.Action("Create", "Expediente")"><div>Vacaciones.</div></a></li>
+            <li><a href="linkAmonestaciones"><div>Amonestaciones.</div></a></li>
+            <li><a href="@Url.Action("Expediente", "ValidateIDEmpAsc")"><div>Ascensos.</div></a></li>
+            <li><a href="@Url.Action("Expediente", "ValidateIDEmpPerm")"><div>Permisos.</div></a></li>
+            <li><a href="@Url.Action("Expediente", "ValidateIDEmpSup")"><div>Suspensiones.</div></a></li>
+            <li><a href="@Url.Action("Expediente", "ValidateIDEmp")"><div>Vacaciones.</div></a></li>
         </ul>
 
         <h2> Create </h2>
