@@ -1,7 +1,7 @@
-﻿@model IEnumerable<hrm_v5.Models.SUSPENSIONES>
+﻿@model IEnumerable<hrm_v5.Models.ASCENSOS>
 
 @{
-    ViewBag.Title = "IndexSusp";
+    ViewBag.Title = "IndexAmon";
 }
 @Styles.Render("~/Content/EstiloExpediente.css")
 @Styles.Render("~/Content/Formulario.css")
@@ -32,12 +32,12 @@
             <li><a href="#tab2" data-toggle="tab"><div id="tab-2">Amonestaciones.</div></a></li>
             <li><a href="#tab3" data-toggle="tab"><div id="tab-3">Ascensos.</div></a></li>
             <li><a href="#tab4" data-toggle="tab"><div id="tab-4">Permisos.</div></a></li>
-            <li class="active"><a href="#tab5" data-toggle="tab"><div id="tab-5">Suspensiones.</div></a></li>
-            <li><a id="linkVacaciones"><div>Vacaciones.</div></a></li>
+            <li><a href="#tab5" data-toggle="tab"><div id="tab-5">Suspensiones.</div></a></li>
+            <li class="active"><a id="linkVacaciones"><div>Vacaciones.</div></a></li>
         </ul>
 
         <div id="TitleDetails">
-            <p>Suspensiones Realizadas</p>
+            <p>Amonestaciones Realizadas</p>
         </div>
 
         <style type="text/css">
@@ -143,12 +143,13 @@
                         <input type="checkbox" value="@item.EMP_ID" name="childChkbox" />
                 </text>,
                  header: ""),
-                 grid.Column("ID_SUSPENSION", "Número de Solicitud", canSort: false),
+                 grid.Column("ID_AMONESTACIONES", "Número de Solicitud", canSort: false),
                  grid.Column("ID_EMPLEADO", "Empleado", canSort: false),
-                 grid.Column("INICIO", "Fecha de Inicio", canSort: false),
-                 grid.Column("FINAL", "Fecha de Ingreso", canSort: false),
-                 grid.Column("DESCRIPCION", "Motivo", canSort: false),
-                 grid.Column("GOCE_SALARIO", "Tipo de Suspensión", canSort: false),
+                 grid.Column("FECHA_INICIO", "Fecha de Inicio", canSort: false),
+                 grid.Column("FECHA_FINAL", "Fecha de Ingreso", canSort: false),
+                 grid.Column("DESCRIPCION", "Motivo:", canSort: false),
+                 grid.Column("GOCE_SALARIO", "Repurción de la Amonestación", canSort: false),
+                 grid.Column("VERB_ESC", "Amonestacion", canSort: false),
                  grid.Column("AUTORIZACION", "Autorización", canSort: false)
                     ))
                 <div id="pager">

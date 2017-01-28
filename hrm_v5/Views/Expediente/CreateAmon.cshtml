@@ -1,7 +1,7 @@
-﻿@model hrm_v5.Models.ASCENSOS
+﻿@model hrm_v5.Models.AMONESTACIONES
 
 @{
-    ViewBag.Title = "CreateAsc";
+    ViewBag.Title = "CreateAmon";
 }
 
 @Styles.Render("~/Content/EstiloExpediente.css")
@@ -38,13 +38,12 @@
         </ul>
 
         <h2> Create </h2>
-
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>ASCENSOS</h4>
+                <h4>AMONESTACIONES</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -52,6 +51,22 @@
                     <div class="col-md-10">
                         @Html.DropDownList("ID_EMPLEADO", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ID_EMPLEADO, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FECHA_INICIO, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FECHA_INICIO, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FECHA_FINAL, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FECHA_FINAL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FECHA_FINAL, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -64,26 +79,18 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.PUESTO_ANT, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.GOCE_SALARIO, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.PUESTO_ANT, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PUESTO_ANT, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.GOCE_SALARIO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GOCE_SALARIO, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.PUESTO_NVO, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.VERB_ESC, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.PUESTO_NVO, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PUESTO_NVO, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FECHA, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FECHA, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FECHA, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.VERB_ESC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VERB_ESC, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

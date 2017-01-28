@@ -416,6 +416,8 @@
     <Content Include="Views\Expediente\IndexPerm.cshtml" />
     <Content Include="Views\Expediente\CreateAsc.cshtml" />
     <Content Include="Views\Expediente\IndexAsc.cshtml" />
+    <Content Include="Views\Expediente\CreateAmon.cshtml" />
+    <Content Include="Views\Expediente\IndexAmon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
