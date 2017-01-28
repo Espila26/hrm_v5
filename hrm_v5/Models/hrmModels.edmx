@@ -16,6 +16,7 @@
           <Property Name="DESCRIPCION" Type="text" Nullable="false" />
           <Property Name="GOCE_SALARIO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="VERB_ESC" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="ASCENSOS">
           <Key>
@@ -27,6 +28,7 @@
           <Property Name="PUESTO_ANT" Type="char" MaxLength="9" Nullable="false" />
           <Property Name="PUESTO_NVO" Type="char" MaxLength="9" Nullable="false" />
           <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="DEPARTAMENTOS">
           <Key>
@@ -95,6 +97,7 @@
           <Property Name="GOCE_SALARIO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="CANT_HORAS" Type="int" Nullable="false" />
           <Property Name="CANT_DIAS" Type="int" Nullable="false" />
+          <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="PUESTOS">
           <Key>
@@ -120,6 +123,17 @@
           <Property Name="FINAL" Type="date" Nullable="false" />
           <Property Name="DESCRIPCION" Type="text" Nullable="false" />
           <Property Name="GOCE_SALARIO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -274,6 +288,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="hrm_dbModelStoreContainer">
           <EntitySet Name="AMONESTACIONES" EntityType="Self.AMONESTACIONES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ASCENSOS" EntityType="Self.ASCENSOS" Schema="dbo" store:Type="Tables" />
@@ -284,6 +329,7 @@
           <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PUESTOS" EntityType="Self.PUESTOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUSPENSIONES" EntityType="Self.SUSPENSIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VACACIONES" EntityType="Self.VACACIONES" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AMONESTACION_EMPLEADO" Association="Self.FK_AMONESTACION_EMPLEADO">
@@ -347,6 +393,7 @@
           <Property Name="GOCE_SALARIO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="VERB_ESC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_AMONESTACION_EMPLEADO" FromRole="AMONESTACIONES" ToRole="EMPLEADOS" />
+          <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ASCENSOS">
           <Key>
@@ -359,6 +406,7 @@
           <Property Name="PUESTO_NVO" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_ASCENSO_EMPLEADO" FromRole="ASCENSOS" ToRole="EMPLEADOS" />
+          <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DEPARTAMENTOS">
           <Key>
@@ -441,6 +489,7 @@
           <Property Name="CANT_HORAS" Type="Int32" Nullable="false" />
           <Property Name="CANT_DIAS" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_PERMISO_EMPLEADO" FromRole="PERMISOS" ToRole="EMPLEADOS" />
+          <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PUESTOS">
           <Key>
@@ -469,6 +518,7 @@
           <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GOCE_SALARIO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_SUSPENSION_EMPLEADO" FromRole="SUSPENSIONES" ToRole="EMPLEADOS" />
+          <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -742,6 +792,37 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams1" />
+          <EntitySet Name="sysdiagrams" EntityType="hrm_dbModel.sysdiagrams" />
+          <FunctionImport Name="sp_alterdiagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition2" ReturnType="Collection(hrm_dbModel.sp_helpdiagramdefinition2_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams2" ReturnType="Collection(hrm_dbModel.sp_helpdiagrams2_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams2" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -765,6 +846,27 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition2_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams2_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -774,6 +876,7 @@
           <EntitySetMapping Name="AMONESTACIONES">
             <EntityTypeMapping TypeName="hrm_dbModel.AMONESTACIONES">
               <MappingFragment StoreEntitySet="AMONESTACIONES">
+                <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_AMONESTACION" ColumnName="ID_AMONESTACION" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
@@ -787,6 +890,7 @@
           <EntitySetMapping Name="ASCENSOS">
             <EntityTypeMapping TypeName="hrm_dbModel.ASCENSOS">
               <MappingFragment StoreEntitySet="ASCENSOS">
+                <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_ASCENSO" ColumnName="ID_ASCENSO" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -859,6 +963,7 @@
           <EntitySetMapping Name="PERMISOS">
             <EntityTypeMapping TypeName="hrm_dbModel.PERMISOS">
               <MappingFragment StoreEntitySet="PERMISOS">
+                <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="INICIO" ColumnName="INICIO" />
@@ -887,6 +992,7 @@
           <EntitySetMapping Name="SUSPENSIONES">
             <EntityTypeMapping TypeName="hrm_dbModel.SUSPENSIONES">
               <MappingFragment StoreEntitySet="SUSPENSIONES">
+                <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_SUSPENSION" ColumnName="ID_SUSPENSION" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="INICIO" ColumnName="INICIO" />
@@ -919,6 +1025,41 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="hrm_dbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram2" FunctionName="hrm_dbModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram2" FunctionName="hrm_dbModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram2" FunctionName="hrm_dbModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition2" FunctionName="hrm_dbModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="hrm_dbModel.sp_helpdiagramdefinition2_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams2" FunctionName="hrm_dbModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="hrm_dbModel.sp_helpdiagrams2_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram2" FunctionName="hrm_dbModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams2" FunctionName="hrm_dbModel.Store.sp_upgraddiagrams" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

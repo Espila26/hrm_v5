@@ -1,0 +1,40 @@
+﻿@model hrm_v5.Models.PERMISOS
+
+@{
+    ViewBag.Title = "CreatePerm";
+}
+
+@Styles.Render("~/Content/EstiloExpediente.css")
+@Styles.Render("~/Content/Formulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Styles.Render("~/Content/EstiloMantenimiento.css")
+
+
+<div>
+    <h4><div id="lettertext">Expediente Laboral.</div></h4>
+    <div class="divBuscar">
+        @using (Html.BeginForm("Expediente", "Expediente"))
+        {
+            <div class="form-group">
+                <label class="pNombre">Empleado: </label>
+                <div class="col-md-10">
+                    <input type="text" name="searchString" class="textInput" placeholder="Número de Identificación del Empleado (#########)" />
+                </div>
+                <button type="submit" id="Buscar" class="myButton">Buscar</button>
+            </div>
+        }
+    </div>
+    <br></br>
+    <br></br>
+    <hr />
+    <div>
+        <ul class="tab-links">
+            <li><a href="@Url.Action("Expediente", "Expediente")"><div>Datos Personales.</div></a></li>
+            <li><a href="#tab2" data-toggle="tab"><div id="tab-2">Amonestaciones.</div></a></li>
+            <li><a href="#tab3" data-toggle="tab"><div id="tab-3">Ascensos.</div></a></li>
+            <li><a href="#tab4" data-toggle="tab"><div id="tab-4">Permisos.</div></a></li>
+            <li class="active"><a href="linkSuspension"><div>Suspensiones.</div></a></li>
+            <li><a href="@Url.Action("Create", "Expediente")"><div>Vacaciones.</div></a></li>
+        </ul>
+
+        <h2>Create</h2>

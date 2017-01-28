@@ -20,6 +20,7 @@ namespace hrm_v5.Models
         public System.DateTime FINAL { get; set; }
         public string DESCRIPCION { get; set; }
         public string GOCE_SALARIO { get; set; }
+        public string AUTORIZACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
     }

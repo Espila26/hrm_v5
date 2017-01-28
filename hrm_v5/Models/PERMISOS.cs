@@ -21,6 +21,7 @@ namespace hrm_v5.Models
         public string GOCE_SALARIO { get; set; }
         public int CANT_HORAS { get; set; }
         public int CANT_DIAS { get; set; }
+        public string AUTORIZACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
     }

@@ -258,16 +258,25 @@
     <Compile Include="Models\sp_helpdiagramdefinition1_Result.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition2_Result.cs">
+      <DependentUpon>hrmModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams1_Result.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagrams2_Result.cs">
+      <DependentUpon>hrmModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SUSPENSIONES.cs">
+      <DependentUpon>hrmModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIOS.cs">
@@ -367,29 +376,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\EMPLEADOS\Create.cshtml" />
     <Content Include="Views\EMPLEADOS\Delete.cshtml" />
-    <Content Include="Views\EMPLEADOS\Details.cshtml" />
     <Content Include="Views\EMPLEADOS\Edit.cshtml" />
     <Content Include="Views\EMPLEADOS\Index.cshtml" />
-    <Content Include="Views\AMONESTACIONES\Create.cshtml" />
-    <Content Include="Views\AMONESTACIONES\Delete.cshtml" />
-    <Content Include="Views\AMONESTACIONES\Details.cshtml" />
-    <Content Include="Views\AMONESTACIONES\Edit.cshtml" />
-    <Content Include="Views\AMONESTACIONES\Index.cshtml" />
-    <Content Include="Views\ASCENSOS\Create.cshtml" />
-    <Content Include="Views\ASCENSOS\Delete.cshtml" />
-    <Content Include="Views\ASCENSOS\Details.cshtml" />
-    <Content Include="Views\ASCENSOS\Edit.cshtml" />
-    <Content Include="Views\ASCENSOS\Index.cshtml" />
-    <Content Include="Views\PERMISOS\Create.cshtml" />
-    <Content Include="Views\PERMISOS\Delete.cshtml" />
-    <Content Include="Views\PERMISOS\Details.cshtml" />
-    <Content Include="Views\PERMISOS\Edit.cshtml" />
-    <Content Include="Views\PERMISOS\Index.cshtml" />
-    <Content Include="Views\SUSPENSIONES\Create.cshtml" />
-    <Content Include="Views\SUSPENSIONES\Delete.cshtml" />
-    <Content Include="Views\SUSPENSIONES\Details.cshtml" />
-    <Content Include="Views\SUSPENSIONES\Edit.cshtml" />
-    <Content Include="Views\SUSPENSIONES\Index.cshtml" />
     <Content Include="Views\EMPLEADOS\Expediente.cshtml" />
     <Content Include="Views\DEPARTAMENTOS\Create.cshtml" />
     <Content Include="Views\DEPARTAMENTOS\Delete.cshtml" />
@@ -402,13 +390,35 @@
     <Content Include="Views\EMPRESAS\Edit.cshtml" />
     <Content Include="Views\EMPRESAS\Index.cshtml" />
     <Content Include="Views\PUESTOS\Create.cshtml" />
-    <Content Include="Views\PUESTOS\Delete.cshtml" />
     <Content Include="Views\PUESTOS\Details.cshtml" />
     <Content Include="Views\PUESTOS\Edit.cshtml" />
     <Content Include="Views\PUESTOS\Index.cshtml" />
     <Content Include="Views\Expediente\Expediente.cshtml" />
     <Content Include="Views\Expediente\Create.cshtml" />
     <Content Include="Views\Expediente\Index.cshtml" />
+    <Content Include="Views\AMONESTACIONES\Create.cshtml" />
+    <Content Include="Views\AMONESTACIONES\Details.cshtml" />
+    <Content Include="Views\AMONESTACIONES\Edit.cshtml" />
+    <Content Include="Views\AMONESTACIONES\Index.cshtml" />
+    <Content Include="Views\ASCENSOS\Create.cshtml" />
+    <Content Include="Views\ASCENSOS\Details.cshtml" />
+    <Content Include="Views\ASCENSOS\Edit.cshtml" />
+    <Content Include="Views\ASCENSOS\Index.cshtml" />
+    <Content Include="Views\SUSPENSIONES\Create.cshtml" />
+    <Content Include="Views\SUSPENSIONES\Details.cshtml" />
+    <Content Include="Views\SUSPENSIONES\Edit.cshtml" />
+    <Content Include="Views\SUSPENSIONES\Index.cshtml" />
+    <Content Include="Views\PERMISOS\Create.cshtml" />
+    <Content Include="Views\PERMISOS\Details.cshtml" />
+    <Content Include="Views\PERMISOS\Edit.cshtml" />
+    <Content Include="Views\PERMISOS\Index.cshtml" />
+    <Content Include="Views\EMPLEADOS\Details.cshtml" />
+    <Content Include="Views\Expediente\CreateSusp.cshtml" />
+    <Content Include="Views\Expediente\IndexSusp.cshtml" />
+    <Content Include="Views\Expediente\CreatePerm.cshtml" />
+    <Content Include="Views\Expediente\IndexPerm.cshtml" />
+    <Content Include="Views\Expediente\CreateAsc.cshtml" />
+    <Content Include="Views\Expediente\IndexAsc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

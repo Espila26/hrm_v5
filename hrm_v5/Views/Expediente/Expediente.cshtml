@@ -32,7 +32,7 @@
             <li><a href="#tab2" data-toggle="tab"><div id="tab-2">Amonestaciones.</div></a></li>
             <li><a href="#tab3" data-toggle="tab"><div id="tab-3">Ascensos.</div></a></li>
             <li><a href="#tab4" data-toggle="tab"><div id="tab-4">Permisos.</div></a></li>
-            <li><a href="#tab5" data-toggle="tab"><div id="tab-5">Suspensiones.</div></a></li>
+            <li><a id="linkSuspension" href="@Url.Action("ValidateIDEmpSup", "Expediente")"><div>Suspensiones.</div></a></li>
             <li><a id="linkVacaciones" href="@Url.Action("ValidateIDEmp", "Expediente")"><div>Vacaciones.</div></a></li>
         </ul>
 
@@ -96,9 +96,11 @@
                     }
 
                     .contenedorGrid {
-                        width: 100%;
-                        position: absolute;
-                        top: 43%;
+                        width: 101%;
+                        left:auto;
+                        position: center;
+                        top: 25%;
+                        right:auto;
                     }
 
                     #pager a {
@@ -157,6 +159,7 @@
                         <br />
                         <div>
                             <input type="submit" name="Seleccionar" value="Seleccionar" class="myButton" />
+
                         </div>
                     }
                 </div>

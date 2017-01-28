@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="729b6602a6864cd2bc87eb25be3b4f77" Name="Diagram1">
-        <EntityTypeShape EntityType="hrm_dbModel.AMONESTACIONES" Width="1.5" PointX="5.625" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrm_dbModel.AMONESTACIONES" Width="1.5" PointX="3.5" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="hrm_dbModel.ASCENSOS" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="hrm_dbModel.DEPARTAMENTOS" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="hrm_dbModel.EMPLEADOS" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
@@ -27,6 +27,7 @@
         <AssociationConnector Association="hrm_dbModel.FK_USUARIO_EMPLEADO" ManuallyRouted="false" />
         <AssociationConnector Association="hrm_dbModel.FK_VACACIONES_EMPLEADO" ManuallyRouted="false" />
         <AssociationConnector Association="hrm_dbModel.FK_HISTORIAL_USUARIO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="hrm_dbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
