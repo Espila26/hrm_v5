@@ -276,9 +276,6 @@
     <Compile Include="Models\SUSPENSIONES.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>hrmModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\USUARIOS.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>

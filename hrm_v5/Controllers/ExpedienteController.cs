@@ -84,7 +84,7 @@ namespace hrm_v5.Controllers
             EMPLEADOS Emp = (EMPLEADOS)TempData["Empleado"];
             TempData.Keep("Empleado");
             var sUSPENSIONES = db.SUSPENSIONES.Where(v => v.ID_EMPLEADO.Equals(Emp.EMP_ID));
-            return View("sUSPENSIONES", sUSPENSIONES);
+            return View("IndexSusp", sUSPENSIONES);
             //return View(vACACIONES.ToList());
         }
 
