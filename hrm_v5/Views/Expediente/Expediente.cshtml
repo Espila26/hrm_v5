@@ -29,9 +29,9 @@
     <div>
         <ul class="tab-links">
             <li class="active"><a href="#tab1" data-toggle="tab"><div id="tab-1">Datos Personales.</div></a></li>
-            <li><a href="#tab2" data-toggle="tab"><div id="tab-2">Amonestaciones.</div></a></li>
-            <li><a href="#tab3" data-toggle="tab"><div id="tab-3">Ascensos.</div></a></li>
-            <li><a href="#tab4" data-toggle="tab"><div id="tab-4">Permisos.</div></a></li>
+            <li><a a id="linkAmonestaciones" href="@Url.Action("ValidateIDEmpAmon", "Expediente")"><div id="tab-2">Amonestaciones.</div></a></li>
+            <li><a id="linkAscensos" href="@Url.Action("ValidateIDEmpAsc", "Expediente")"><div id="tab-3">Ascensos.</div></a></li>
+            <li><a id="linkPermiso" href="@Url.Action("ValidateIDEmpPerm", "Expediente")"><div id="tab-4">Permisos.</div></a></li>
             <li><a id="linkSuspension" href="@Url.Action("ValidateIDEmpSup", "Expediente")"><div>Suspensiones.</div></a></li>
             <li><a id="linkVacaciones" href="@Url.Action("ValidateIDEmp", "Expediente")"><div>Vacaciones.</div></a></li>
         </ul>
