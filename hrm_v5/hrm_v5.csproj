@@ -293,6 +293,7 @@
     <Content Include="Content\EstiloEmpleados.css" />
     <Content Include="Content\EstiloExpediente.css" />
     <Content Include="Content\EstiloFormulario.css" />
+    <Content Include="Content\EstiloFormularioAPS.css" />
     <Content Include="Content\EstiloMantenimiento.css" />
     <Content Include="Content\EstiloPrincipal.css" />
     <Content Include="Content\EstiloTabla.css" />

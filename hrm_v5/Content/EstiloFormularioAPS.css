@@ -1,0 +1,85 @@
+﻿.form-horizontal{
+    font-family:Arial;
+    width: 95%;
+    height: 80%;
+    position:absolute;
+    
+}
+
+.form-group{
+    height: 10%;
+    width: 80%;
+    float:left;
+
+}
+
+.control-label{
+    padding-top:0.5em;
+    float:left;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.form-control{
+    padding-left: 6px;
+    height: 5%;
+    width: 30%;
+    position:absolute;
+    left: 25%;
+    border: #9998A1 3px solid;
+    border-radius: 5px; 
+}
+
+.form-control:focus{
+    border:3px solid #6594EC;
+    background-color:#F0F8FF;
+    margin-right:10px;
+}
+.formDetails{
+    padding-top:0.5em;
+    height: 5%;
+    width: 30%;
+    position:absolute;
+    left: 15%;
+}
+
+.scrollVertical{
+    overflow-y:auto;
+    overflow-x:auto;
+}
+
+.text-danger{
+    padding-top:0.5em;
+    color: black;
+    position: absolute;
+    left: 57%;
+}
+ .field-validation-error {
+        color:red;
+ }
+
+.titulos{
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size: 25px;
+    position: fixed;
+    left: 50%;
+}
+
+#TitleDetails{
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size: 25px;
+    position: fixed;
+    left: 50%;
+}
+
+#Text1{
+    visibility:hidden;
+}
+ 
+::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
+::-webkit-datetime-edit-month-field { color: blue; }
+::-webkit-datetime-edit-day-field { color: green; }
+::-webkit-datetime-edit-year-field { color: purple; }
+::-webkit-calendar-picker-indicator { background: #fff; }
