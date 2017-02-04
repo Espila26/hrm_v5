@@ -39,7 +39,7 @@ namespace hrm_v5.Controllers
         // GET: ASCENSOS/Create
         public ActionResult Create()
         {
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA");
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA")] ASCENSOS aSCENSOS)
+        public ActionResult Create([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA,AUTORIZACION")] ASCENSOS aSCENSOS)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", aSCENSOS.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aSCENSOS.ID_EMPLEADO);
             return View(aSCENSOS);
         }
 
@@ -73,7 +73,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", aSCENSOS.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aSCENSOS.ID_EMPLEADO);
             return View(aSCENSOS);
         }
 
@@ -82,7 +82,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA")] ASCENSOS aSCENSOS)
+        public ActionResult Edit([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA,AUTORIZACION")] ASCENSOS aSCENSOS)
         {
             if (ModelState.IsValid)
             {
@@ -90,8 +90,34 @@ namespace hrm_v5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", aSCENSOS.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aSCENSOS.ID_EMPLEADO);
             return View(aSCENSOS);
+        }
+
+        // GET: ASCENSOS/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ASCENSOS aSCENSOS = db.ASCENSOS.Find(id);
+            if (aSCENSOS == null)
+            {
+                return HttpNotFound();
+            }
+            return View(aSCENSOS);
+        }
+
+        // POST: ASCENSOS/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            ASCENSOS aSCENSOS = db.ASCENSOS.Find(id);
+            db.ASCENSOS.Remove(aSCENSOS);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

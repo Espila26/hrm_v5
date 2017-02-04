@@ -1,7 +1,7 @@
-﻿@model IEnumerable<hrm_v5.Models.VACACIONES>
+﻿@model IEnumerable<hrm_v5.Models.ASCENSOS>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexAmon";
 }
 @Styles.Render("~/Content/EstiloExpediente.css")
 @Styles.Render("~/Content/Formulario.css")
@@ -29,17 +29,17 @@
     <div>
         <ul class="tab-links">
             <li><a href="@Url.Action("Expediente", "Expediente")"><div>Datos Personales.</div></a></li>
-            <li><a href="@Url.Action("Expediente", "ValidateIDEmpAmon")"><div>Amonestaciones.</div></a></li>
+            <li><a href="linkAmonestaciones"><div>Amonestaciones.</div></a></li>
             <li><a href="@Url.Action("Expediente", "ValidateIDEmpAsc")"><div>Ascensos.</div></a></li>
             <li><a href="@Url.Action("Expediente", "ValidateIDEmpPerm")"><div>Permisos.</div></a></li>
             <li><a href="@Url.Action("Expediente", "ValidateIDEmpSup")"><div>Suspensiones.</div></a></li>
-            <li class="active"><a id="linkVacaciones"><div>Vacaciones.</div></a></li>
+            <li><a href="@Url.Action("Expediente", "ValidateIDEmp")"><div>Vacaciones.</div></a></li>
         </ul>
 
         <div id="TitleDetails">
-            <p>Vacaciones Solicitadas</p>
+            <p>Amonestaciones Realizadas</p>
         </div>
-        
+
         <style type="text/css">
             .webGrid {
                 font: normal 12px/150% Arial, Helvetica, sans-serif;
@@ -138,19 +138,26 @@
                  rowStyle: "webgridRow",
                  alternatingRowStyle: "alt",
                  columns: grid.Columns(
-                 grid.Column("ID_SOLICITUD", "Número de Solicitud: ", canSort: false),
-                 grid.Column("ID_EMPLEADO", "Número de Empleado: ", canSort: false),
-                 grid.Column("INICIO", "Fecha de Inicio: ", canSort: false),
-                 grid.Column("FINAL", "Fecha de Ingreso: ", canSort: false),
-                 grid.Column("CANT_DIAS", "Cantidad de Dias: ", canSort: false),
-                 grid.Column("AUTORIZACION", "Autorización: ", canSort: false)
-                 ))
+                 grid.Column(
+                 format: @<text>
+                        <input type="checkbox" value="@item.EMP_ID" name="childChkbox" />
+                </text>,
+                 header: ""),
+                 grid.Column("ID_AMONESTACIONES", "Número de Solicitud", canSort: false),
+                 grid.Column("ID_EMPLEADO", "Empleado", canSort: false),
+                 grid.Column("FECHA_INICIO", "Fecha de Inicio", canSort: false),
+                 grid.Column("FECHA_FINAL", "Fecha de Ingreso", canSort: false),
+                 grid.Column("DESCRIPCION", "Motivo:", canSort: false),
+                 grid.Column("GOCE_SALARIO", "Repurción de la Amonestación", canSort: false),
+                 grid.Column("VERB_ESC", "Amonestacion", canSort: false),
+                 grid.Column("AUTORIZACION", "Autorización", canSort: false)
+                    ))
                 <div id="pager">
                     @grid.Pager()
                 </div>
                 <br />
                 <div>
-                    <input type="button" value="Solicitar" onclick="location.href='@Url.Action("Create", "Expediente")'" class="myButton" />
+                    <input type="button" value="Solicitar" onclick="location.href='@Url.Action("CreateSusp", "Expediente")'" class="myButton" />
                 </div>
             }
         </div>

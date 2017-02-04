@@ -39,7 +39,7 @@ namespace hrm_v5.Controllers
         // GET: SUSPENSIONES/Create
         public ActionResult Create()
         {
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA");
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_SUSPENSION,ID_EMPLEADO,INICIO,FINAL,DESCRIPCION,GOCE_SALARIO")] SUSPENSIONES sUSPENSIONES)
+        public ActionResult Create([Bind(Include = "ID_SUSPENSION,ID_EMPLEADO,INICIO,FINAL,DESCRIPCION,GOCE_SALARIO,AUTORIZACION")] SUSPENSIONES sUSPENSIONES)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", sUSPENSIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", sUSPENSIONES.ID_EMPLEADO);
             return View(sUSPENSIONES);
         }
 
@@ -73,7 +73,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", sUSPENSIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", sUSPENSIONES.ID_EMPLEADO);
             return View(sUSPENSIONES);
         }
 
@@ -82,7 +82,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_SUSPENSION,ID_EMPLEADO,INICIO,FINAL,DESCRIPCION,GOCE_SALARIO")] SUSPENSIONES sUSPENSIONES)
+        public ActionResult Edit([Bind(Include = "ID_SUSPENSION,ID_EMPLEADO,INICIO,FINAL,DESCRIPCION,GOCE_SALARIO,AUTORIZACION")] SUSPENSIONES sUSPENSIONES)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace hrm_v5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", sUSPENSIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", sUSPENSIONES.ID_EMPLEADO);
             return View(sUSPENSIONES);
         }
 
@@ -109,7 +109,17 @@ namespace hrm_v5.Controllers
             return View(sUSPENSIONES);
         }
 
-       
+        // POST: SUSPENSIONES/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            SUSPENSIONES sUSPENSIONES = db.SUSPENSIONES.Find(id);
+            db.SUSPENSIONES.Remove(sUSPENSIONES);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

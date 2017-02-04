@@ -11,31 +11,15 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ASCENSOS
     {
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID")]
         public int ID_ASCENSO { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID del Empleado")]
         public int ID_EMPLEADO { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una Descripción"), DisplayName("Descripción de la Amonestación"), DataType(DataType.MultilineText)]
         public string DESCRIPCION { get; set; }
-
-        [DisplayName("Puesto Anterior"), Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese el puesto del empleado")]
         public string PUESTO_ANT { get; set; }
-
-        [DisplayName("Puesto Nuevo"), Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese el puesto del empleado")]
         public string PUESTO_NVO { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "¡Por favor ingrese la fecha!"), DisplayName("Fecha de Ascenso"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un nombre"), DisplayName("Nombre del Empleado"),
-           StringLength(30, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 30 caracteres."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string AUTORIZACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }

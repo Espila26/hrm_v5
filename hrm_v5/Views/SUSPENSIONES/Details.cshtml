@@ -1,58 +1,74 @@
 ﻿@model hrm_v5.Models.SUSPENSIONES
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>SUSPENSIONES</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.INICIO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.INICIO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FINAL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FINAL)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DESCRIPCION)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GOCE_SALARIO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GOCE_SALARIO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EMPLEADOS.CEDULA)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_SUSPENSION }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>SUSPENSIONES</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.INICIO)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.INICIO)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FINAL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FINAL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DESCRIPCION)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DESCRIPCION)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.GOCE_SALARIO)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.GOCE_SALARIO)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AUTORIZACION)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AUTORIZACION)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EMPLEADOS.ID_EMPLEADO)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EMPLEADOS.ID_EMPLEADO)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_SUSPENSION }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

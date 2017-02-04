@@ -39,7 +39,7 @@ namespace hrm_v5.Controllers
         // GET: PERMISOS/Create
         public ActionResult Create()
         {
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA");
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_PERMISO,ID_EMPLEADO,INICIO,FINAL,GOCE_SALARIO,CANT_HORAS,CANT_DIAS")] PERMISOS pERMISOS)
+        public ActionResult Create([Bind(Include = "ID_PERMISO,ID_EMPLEADO,INICIO,FINAL,GOCE_SALARIO,CANT_HORAS,CANT_DIAS,AUTORIZACION")] PERMISOS pERMISOS)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", pERMISOS.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", pERMISOS.ID_EMPLEADO);
             return View(pERMISOS);
         }
 
@@ -73,7 +73,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", pERMISOS.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", pERMISOS.ID_EMPLEADO);
             return View(pERMISOS);
         }
 
@@ -82,7 +82,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_PERMISO,ID_EMPLEADO,INICIO,FINAL,GOCE_SALARIO,CANT_HORAS,CANT_DIAS")] PERMISOS pERMISOS)
+        public ActionResult Edit([Bind(Include = "ID_PERMISO,ID_EMPLEADO,INICIO,FINAL,GOCE_SALARIO,CANT_HORAS,CANT_DIAS,AUTORIZACION")] PERMISOS pERMISOS)
         {
             if (ModelState.IsValid)
             {
@@ -90,8 +90,34 @@ namespace hrm_v5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", pERMISOS.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", pERMISOS.ID_EMPLEADO);
             return View(pERMISOS);
+        }
+
+        // GET: PERMISOS/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PERMISOS pERMISOS = db.PERMISOS.Find(id);
+            if (pERMISOS == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pERMISOS);
+        }
+
+        // POST: PERMISOS/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            PERMISOS pERMISOS = db.PERMISOS.Find(id);
+            db.PERMISOS.Remove(pERMISOS);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

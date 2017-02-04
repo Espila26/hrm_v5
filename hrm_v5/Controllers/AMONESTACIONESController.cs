@@ -39,7 +39,7 @@ namespace hrm_v5.Controllers
         // GET: AMONESTACIONES/Create
         public ActionResult Create()
         {
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA");
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_AMONESTACION,ID_EMPLEADO,FECHA_INICIO,FECHA_FINAL,DESCRIPCION,GOCE_SALARIO,VERB_ESC")] AMONESTACIONES aMONESTACIONES)
+        public ActionResult Create([Bind(Include = "ID_AMONESTACION,ID_EMPLEADO,FECHA_INICIO,FECHA_FINAL,DESCRIPCION,GOCE_SALARIO,VERB_ESC,AUTORIZACION")] AMONESTACIONES aMONESTACIONES)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", aMONESTACIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aMONESTACIONES.ID_EMPLEADO);
             return View(aMONESTACIONES);
         }
 
@@ -73,7 +73,7 @@ namespace hrm_v5.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", aMONESTACIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aMONESTACIONES.ID_EMPLEADO);
             return View(aMONESTACIONES);
         }
 
@@ -82,7 +82,7 @@ namespace hrm_v5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_AMONESTACION,ID_EMPLEADO,FECHA_INICIO,FECHA_FINAL,DESCRIPCION,GOCE_SALARIO,VERB_ESC")] AMONESTACIONES aMONESTACIONES)
+        public ActionResult Edit([Bind(Include = "ID_AMONESTACION,ID_EMPLEADO,FECHA_INICIO,FECHA_FINAL,DESCRIPCION,GOCE_SALARIO,VERB_ESC,AUTORIZACION")] AMONESTACIONES aMONESTACIONES)
         {
             if (ModelState.IsValid)
             {
@@ -90,8 +90,34 @@ namespace hrm_v5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "CEDULA", aMONESTACIONES.ID_EMPLEADO);
+            ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aMONESTACIONES.ID_EMPLEADO);
             return View(aMONESTACIONES);
+        }
+
+        // GET: AMONESTACIONES/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AMONESTACIONES aMONESTACIONES = db.AMONESTACIONES.Find(id);
+            if (aMONESTACIONES == null)
+            {
+                return HttpNotFound();
+            }
+            return View(aMONESTACIONES);
+        }
+
+        // POST: AMONESTACIONES/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            AMONESTACIONES aMONESTACIONES = db.AMONESTACIONES.Find(id);
+            db.AMONESTACIONES.Remove(aMONESTACIONES);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

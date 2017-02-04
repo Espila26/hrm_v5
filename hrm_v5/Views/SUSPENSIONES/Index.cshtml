@@ -1,57 +1,71 @@
 ﻿@model IEnumerable<hrm_v5.Models.SUSPENSIONES>
 
 @{
-    ViewBag.Title = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.INICIO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FINAL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GOCE_SALARIO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMPLEADOS.CEDULA)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.INICIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FINAL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GOCE_SALARIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMPLEADOS.CEDULA)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_SUSPENSION }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_SUSPENSION }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_SUSPENSION })
-        </td>
-    </tr>
-}
-
-</table>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.INICIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FINAL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIPCION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GOCE_SALARIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AUTORIZACION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMPLEADOS.ID_EMPLEADO)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.INICIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FINAL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GOCE_SALARIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AUTORIZACION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMPLEADOS.ID_EMPLEADO)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID_SUSPENSION }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID_SUSPENSION }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID_SUSPENSION })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

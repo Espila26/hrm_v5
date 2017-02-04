@@ -11,14 +11,16 @@ namespace hrm_v5.Controllers
     public class ExpedienteController : Controller
     {
         private Entities db = new Entities();
-
+        /*********************************************************  Vacaciones  *********************************************************************/
+        /*******************************************************************************************************************************************/
         // GET: VACACIONES
         public ActionResult Index()
         {
             EMPLEADOS Emp = (EMPLEADOS)TempData["Empleado"];
             TempData.Keep("Empleado");
             var vACACIONES = db.VACACIONES.Where(v => v.ID_EMPLEADO.Equals(Emp.EMP_ID));
-            return View(vACACIONES.ToList());
+            return View("Index", vACACIONES);
+            //return View(vACACIONES.ToList());
         }
 
         // GET: VACACIONES/Create
@@ -43,9 +45,6 @@ namespace hrm_v5.Controllers
             }
         }
 
-        // POST: VACACIONES/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public ActionResult Create([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
         {
@@ -53,13 +52,191 @@ namespace hrm_v5.Controllers
             {
                 db.VACACIONES.Add(vACACIONES);
                 db.SaveChanges();
-                return RedirectToAction("Expediente", "Expediente");
+                return RedirectToAction("Create");
             }
             ViewBagEmpleado();
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", vACACIONES.AUTORIZACION);
             return View();
         }
 
+        /*********************************************************  Suspenciones  *******************************************************************/
+        /*******************************************************************************************************************************************/
+
+        public ActionResult CreateSusp(){
+            ViewBagEmpleado();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateSusp([Bind(Include = "ID_SUSPENSION,ID_EMPLEADO,INICIO,FINAL,DESCRIPCION,GOCE_SALARIO,AUTORIZACION")] SUSPENSIONES sUSPENSIONES){
+            if (ModelState.IsValid)
+            {
+                db.SUSPENSIONES.Add(sUSPENSIONES);
+                db.SaveChanges();
+                return RedirectToAction("CreateSusp");
+            }
+
+            ViewBagEmpleado();
+            return View(sUSPENSIONES);
+        }
+
+        public ActionResult IndexSusp()
+        {
+            EMPLEADOS Emp = (EMPLEADOS)TempData["Empleado"];
+            TempData.Keep("Empleado");
+            var sUSPENSIONES = db.SUSPENSIONES.Where(v => v.ID_EMPLEADO.Equals(Emp.EMP_ID));
+            return View("IndexSusp", sUSPENSIONES);
+        }
+
+        public ActionResult ValidateIDEmpSup()
+        {
+            if (TempData["Empleado"] == null)
+            {
+                TempData["Error"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Expediente", "Expediente");
+            }
+            else
+            {
+                //TempData["Success"] = "¡Seleccione un empleado!";
+                return RedirectToAction("IndexSusp", "Expediente");
+            }
+        }
+
+        /**********************************************************   Permisos   ********************************************************************/
+        /*******************************************************************************************************************************************/
+
+        public ActionResult CreatePerm(){
+            ViewBagEmpleado();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreatePerm([Bind(Include = "ID_PERMISO,ID_EMPLEADO,INICIO,FINAL,GOCE_SALARIO,CANT_HORAS,CANT_DIAS,AUTORIZACION")] PERMISOS pERMISOS)
+        {
+            if (ModelState.IsValid)
+            {
+                db.PERMISOS.Add(pERMISOS);
+                db.SaveChanges();
+                return RedirectToAction("CreatePerm");
+            }
+
+            ViewBagEmpleado();
+            return View(pERMISOS);
+        }
+
+        public ActionResult IndexPerm()
+        {
+            EMPLEADOS Emp = (EMPLEADOS)TempData["Empleado"];
+            TempData.Keep("Empleado");
+            var pERMISOS = db.PERMISOS.Where(v => v.ID_EMPLEADO.Equals(Emp.EMP_ID));
+            return View("IndexPerm", pERMISOS);
+            //return View(vACACIONES.ToList());
+        }
+
+        public ActionResult ValidateIDEmpPerm()
+        {
+            if (TempData["Empleado"] == null)
+            {
+                TempData["Error"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Expediente", "Expediente");
+            }
+            else
+            {
+                //TempData["Success"] = "¡Seleccione un empleado!";
+                return RedirectToAction("IndexPerm", "Expediente");
+            }
+        }
+
+        /**********************************************************   Ascensos   ********************************************************************/
+        /*******************************************************************************************************************************************/
+
+        public ActionResult CreateAsc(){
+            ViewBagEmpleado();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateAsc([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA,AUTORIZACION")] ASCENSOS aSCENSOS)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ASCENSOS.Add(aSCENSOS);
+                db.SaveChanges();
+                return RedirectToAction("CreateAsc");
+            }
+
+            ViewBagEmpleado();
+            return View(aSCENSOS);
+        }
+
+        public ActionResult IndexAsc()
+        {
+            EMPLEADOS Emp = (EMPLEADOS)TempData["Empleado"];
+            TempData.Keep("Empleado");
+            var aSCENSOS = db.ASCENSOS.Where(v => v.ID_EMPLEADO.Equals(Emp.EMP_ID));
+            return View("IndexAsc", aSCENSOS);
+        }
+
+        public ActionResult ValidateIDEmpAsc()
+        {
+            if (TempData["Empleado"] == null)
+            {
+                TempData["Error"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Expediente", "Expediente");
+            }
+            else
+            {
+                //TempData["Success"] = "¡Seleccione un empleado!";
+                return RedirectToAction("IndexPerm", "Expediente");
+            }
+        }
+
+        /*******************************************************  Amonestaciones   ******************************************************************/
+        /*******************************************************************************************************************************************/
+
+        public ActionResult CreateAmon(){
+            ViewBagEmpleado();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateAmon([Bind(Include = "ID_AMONESTACION,ID_EMPLEADO,FECHA_INICIO,FECHA_FINAL,DESCRIPCION,GOCE_SALARIO,VERB_ESC,AUTORIZACION")] AMONESTACIONES aMONESTACIONES)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AMONESTACIONES.Add(aMONESTACIONES);
+                db.SaveChanges();
+                return RedirectToAction("CreateAmon");
+            }
+
+            ViewBagEmpleado();
+            return View(aMONESTACIONES);
+        }
+
+        public ActionResult IndexAmon()
+        {
+            EMPLEADOS Emp = (EMPLEADOS)TempData["Empleado"];
+            TempData.Keep("Empleado");
+            var aMONESTACIONES = db.AMONESTACIONES.Where(v => v.ID_EMPLEADO.Equals(Emp.EMP_ID));
+            return View("IndexAmon", aMONESTACIONES);
+        }
+
+        public ActionResult ValidateIDEmpAmon()
+        {
+            if (TempData["Empleado"] == null)
+            {
+                TempData["Error"] = "¡Seleccione un empleado!";
+                return RedirectToAction("Expediente", "Expediente");
+            }
+            else
+            {
+                //TempData["Success"] = "¡Seleccione un empleado!";
+                return RedirectToAction("IndexAmon", "Expediente");
+            }
+        }
+
+        /*******************************************************  Datos Personales  *****************************************************************/
+        /*******************************************************************************************************************************************/
         public ActionResult Expediente(string searchString)
         {
             var EMP = from d in db.EMPLEADOS
