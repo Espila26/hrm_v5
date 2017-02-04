@@ -11,16 +11,35 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PERMISOS
     {
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID del Permiso")]
         public int ID_PERMISO { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID del Empleado")]
         public int ID_EMPLEADO { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "¡Por favor ingrese la fecha de inicio!"), DisplayName("Fecha de Inicio"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime INICIO { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "¡Por favor ingrese la fecha final!"), DisplayName("Fecha final"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FINAL { get; set; }
+
+        [Required(AllowEmptyStrings =false, ErrorMessage ="¡!"), DisplayName("Goce de Salario")]
         public string GOCE_SALARIO { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una cantidad"), DisplayName("Horas"), StringLength(2, ErrorMessage = "¡Demasiadas horas!"), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Formato Inválido.")]
         public int CANT_HORAS { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una cédula"), DisplayName("Dias"), StringLength(2, ErrorMessage = "¡Demasiadas dias!"), RegularExpression("([1-9][0-9]*)", ErrorMessage = "Formato Inválido.")]
         public int CANT_DIAS { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un nombre"),DisplayName("Nombre del Empleado"),
+            StringLength(30, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 30 caracteres."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
+        public string AUTORIZACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
     }
