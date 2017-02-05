@@ -1,4 +1,4 @@
-﻿@model IEnumerable<hrm_v5.Models.ASCENSOS>
+﻿@model IEnumerable<hrm_v5.Models.AMONESTACIONES>
 
 @{
     ViewBag.Title = "IndexAmon";
@@ -148,8 +148,8 @@
                  grid.Column("FECHA_INICIO", "Fecha de Inicio", canSort: false),
                  grid.Column("FECHA_FINAL", "Fecha de Ingreso", canSort: false),
                  grid.Column("DESCRIPCION", "Motivo:", canSort: false),
-                 grid.Column("GOCE_SALARIO", "Repurción de la Amonestación", canSort: false),
-                 grid.Column("VERB_ESC", "Amonestacion", canSort: false),
+                 grid.Column("GOCE_SALARIO", "Repercución de la Amonestación", canSort: false),
+                 grid.Column("VERB_ESC", "Tipo de Amonestacion", canSort: false),
                  grid.Column("AUTORIZACION", "Autorización", canSort: false)
                     ))
                 <div id="pager">
@@ -157,7 +157,7 @@
                 </div>
                 <br />
                 <div>
-                    <input type="button" value="Solicitar" onclick="location.href='@Url.Action("CreateSusp", "Expediente")'" class="myButton" />
+                    <input type="button" value="Solicitar" onclick="location.href='@Url.Action("CreateAmon", "Expediente")'" class="myButton" />
                 </div>
             }
         </div>
