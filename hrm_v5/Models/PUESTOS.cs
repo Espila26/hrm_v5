@@ -18,6 +18,7 @@ namespace hrm_v5.Models
         public PUESTOS()
         {
             this.EMPLEADOS = new HashSet<EMPLEADOS>();
+            this.ASCENSOS = new HashSet<ASCENSOS>();
         }
     
         public int PTS_ID { get; set; }
@@ -33,5 +34,7 @@ namespace hrm_v5.Models
         public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLEADOS> EMPLEADOS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ASCENSOS> ASCENSOS { get; set; }
     }
 }

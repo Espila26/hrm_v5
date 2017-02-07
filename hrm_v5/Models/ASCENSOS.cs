@@ -18,10 +18,11 @@ namespace hrm_v5.Models
         public int ID_EMPLEADO { get; set; }
         public string DESCRIPCION { get; set; }
         public string PUESTO_ANT { get; set; }
-        public string PUESTO_NVO { get; set; }
+        public int PUESTO_NVO { get; set; }
         public System.DateTime FECHA { get; set; }
         public string AUTORIZACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
+        public virtual PUESTOS PUESTOS { get; set; }
     }
 }

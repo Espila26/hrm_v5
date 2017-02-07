@@ -261,6 +261,9 @@
     <Compile Include="Models\sp_helpdiagramdefinition2_Result.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition3_Result.cs">
+      <DependentUpon>hrmModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
@@ -268,6 +271,9 @@
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams2_Result.cs">
+      <DependentUpon>hrmModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams3_Result.cs">
       <DependentUpon>hrmModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
