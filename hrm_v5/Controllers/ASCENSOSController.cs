@@ -17,7 +17,7 @@ namespace hrm_v5.Controllers
         // GET: ASCENSOS
         public ActionResult Index()
         {
-            var aSCENSOS = db.ASCENSOS.Include(a => a.EMPLEADOS);
+            var aSCENSOS = db.ASCENSOS.Include(a => a.EMPLEADOS).Include(a => a.PUESTOS);
             return View(aSCENSOS.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace hrm_v5.Controllers
         public ActionResult Create()
         {
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO");
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
             return View();
         }
 
@@ -58,6 +59,7 @@ namespace hrm_v5.Controllers
             }
 
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aSCENSOS.ID_EMPLEADO);
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", aSCENSOS.PUESTO_NVO);
             return View(aSCENSOS);
         }
 
@@ -74,6 +76,7 @@ namespace hrm_v5.Controllers
                 return HttpNotFound();
             }
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aSCENSOS.ID_EMPLEADO);
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", aSCENSOS.PUESTO_NVO);
             return View(aSCENSOS);
         }
 
@@ -91,6 +94,7 @@ namespace hrm_v5.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ID_EMPLEADO = new SelectList(db.EMPLEADOS, "EMP_ID", "ID_EMPLEADO", aSCENSOS.ID_EMPLEADO);
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", aSCENSOS.PUESTO_NVO);
             return View(aSCENSOS);
         }
 

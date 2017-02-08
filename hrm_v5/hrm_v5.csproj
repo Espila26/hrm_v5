@@ -404,10 +404,6 @@
     <Content Include="Views\AMONESTACIONES\Details.cshtml" />
     <Content Include="Views\AMONESTACIONES\Edit.cshtml" />
     <Content Include="Views\AMONESTACIONES\Index.cshtml" />
-    <Content Include="Views\ASCENSOS\Create.cshtml" />
-    <Content Include="Views\ASCENSOS\Details.cshtml" />
-    <Content Include="Views\ASCENSOS\Edit.cshtml" />
-    <Content Include="Views\ASCENSOS\Index.cshtml" />
     <Content Include="Views\SUSPENSIONES\Create.cshtml" />
     <Content Include="Views\SUSPENSIONES\Details.cshtml" />
     <Content Include="Views\SUSPENSIONES\Edit.cshtml" />
@@ -425,6 +421,11 @@
     <Content Include="Views\Expediente\IndexAsc.cshtml" />
     <Content Include="Views\Expediente\CreateAmon.cshtml" />
     <Content Include="Views\Expediente\IndexAmon.cshtml" />
+    <Content Include="Views\ASCENSOS\Create.cshtml" />
+    <Content Include="Views\ASCENSOS\Delete.cshtml" />
+    <Content Include="Views\ASCENSOS\Details.cshtml" />
+    <Content Include="Views\ASCENSOS\Edit.cshtml" />
+    <Content Include="Views\ASCENSOS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

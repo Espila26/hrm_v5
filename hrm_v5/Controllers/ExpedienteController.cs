@@ -152,20 +152,25 @@ namespace hrm_v5.Controllers
 
         public ActionResult CreateAsc(){
             ViewBagEmpleado();
+            GetPuestoAnt();
+            TempData.Keep("Empleado");
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateAsc([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA,AUTORIZACION")] ASCENSOS aSCENSOS)
-        {
+        public ActionResult CreateAsc([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA,AUTORIZACION")] ASCENSOS aSCENSOS){
             if (ModelState.IsValid)
             {
                 db.ASCENSOS.Add(aSCENSOS);
+                EMPLEADOS temp = (EMPLEADOS)TempData["Empleado"];
+                var Emp = db.EMPLEADOS.Find(temp.EMP_ID);
+                Emp.PUESTO = aSCENSOS.PUESTO_NVO;
                 db.SaveChanges();
-                return RedirectToAction("CreateAsc");
+                return RedirectToAction("Index");
             }
-
             ViewBagEmpleado();
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", aSCENSOS.PUESTO_NVO);
             return View(aSCENSOS);
         }
 
@@ -187,8 +192,13 @@ namespace hrm_v5.Controllers
             else
             {
                 //TempData["Success"] = "¡Seleccione un empleado!";
-                return RedirectToAction("IndexPerm", "Expediente");
+                return RedirectToAction("IndexAsc", "Expediente");
             }
+        }
+
+        public void GetPuestoAnt(){
+            EMPLEADOS temp = (EMPLEADOS)TempData["Empleado"];
+            ViewData["PUESTO_ANT"] = temp.PUESTOS.NOMBRE;
         }
 
         /*******************************************************  Amonestaciones   ******************************************************************/

@@ -24,9 +24,6 @@
                 @Html.DisplayNameFor(model => model.PUESTO_ANT)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PUESTO_NVO)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FECHA)
             </th>
             <th>
@@ -34,6 +31,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EMPLEADOS.ID_EMPLEADO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PUESTOS.ID_PUESTO)
             </th>
             <th></th>
         </tr>
@@ -47,9 +47,6 @@
                 @Html.DisplayFor(modelItem => item.PUESTO_ANT)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PUESTO_NVO)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FECHA)
             </td>
             <td>
@@ -57,6 +54,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EMPLEADOS.ID_EMPLEADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PUESTOS.ID_PUESTO)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.ID_ASCENSO }) |
