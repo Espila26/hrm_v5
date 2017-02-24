@@ -272,6 +272,7 @@ namespace hrm_v5.Controllers
                 if (childChkbox.Count() == 1)
                 {
                     TempData["Empleado"] = db.EMPLEADOS.Find(Int32.Parse(childChkbox.First()));
+                    TempData["Success"] = "¡Se ha seleccionado empleado!";
                 }
                 else
                 {
