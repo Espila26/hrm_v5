@@ -26,6 +26,7 @@ namespace hrm_v5.Controllers
         // GET: VACACIONES/Create
         public ActionResult Create()
         {
+            TempData.Keep("Empleado");
             ViewBagEmpleado();
             ViewBag.AUTORIZACION = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
             return View();
@@ -63,6 +64,7 @@ namespace hrm_v5.Controllers
         /*******************************************************************************************************************************************/
 
         public ActionResult CreateSusp(){
+            TempData.Keep("Empleado");
             ViewBagEmpleado();
             return View();
         }
@@ -106,6 +108,7 @@ namespace hrm_v5.Controllers
         /*******************************************************************************************************************************************/
 
         public ActionResult CreatePerm(){
+            TempData.Keep("Empleado");
             ViewBagEmpleado();
             return View();
         }
@@ -205,6 +208,7 @@ namespace hrm_v5.Controllers
         /*******************************************************************************************************************************************/
 
         public ActionResult CreateAmon(){
+            TempData.Keep("Empleado");
             ViewBagEmpleado();
             return View();
         }
