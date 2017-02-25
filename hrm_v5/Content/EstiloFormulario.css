@@ -74,6 +74,19 @@
     position: fixed;
     left: 50%;
 }
+/*Estilo de los combobox*/
+.combobox {
+  height: 6%;
+  width: 31.2%;
+  left: 25%;
+  padding-left: 6px;
+  font-size: 14px;
+  vertical-align: middle;
+  position:absolute;
+  background-color: #ffffff;
+  border: #9998A1 3px solid;
+  border-radius: 5px;  
+}
 
  
 ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
