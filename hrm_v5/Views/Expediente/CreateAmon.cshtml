@@ -5,7 +5,7 @@
 }
 
 @Styles.Render("~/Content/EstiloExpediente.css")
-@Styles.Render("~/Content/Formulario.css")
+@Styles.Render("~/Content/EstiloFormularioAPS.css")
 @Styles.Render("~/Content/EstiloBoton.css")
 @Styles.Render("~/Content/EstiloMantenimiento.css")
 
@@ -23,6 +23,7 @@
                 <button type="submit" id="Buscar" class="myButton">Buscar</button>
             </div>
         }
+</div>
     </div>
     <br></br>
     <br></br>
@@ -36,7 +37,7 @@
             <li><a href="@Url.Action("ValidateIDEmpSup", "Expediente")"><div>Suspensiones.</div></a></li>
             <li><a href="@Url.Action("ValidateIDEmp", "Expediente")"><div>Vacaciones.</div></a></li>
         </ul>
-
+     </div>
         <h2> Create </h2>
         @using (Html.BeginForm())
         {
@@ -49,7 +50,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ID_EMPLEADO, "ID_EMPLEADO", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ID_EMPLEADO", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("ID_EMPLEADO", null, htmlAttributes: new { @class = "combobox" })
                         @Html.ValidationMessageFor(model => model.ID_EMPLEADO, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -104,15 +105,8 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Create" class="myButton" />
                     </div>
                 </div>
             </div>
         }
-
-        <div>
-            @Html.ActionLink("Back to List", "IndexAmon")
-        </div>
-
-        </body>
-        </html>

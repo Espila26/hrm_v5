@@ -24,6 +24,7 @@
             </div>
         }
     </div>
+    </div>
     <br></br>
     <br></br>
     <hr />
@@ -36,7 +37,7 @@
             <li><a href="@Url.Action("ValidateIDEmpSup", "Expediente")"><div>Suspensiones.</div></a></li>
             <li><a href="@Url.Action("ValidateIDEmp", "Expediente")"><div>Vacaciones.</div></a></li>
         </ul>
-
+</div>
         <h2> Create </h2>
 
         @using (Html.BeginForm())
@@ -50,7 +51,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ID_EMPLEADO, "ID_EMPLEADO", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ID_EMPLEADO", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("ID_EMPLEADO", null, htmlAttributes: new { @class = "combobox" })
                         @Html.ValidationMessageFor(model => model.ID_EMPLEADO, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -102,10 +103,3 @@
                 </div>
             </div>
         }
-
-        <div>
-            @Html.ActionLink("Back to List", "IndexAsc")
-        </div>
-
-        </body>
-        </html>
