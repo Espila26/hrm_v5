@@ -298,9 +298,14 @@ namespace hrm_v5.Controllers
 
         public void CalcularDiasDisponibles(EMPLEADOS empleado)
         {
-            TimeSpan ts = DateTime.Now - empleado.FECHA_CONTR;
-            int diferenciaDias = ts.Days;
-            int diasDisponibles = (diferenciaDias / 7) / 4 - empleado.DIAS_VAC_UTILIZAD;
+            int annos = DateTime.Now.Year - empleado.FECHA_CONTR.Year;
+            int meses = DateTime.Now.Month - empleado.FECHA_CONTR.Month;
+            int resMesIncomp = 0;
+            if(DateTime.Now.Day < empleado.FECHA_CONTR.Day)
+            {
+                resMesIncomp = 1;
+            }
+            int diasDisponibles = (annos * 12) + meses - empleado.DIAS_VAC_UTILIZAD - resMesIncomp;
             ViewBag.DiasDisponibles = diasDisponibles;
         }
 
