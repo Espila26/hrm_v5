@@ -54,7 +54,7 @@ namespace hrm_v5.Controllers
                 //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
                 if (EMP.Count() == 0)
                 {
-                    TempData["Error"] = "¡Los datos ingresados no pertenecen a ninguna empresa!";
+                    TempData["Error"] = "¡No se encontraron registros coincidentes con el criterio de busqueda!";
                     return RedirectToAction("Index");
                 }
             }

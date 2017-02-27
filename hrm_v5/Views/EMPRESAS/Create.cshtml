@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" @*,@placeholder = "Your Placeholder Text"*@ } })
                 @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FECHA_FUNDACION, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FECHA_FUNDACION, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.EditorFor(model => model.FECHA_FUNDACION, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.FECHA_FUNDACION, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +67,7 @@
             <div class="col-md-10">
                 <div class="form-group">
                     @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.DropDownList("Estado", new SelectList(new List<Object> { {"Seleccione... " }, { "Activo" }, { "Inactivo" } }), new {@class = "form-control" })
+                    @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new {@class = "combobox" })
     
                 </div>
                

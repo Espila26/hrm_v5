@@ -11,8 +11,7 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
-
+    
     public partial class VACACIONES
     {
         public int ID_SOLICITUD { get; set; }
