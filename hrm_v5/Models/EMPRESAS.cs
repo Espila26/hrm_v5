@@ -11,7 +11,9 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPRESAS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,6 +29,7 @@ namespace hrm_v5.Models
         public System.DateTime FECHA_FUNDACION { get; set; }
         public string PAIS_ORIGEN { get; set; }
         public string SEDE_CENTRAL { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese el estado de la empresa"), DisplayName("Estado"), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
