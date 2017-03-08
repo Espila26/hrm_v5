@@ -157,12 +157,13 @@ namespace hrm_v5.Controllers
             ViewBagEmpleado();
             GetPuestoAnt();
             TempData.Keep("Empleado");
-            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO");
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE");
             return View();
         }
 
         [HttpPost]
         public ActionResult CreateAsc([Bind(Include = "ID_ASCENSO,ID_EMPLEADO,DESCRIPCION,PUESTO_ANT,PUESTO_NVO,FECHA,AUTORIZACION")] ASCENSOS aSCENSOS){
+            TempData.Keep("Empleado");
             if (ModelState.IsValid)
             {
                 db.ASCENSOS.Add(aSCENSOS);
@@ -170,10 +171,11 @@ namespace hrm_v5.Controllers
                 var Emp = db.EMPLEADOS.Find(temp.EMP_ID);
                 Emp.PUESTO = aSCENSOS.PUESTO_NVO;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateAsc");
             }
+            GetPuestoAnt();
             ViewBagEmpleado();
-            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", aSCENSOS.PUESTO_NVO);
+            ViewBag.PUESTO_NVO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE", aSCENSOS.PUESTO_NVO);
             return View(aSCENSOS);
         }
 
@@ -293,11 +295,11 @@ namespace hrm_v5.Controllers
             {
                 Empleado.Add((EMPLEADOS)TempData["Empleado"]);
                 CalcularDiasDisponibles(Empleado.First());
-                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "NOMBRE");
             }
             else
             {
-                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "ID_EMPLEADO");
+                ViewBag.ID_EMPLEADO = new SelectList(Empleado, "EMP_ID", "NOMBRE");
             }
         }
 

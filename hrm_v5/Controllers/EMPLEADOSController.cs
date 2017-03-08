@@ -215,7 +215,7 @@ namespace hrm_v5.Controllers
                 TempData["Success"] = "¡La información del empleado ha sido editada exitosamente!";
                 return RedirectToAction("Index");
             }
-            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "ID_PUESTO", eMPLEADOS.PUESTO);
+            ViewBag.PUESTO = new SelectList(db.PUESTOS, "PTS_ID", "NOMBRE", eMPLEADOS.PUESTO);
             return View(eMPLEADOS);
         }
 
