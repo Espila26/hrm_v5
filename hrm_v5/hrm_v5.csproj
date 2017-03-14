@@ -209,6 +209,7 @@
     <Compile Include="Controllers\PERMISOSController.cs" />
     <Compile Include="Controllers\PUESTOSController.cs" />
     <Compile Include="Controllers\SUSPENSIONESController.cs" />
+    <Compile Include="Controllers\USUARIOSController.cs" />
     <Compile Include="Controllers\VACACIONESController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -426,6 +427,11 @@
     <Content Include="Views\ASCENSOS\Details.cshtml" />
     <Content Include="Views\ASCENSOS\Edit.cshtml" />
     <Content Include="Views\ASCENSOS\Index.cshtml" />
+    <Content Include="Views\USUARIOS\Create.cshtml" />
+    <Content Include="Views\USUARIOS\Delete.cshtml" />
+    <Content Include="Views\USUARIOS\Details.cshtml" />
+    <Content Include="Views\USUARIOS\Edit.cshtml" />
+    <Content Include="Views\USUARIOS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
