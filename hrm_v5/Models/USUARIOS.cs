@@ -25,6 +25,13 @@ namespace hrm_v5.Models
         public string NOMBRE_USUARIO { get; set; }
         public string CONTRASEÑA { get; set; }
         public string ESTADO { get; set; }
+        public int ROLE { get; set; }
+        public Nullable<int> ACC_EMPRESA { get; set; }
+        public Nullable<int> ACC_DEPART { get; set; }
+        public Nullable<int> ACC_PUESTOS { get; set; }
+        public Nullable<int> ACC_EMPLEADOS { get; set; }
+        public Nullable<int> ACC_ACCIONES { get; set; }
+        public Nullable<int> ACC_USUARIO { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

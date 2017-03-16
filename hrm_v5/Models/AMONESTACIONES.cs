@@ -22,6 +22,7 @@ namespace hrm_v5.Models
         public string GOCE_SALARIO { get; set; }
         public string VERB_ESC { get; set; }
         public string AUTORIZACION { get; set; }
+        public System.DateTime FECHA_CREACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
     }

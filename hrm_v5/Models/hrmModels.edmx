@@ -13,6 +13,7 @@
           <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
           <Property Name="FECHA_FINAL" Type="date" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="DESCRIPCION" Type="text" Nullable="false" />
           <Property Name="GOCE_SALARIO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="VERB_ESC" Type="varchar" MaxLength="10" Nullable="false" />
@@ -28,6 +29,7 @@
           <Property Name="PUESTO_ANT" Type="char" MaxLength="9" Nullable="false" />
           <Property Name="PUESTO_NVO" Type="int" Nullable="false" />
           <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="DEPARTAMENTOS">
@@ -97,6 +99,7 @@
           <Property Name="GOCE_SALARIO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="CANT_HORAS" Type="int" Nullable="false" />
           <Property Name="CANT_DIAS" Type="int" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="PUESTOS">
@@ -121,6 +124,7 @@
           <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="INICIO" Type="date" Nullable="false" />
           <Property Name="FINAL" Type="date" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="DESCRIPCION" Type="text" Nullable="false" />
           <Property Name="GOCE_SALARIO" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
@@ -130,10 +134,16 @@
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="CONTRASEÑA" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="ESTADO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ROLE" Type="int" Nullable="false" />
+          <Property Name="ACC_EMPRESA" Type="int" />
+          <Property Name="ACC_DEPART" Type="int" />
+          <Property Name="ACC_PUESTOS" Type="int" />
+          <Property Name="ACC_EMPLEADOS" Type="int" />
+          <Property Name="ACC_ACCIONES" Type="int" />
+          <Property Name="ACC_USUARIO" Type="int" />
         </EntityType>
         <EntityType Name="VACACIONES">
           <Key>
@@ -143,6 +153,7 @@
           <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="INICIO" Type="date" Nullable="false" />
           <Property Name="FINAL" Type="date" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="date" Nullable="false" />
           <Property Name="CANT_DIAS" Type="int" Nullable="false" />
           <Property Name="AUTORIZACION" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
@@ -266,18 +277,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USUARIO_EMPLEADO">
-          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
-          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLEADOS">
-              <PropertyRef Name="EMP_ID" />
-            </Principal>
-            <Dependent Role="USUARIOS">
-              <PropertyRef Name="ID_EMPLEADO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_VACACIONES_EMPLEADO">
           <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
           <End Role="VACACIONES" Type="Self.VACACIONES" Multiplicity="*" />
@@ -342,10 +341,6 @@
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
             <End Role="SUSPENSIONES" EntitySet="SUSPENSIONES" />
           </AssociationSet>
-          <AssociationSet Name="FK_USUARIO_EMPLEADO" Association="Self.FK_USUARIO_EMPLEADO">
-            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
-            <End Role="USUARIOS" EntitySet="USUARIOS" />
-          </AssociationSet>
           <AssociationSet Name="FK_VACACIONES_EMPLEADO" Association="Self.FK_VACACIONES_EMPLEADO">
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
             <End Role="VACACIONES" EntitySet="VACACIONES" />
@@ -368,6 +363,7 @@
           <Property Name="VERB_ESC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_AMONESTACION_EMPLEADO" FromRole="AMONESTACIONES" ToRole="EMPLEADOS" />
           <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="ASCENSOS">
           <Key>
@@ -382,6 +378,7 @@
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_ASCENSO_EMPLEADO" FromRole="ASCENSOS" ToRole="EMPLEADOS" />
           <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PUESTOS" Relationship="hrm_dbModel.FK_ASCENSO_PUESTO" FromRole="ASCENSOS" ToRole="PUESTOS" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="DEPARTAMENTOS">
           <Key>
@@ -465,6 +462,7 @@
           <Property Name="CANT_DIAS" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_PERMISO_EMPLEADO" FromRole="PERMISOS" ToRole="EMPLEADOS" />
           <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="PUESTOS">
           <Key>
@@ -495,6 +493,7 @@
           <Property Name="GOCE_SALARIO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_SUSPENSION_EMPLEADO" FromRole="SUSPENSIONES" ToRole="EMPLEADOS" />
           <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -507,6 +506,13 @@
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="USUARIOS" ToRole="EMPLEADOS" />
           <NavigationProperty Name="HISTORIALES" Relationship="Self.FK_HISTORIAL_USUARIO" FromRole="USUARIOS" ToRole="HISTORIALES" />
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE" Type="Int32" Nullable="false" />
+          <Property Name="ACC_EMPRESA" Type="Int32" />
+          <Property Name="ACC_DEPART" Type="Int32" />
+          <Property Name="ACC_PUESTOS" Type="Int32" />
+          <Property Name="ACC_EMPLEADOS" Type="Int32" />
+          <Property Name="ACC_ACCIONES" Type="Int32" />
+          <Property Name="ACC_USUARIO" Type="Int32" />
         </EntityType>
         <EntityType Name="VACACIONES">
           <Key>
@@ -519,6 +525,7 @@
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_VACACIONES_EMPLEADO" FromRole="VACACIONES" ToRole="EMPLEADOS" />
           <Property Name="CANT_DIAS" Type="Int32" Nullable="false" />
           <Property Name="AUTORIZACION" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_AMONESTACION_EMPLEADO">
           <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
@@ -898,6 +905,7 @@
           <EntitySetMapping Name="AMONESTACIONES">
             <EntityTypeMapping TypeName="hrm_dbModel.AMONESTACIONES">
               <MappingFragment StoreEntitySet="AMONESTACIONES">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_AMONESTACION" ColumnName="ID_AMONESTACION" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
@@ -912,6 +920,7 @@
           <EntitySetMapping Name="ASCENSOS">
             <EntityTypeMapping TypeName="hrm_dbModel.ASCENSOS">
               <MappingFragment StoreEntitySet="ASCENSOS">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_ASCENSO" ColumnName="ID_ASCENSO" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
@@ -985,6 +994,7 @@
           <EntitySetMapping Name="PERMISOS">
             <EntityTypeMapping TypeName="hrm_dbModel.PERMISOS">
               <MappingFragment StoreEntitySet="PERMISOS">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
@@ -1014,6 +1024,7 @@
           <EntitySetMapping Name="SUSPENSIONES">
             <EntityTypeMapping TypeName="hrm_dbModel.SUSPENSIONES">
               <MappingFragment StoreEntitySet="SUSPENSIONES">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="ID_SUSPENSION" ColumnName="ID_SUSPENSION" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
@@ -1027,9 +1038,15 @@
           <EntitySetMapping Name="USUARIOS">
             <EntityTypeMapping TypeName="hrm_dbModel.USUARIOS">
               <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="ACC_USUARIO" ColumnName="ACC_USUARIO" />
+                <ScalarProperty Name="ACC_ACCIONES" ColumnName="ACC_ACCIONES" />
+                <ScalarProperty Name="ACC_EMPLEADOS" ColumnName="ACC_EMPLEADOS" />
+                <ScalarProperty Name="ACC_PUESTOS" ColumnName="ACC_PUESTOS" />
+                <ScalarProperty Name="ACC_DEPART" ColumnName="ACC_DEPART" />
+                <ScalarProperty Name="ACC_EMPRESA" ColumnName="ACC_EMPRESA" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
-                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
                 <ScalarProperty Name="CONTRASEÑA" ColumnName="CONTRASEÑA" />
               </MappingFragment>
@@ -1038,6 +1055,7 @@
           <EntitySetMapping Name="VACACIONES">
             <EntityTypeMapping TypeName="hrm_dbModel.VACACIONES">
               <MappingFragment StoreEntitySet="VACACIONES">
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="AUTORIZACION" ColumnName="AUTORIZACION" />
                 <ScalarProperty Name="CANT_DIAS" ColumnName="CANT_DIAS" />
                 <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />

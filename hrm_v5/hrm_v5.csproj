@@ -208,6 +208,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PERMISOSController.cs" />
     <Compile Include="Controllers\PUESTOSController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\SUSPENSIONESController.cs" />
     <Compile Include="Controllers\VACACIONESController.cs" />
     <Compile Include="FechaMayor.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Content\EstiloFormularioAPS.css" />
     <Content Include="Content\EstiloMantenimiento.css" />
     <Content Include="Content\EstiloPrincipal.css" />
+    <Content Include="Content\EstiloReporte.css" />
     <Content Include="Content\EstiloTabla.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -427,6 +429,8 @@
     <Content Include="Views\ASCENSOS\Details.cshtml" />
     <Content Include="Views\ASCENSOS\Edit.cshtml" />
     <Content Include="Views\ASCENSOS\Index.cshtml" />
+    <Content Include="Views\Reportes\GenerarReporte.cshtml" />
+    <Content Include="Views\Reportes\ReporteVacaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
