@@ -11,19 +11,35 @@ namespace hrm_v5.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AMONESTACIONES
     {
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID de la Amonestación")]
         public int ID_AMONESTACION { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un ID válido"), DisplayName("ID del Empleado")]
         public int ID_EMPLEADO { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "¡Por favor ingrese la fecha de inicio!"), DisplayName("Fecha de Inicio"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_INICIO { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "¡Por favor ingrese la fecha final!"), DisplayName("Fecha final"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_FINAL { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese una Descripción"), DisplayName("Descripción de la Amonestación"), DataType(DataType.MultilineText)]
         public string DESCRIPCION { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "¡!"), DisplayName("Goce de Salario")]
         public string GOCE_SALARIO { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "¡Indique si la amonestacion fue verbal o escrita!"), DisplayName("Tipo")]
         public string VERB_ESC { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor ingrese un nombre"),
+        DisplayName("Autorizado por:"), StringLength(30, ErrorMessage = "Longitud del nombre es muy extensa. Por favor no exceda los 30 caracteres."), RegularExpression("([A-Za-z])+( [A-Za-z]+)*", ErrorMessage = "Formato Inválido.")]
         public string AUTORIZACION { get; set; }
-        public System.DateTime FECHA_CREACION { get; set; }
-    
         public virtual EMPLEADOS EMPLEADOS { get; set; }
+
     }
 }
