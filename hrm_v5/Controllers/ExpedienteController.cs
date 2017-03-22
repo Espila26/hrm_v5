@@ -47,10 +47,11 @@ namespace hrm_v5.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION")] VACACIONES vACACIONES)
+        public ActionResult Create([Bind(Include = "ID_SOLICITUD,ID_EMPLEADO,INICIO,FINAL,CANT_DIAS,AUTORIZACION,FECHA_CREACION")] VACACIONES vACACIONES)
         {
             if (ModelState.IsValid)
             {
+                vACACIONES.FECHA_CREACION = System.DateTime.Now;
                 db.VACACIONES.Add(vACACIONES);
                 db.SaveChanges();
                 return RedirectToAction("Create");
@@ -73,6 +74,7 @@ namespace hrm_v5.Controllers
         public ActionResult CreateSusp([Bind(Include = "ID_SUSPENSION,ID_EMPLEADO,INICIO,FINAL,DESCRIPCION,GOCE_SALARIO,AUTORIZACION")] SUSPENSIONES sUSPENSIONES){
             if (ModelState.IsValid)
             {
+                sUSPENSIONES.FECHA_CREACION = System.DateTime.Now;
                 db.SUSPENSIONES.Add(sUSPENSIONES);
                 db.SaveChanges();
                 return RedirectToAction("CreateSusp");
@@ -118,6 +120,7 @@ namespace hrm_v5.Controllers
         {
             if (ModelState.IsValid)
             {
+                pERMISOS.FECHA_CREACION = System.DateTime.Now;
                 db.PERMISOS.Add(pERMISOS);
                 db.SaveChanges();
                 return RedirectToAction("CreatePerm");
@@ -166,6 +169,7 @@ namespace hrm_v5.Controllers
             TempData.Keep("Empleado");
             if (ModelState.IsValid)
             {
+                aSCENSOS.FECHA_CREACION = System.DateTime.Now;
                 db.ASCENSOS.Add(aSCENSOS);
                 EMPLEADOS temp = (EMPLEADOS)TempData["Empleado"];
                 var Emp = db.EMPLEADOS.Find(temp.EMP_ID);
@@ -220,6 +224,7 @@ namespace hrm_v5.Controllers
         {
             if (ModelState.IsValid)
             {
+                aMONESTACIONES.FECHA_CREACION = System.DateTime.Now;
                 db.AMONESTACIONES.Add(aMONESTACIONES);
                 db.SaveChanges();
                 return RedirectToAction("CreateAmon");

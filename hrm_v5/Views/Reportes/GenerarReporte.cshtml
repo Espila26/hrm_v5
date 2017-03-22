@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "GenerarReporte";
+}
+
+@Styles.Render("~/Content/EstiloBoton.css")
+@Styles.Render("~/Content/EstiloReporte.css")
+
+@using (Html.BeginForm("Generar", "Reportes"))
+{
+
+<div class="contenedorFiltros">
+<h2>GenerarReporte</h2>
+
+    <div class="filtro">
+        <label class="label">Empleado:</label>
+        <div class="divInput">
+            <input type="text" name="datoEmpleado" class="input" placeholder="ID, Nombre, Apellidos." />
+        </div>
+        <label class="labelIzquierda">Estado:</label>
+        <div class="divInput">
+            @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "comboboxIzquierda" })
+        </div>
+     </div>
+
+    <div class="filtro">
+        <label class="label">Generar desde:</label>
+        <div class="divInput">
+            <input type="date" name="desde" class="input" placeholder="" />
+        </div>
+        <label class="labelIzquierda">Hasta:</label>
+        <div class="divInput">
+            <input type="date" name="hasta" class="inputIzquierda" placeholder="" />
+        </div>
+    </div>
+     
+    <div class="filtro">
+        <label class="label">Accion de Personal:</label>
+        <div class="divInput">
+            @Html.DropDownList("accion", new SelectList(new List<Object> { { "Amonestaciones" }, { "Ascensos" }, { "Permisos" }, { "Suspensiones" }, { "Vacaciones" } }), "-- Por favor seleccione una accion--", new { @class = "combobox" })
+        </div>
+    </div>
+</div>
+<button type="submit" id="generar" class="myButton">Generar</button>
+
+}
