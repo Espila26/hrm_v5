@@ -21,6 +21,7 @@ namespace hrm_v5.Models
         public int PUESTO_NVO { get; set; }
         public System.DateTime FECHA { get; set; }
         public string AUTORIZACION { get; set; }
+        public System.DateTime FECHA_CREACION { get; set; }
     
         public virtual EMPLEADOS EMPLEADOS { get; set; }
         public virtual PUESTOS PUESTOS { get; set; }

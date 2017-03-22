@@ -22,7 +22,6 @@ namespace hrm_v5.Models
             this.HISTORIALES = new HashSet<HISTORIALES>();
             this.PERMISOS = new HashSet<PERMISOS>();
             this.SUSPENSIONES = new HashSet<SUSPENSIONES>();
-            this.USUARIOS = new HashSet<USUARIOS>();
             this.VACACIONES = new HashSet<VACACIONES>();
         }
     
@@ -56,8 +55,6 @@ namespace hrm_v5.Models
         public virtual ICollection<PERMISOS> PERMISOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUSPENSIONES> SUSPENSIONES { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIOS> USUARIOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VACACIONES> VACACIONES { get; set; }
     }

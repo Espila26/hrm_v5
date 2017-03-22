@@ -3,96 +3,145 @@
 @{
     ViewBag.Title = "Details";
 }
+@Styles.Render("~/Content/EstiloFormulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Styles.Render("~/Content/EstiloDetails.css")
 
-<h2>Details</h2>
+<div id="TitleDetails">
+    <p>Detalles del Empleado</p>
+</div>
 
 <div>
-    <h4>USUARIOS</h4>
+    <br></br>
+    <br></br>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE_USUARIO)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_USUARIO)
-        </dd>
+    <button class="accordion">Información del Usuario</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.NOMBRE_USUARIO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CONTRASEÑA)
-        </dt>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.NOMBRE_USUARIO)
+            </dd>
+        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.CONTRASEÑA)
-        </dd>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.CONTRASEÑA)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ESTADO)
-        </dt>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.CONTRASEÑA)
+            </dd>
+        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.ESTADO)
-        </dd>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ESTADO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ROLE)
-        </dt>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ESTADO)
+            </dd>
+        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.ROLE)
-        </dd>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ROLE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACC_EMPRESA)
-        </dt>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ROLE)
+            </dd>
+        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACC_EMPRESA)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACC_DEPART)
-        </dt>
+    <button class="accordion">Permisos del Usuario</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_EMPRESA)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACC_DEPART)
-        </dd>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_EMPRESA)
+            </dd>
+        </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACC_PUESTOS)
-        </dt>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_DEPART)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACC_PUESTOS)
-        </dd>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_DEPART)
+            </dd>
+        </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACC_EMPLEADOS)
-        </dt>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_PUESTOS)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACC_EMPLEADOS)
-        </dd>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_PUESTOS)
+            </dd>
+        </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACC_ACCIONES)
-        </dt>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_EMPLEADOS)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACC_ACCIONES)
-        </dd>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_EMPLEADOS)
+            </dd>
+        </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACC_USUARIO)
-        </dt>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_ACCIONES)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACC_USUARIO)
-        </dd>
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_ACCIONES)
+            </dd>
+        </dl>
 
-    </dl>
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_USUARIO)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_USUARIO)
+            </dd>
+        </dl>
+
+        <br></br>
+
+    </div>
+
+    <div class="form-group">
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "EMPLEADOS", new { id = Model.EMP_ID })'" />
+        <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "EMPLEADOS")'" />
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_USUARIO }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@section Scripts{
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function () {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    </script>
+}

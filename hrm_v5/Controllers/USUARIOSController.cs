@@ -15,9 +15,48 @@ namespace hrm_v5.Controllers
         private Entities db = new Entities();
 
         // GET: USUARIOS
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.USUARIOS.ToList());
+            var USR = from e in db.USUARIOS
+                      select e;
+
+            //validación para verificar la existencia del criterio de busqueda
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //Muestra los empleados por el estado que el usuario definió previamente
+                if (searchString.Equals("Inactivo") || searchString.Equals("Activo"))
+                {
+                    USR = USR.Where(s => s.ESTADO.Equals(searchString));
+                }
+
+                else if (searchString.Equals("Todo"))
+                {
+                    USR = USR.Where(s => s.ESTADO.Contains("tiv"));
+                }
+
+                else if (searchString.Equals("Seleccione"))
+                {
+                    TempData["Error"] = "¡Debe seleccionar los empleados que desea ver!";
+                    return RedirectToAction("Index");
+                }
+
+                //Muestra los empleados que coincidan con el nombre, apellidos o cedula que el usuario desea ver.
+                else
+                {
+                    USR = USR.Where(s => s.NOMBRE_USUARIO.Contains(searchString));
+                }
+
+                //si no existe registros que coicidan con el criterio de busqueda, se muestra el mensaje de error.
+                if (USR.Count() == 0)
+                {
+                    TempData["Error"] = "¡No se encontraron registros coincidentes con el criterio de busqueda!";
+                    return RedirectToAction("Index");
+
+                }
+
+            }
+
+            return View(USR);
         }
 
         // GET: USUARIOS/Details/5
@@ -51,7 +90,7 @@ namespace hrm_v5.Controllers
             if (ModelState.IsValid)
             {
                 db.USUARIOS.Add(uSUARIOS);
-                db.SaveChanges();
+                TempData["Error"] = uSUARIOS.ROL+ ": " + uSUARIOS.ACC_ACCIONES + ": " + uSUARIOS.ACC_DEPART + ": " + uSUARIOS.ACC_EMPRESA + ": " + uSUARIOS.ACC_PUESTOS + ": " + uSUARIOS.ACC_EMPLEADOS + ": " + uSUARIOS.ACC_USUARIO + ": ";
                 return RedirectToAction("Index");
             }
 
@@ -113,6 +152,68 @@ namespace hrm_v5.Controllers
             db.USUARIOS.Remove(uSUARIOS);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult formAction(string[] childChkbox)
+        {
+            if (childChkbox == null)
+            {
+                TempData["Error"] = "¡Se debe seleccionar al menos un usuario!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Request.Form["Detalles"] != null)
+                {
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Details", "EMPLEADOS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "¡Solamente es posible ver los detalles de un usuario a la vez!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Editar"] != null)
+                {
+
+                    if (childChkbox.Count() == 1)
+                    {
+                        return RedirectToAction("Edit", "EMPLEADOS", new { id = childChkbox.First() });
+                    }
+                    else
+                    {
+                        TempData["Error"] = "¡Solamente es posible editar un usuario a la vez!";
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (Request.Form["Inhabilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var emp = db.EMPLEADOS.Find(Int32.Parse(i));
+                        emp.ESTADO = "Inactivo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Usuarios seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+
+                else if (Request.Form["Habilitar"] != null)
+                {
+                    foreach (var i in childChkbox)
+                    {
+                        var emp = db.EMPLEADOS.Find(Int32.Parse(i));
+                        emp.ESTADO = "Activo";
+                        db.SaveChanges();
+                    }
+                    TempData["Success"] = "¡Se ha cambiado el estado de el o los Usuarios seleccionados exitosamente!";
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)
