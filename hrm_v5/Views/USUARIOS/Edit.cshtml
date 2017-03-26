@@ -35,67 +35,68 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
+           
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ESTADO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })  
             </div>
+            @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ROLE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ROLE, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ROL, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Rol", new SelectList(new List<Object> { { "1" }, { "2" } }), "-- seleccione --", new { @class = "combobox" })
             </div>
+            @Html.ValidationMessageFor(model => model.ROL, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ACC_EMPRESA, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ACC_EMPRESA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ACC_EMPRESA, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ACC_EMPRESA, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Acceso a Empresas", new SelectList(new List<Object> { { "Si" }, { "No" } }), "--  seleccione --", new { @class = "combobox" })
             </div>
+            @Html.ValidationMessageFor(model => model.ACC_EMPRESA, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ACC_DEPART, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ACC_DEPART, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ACC_DEPART, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ACC_DEPART, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Acceso a Departamentos", new SelectList(new List<Object> { { "Si" }, { "No" } }), "--  seleccione --", new { @class = "combobox" })
             </div>
+            @Html.ValidationMessageFor(model => model.ACC_DEPART, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ACC_PUESTOS, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ACC_PUESTOS, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ACC_PUESTOS, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ACC_PUESTOS, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Acceso a Puestos", new SelectList(new List<Object> { { "Si" }, { "No" } }), "--  seleccione --", new { @class = "combobox" })
             </div>
+            @Html.ValidationMessageFor(model => model.ACC_PUESTOS, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ACC_EMPLEADOS, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ACC_EMPLEADOS, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ACC_EMPLEADOS, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ACC_EMPLEADOS, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Acceso a Empleados", new SelectList(new List<Object> { { "Si" }, { "No" } }), "--  seleccione  --", new { @class = "combobox" })
             </div>
+            @Html.ValidationMessageFor(model => model.ACC_EMPLEADOS, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ACC_ACCIONES, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ACC_ACCIONES, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ACC_ACCIONES, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ACC_ACCIONES, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Acceso a Expediente", new SelectList(new List<Object> { { "Si" }, { "No" } }), "-- seleccione  --", new { @class = "combobox" })
             </div>
+            @Html.ValidationMessageFor(model => model.ACC_ACCIONES, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ACC_USUARIO, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ACC_USUARIO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ACC_USUARIO, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ACC_USUARIO, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Acceso a Usuarios", new SelectList(new List<Object> { { "Si" }, { "No" } }), "--  seleccione --", new { @class = "combobox" })
             </div>
+            @Html.ValidationMessageFor(model => model.ACC_USUARIO, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
