@@ -35,7 +35,7 @@
     height: 10%;
     width: 22%;
     position:absolute;
-    left: 15%;
+    left: 17%;
     border: #9998A1 3px solid;
     border-radius: 5px; 
 }
@@ -46,7 +46,7 @@
     height: 10%;
     width: 22%;
     position:absolute;
-    left: 49%;
+    left: 59%;
     border: #9998A1 3px solid;
     border-radius: 5px; 
 }
@@ -67,7 +67,7 @@
 .comboboxIzquierda {
   height: 11%;
   width: 23%;
-  left: 49%;
+  left: 59%;
   padding-left: 6px;
   font-size: 14px;
   vertical-align: middle;
@@ -81,13 +81,30 @@
 
     padding-top:0.5em;
     position:absolute;
-    left: 40%;
+    left: 44%;
     font-weight:bold;
     font-size:16px;
+}
+
+input[type=checkbox]
+{
+  /* Doble-tamaño Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari y Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+}
+
+.checkBox{
+  position:absolute;
+  left: 17.1%;
+  border: #9998A1 3px solid;
 }
 
 #generar{
 
     position: absolute;
-    left:55%;
+    left:38%;
+    top: 30%;
 }

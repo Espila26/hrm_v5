@@ -1,9 +1,10 @@
-﻿@model IEnumerable<hrm_v5.Models.VACACIONES>
+﻿@model IEnumerable<hrm_v5.Models.ASCENSOS>
+
 @Styles.Render("~/Content/EstiloBoton.css")
 @Styles.Render("~/Content/EstiloReporte.css")
 
 @{
-    ViewBag.Title = "ReporteVacaciones";
+    ViewBag.Title = "ReporteAscensos";
 }
 
 @using (Html.BeginForm("Generar", "Reportes"))
@@ -160,12 +161,13 @@
                  rowStyle: "webgridRow",
                  alternatingRowStyle: "alt",
                  columns: grid.Columns(
-                 grid.Column("ID_SOLICITUD", "Número de Solicitud: ", canSort: false),
-                 grid.Column("ID_EMPLEADO", "Número de Empleado: ", canSort: false),
-                 grid.Column("INICIO", "Fecha de Inicio: ", canSort: false),
-                 grid.Column("FINAL", "Fecha de Ingreso: ", canSort: false),
-                 grid.Column("CANT_DIAS", "Cantidad de Dias: ", canSort: false),
-                 grid.Column("AUTORIZACION", "Autorización: ", canSort: false)
+                 grid.Column("ID_ASCENSO", "Número de Solicitud", canSort: false),
+                 grid.Column("ID_EMPLEADO", "Empleado", canSort: false),
+                 grid.Column("Descripcion", "Motivo", canSort: false),
+                 grid.Column("PUESTO_ANT", "Fecha de Ingreso", canSort: false),
+                 grid.Column("PUESTO_NVO", "Tipo de Permiso", canSort: false),
+                 grid.Column("FECHA", "Cantidad de Horas", canSort: false),
+                 grid.Column("AUTORIZACION", "Autorización", canSort: false)
                  ))
         <div id="pager">
             @grid.Pager()

@@ -34,12 +34,29 @@
     </div>
      
     <div class="filtro">
-        <label class="label">Accion de Personal:</label>
+        <label class="label">Expediente Laboral:</label>
         <div class="divInput">
-            @Html.DropDownList("accion", new SelectList(new List<Object> { { "Amonestaciones" }, { "Ascensos" }, { "Permisos" }, { "Suspensiones" }, { "Vacaciones" } }), "-- Por favor seleccione una accion--", new { @class = "combobox" })
+            <input class="checkBox" type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
         </div>
+        <div class="divInput" id="content" style="display: none;">
+            <label class="labelIzquierda">Accion de Personal:</label>
+            @Html.DropDownList("accion", new SelectList(new List<Object> { { "Amonestaciones" }, { "Ascensos" }, { "Permisos" }, { "Suspensiones" }, { "Vacaciones" } }), "-- Por favor seleccione una accion--", new { @class = "comboboxIzquierda" })
+        </div>    
     </div>
 </div>
 <button type="submit" id="generar" class="myButton">Generar</button>
 
 }
+
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>

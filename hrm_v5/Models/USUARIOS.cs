@@ -21,9 +21,7 @@ namespace hrm_v5.Models
         }
     
         public int ID_USUARIO { get; set; }
-        public int ID_EMPLEADO { get; set; }
         public string NOMBRE_USUARIO { get; set; }
-        public string CONTRASEÑA { get; set; }
         public string ESTADO { get; set; }
         public int ROLE { get; set; }
         public Nullable<int> ACC_EMPRESA { get; set; }
@@ -32,8 +30,8 @@ namespace hrm_v5.Models
         public Nullable<int> ACC_EMPLEADOS { get; set; }
         public Nullable<int> ACC_ACCIONES { get; set; }
         public Nullable<int> ACC_USUARIO { get; set; }
+        public string CONTRASEÑA1 { get; set; }
     
-        public virtual EMPLEADOS EMPLEADOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HISTORIALES> HISTORIALES { get; set; }
     }

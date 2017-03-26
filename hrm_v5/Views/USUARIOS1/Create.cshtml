@@ -1,0 +1,113 @@
+﻿@model hrm_v5.Models.USUARIOS
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@Styles.Render("~/Content/EstiloFormulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4 class="titulos">Nuevo Usuario</h4>
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NOMBRE_USUARIO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NOMBRE_USUARIO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NOMBRE_USUARIO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CONTRASEÑA1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.CONTRASEÑA1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CONTRASEÑA1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ROLE, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ROLE, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ACC_EMPRESA, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ACC_EMPRESA, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ACC_DEPART, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ACC_DEPART, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ACC_PUESTOS, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ACC_PUESTOS, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ACC_EMPLEADOS, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ACC_EMPLEADOS, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ACC_ACCIONES, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ACC_ACCIONES, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ACC_USUARIO, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("Estado", new SelectList(new List<Object> { { "Activo" }, { "Inactivo" } }), "-- Por favor seleccione un estado --", new { @class = "combobox" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ACC_USUARIO, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="myButton" />
+                <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "USUARIOS1")'" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

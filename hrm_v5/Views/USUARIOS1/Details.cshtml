@@ -1,0 +1,148 @@
+﻿@model hrm_v5.Models.USUARIOS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Styles.Render("~/Content/EstiloFormulario.css")
+@Styles.Render("~/Content/EstiloBoton.css")
+@Styles.Render("~/Content/EstiloDetails.css")
+
+<div id="TitleDetails">
+    <p>Detalles del Empleado</p>
+</div>
+
+<div>
+    <br></br>
+    <br></br>
+    <hr />
+
+    <button class="accordion">Información del Usuario</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.NOMBRE_USUARIO)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.NOMBRE_USUARIO)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.CONTRASEÑA1)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.CONTRASEÑA1)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ESTADO)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ESTADO)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ROLE)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ROLE)
+            </dd>
+        </dl>
+
+    </div>
+
+    <button class="accordion">Permisos del Usuario</button>
+    <div class="panel">
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_EMPRESA)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_EMPRESA)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_DEPART)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_DEPART)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_PUESTOS)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_PUESTOS)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_EMPLEADOS)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_EMPLEADOS)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_ACCIONES)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_ACCIONES)
+            </dd>
+        </dl>
+
+        <dl class="form-group">
+            <dt class="control-label">
+                @Html.DisplayNameFor(model => model.ACC_USUARIO)
+            </dt>
+
+            <dd class="formDetails">
+                @Html.DisplayFor(model => model.ACC_USUARIO)
+            </dd>
+        </dl>
+
+        <br></br>
+
+    </div>
+
+    <div class="form-group">
+        <input type="button" class="myButton" value="Editar" onclick="location.href='@Url.Action("Edit", "USUARIOS1", new { id = Model.ID_USUARIO})'" />
+        <input type="button" class="myButton" value="Regresar" onclick="location.href='@Url.Action("Index", "USUSARIOS1")'" />
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function () {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    </script>
+}

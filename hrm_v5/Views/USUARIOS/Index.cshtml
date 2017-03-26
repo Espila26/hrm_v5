@@ -1,0 +1,87 @@
+﻿@model IEnumerable<hrm_v5.Models.USUARIOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE_USUARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTRASEÑA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROLE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACC_EMPRESA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACC_DEPART)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACC_PUESTOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACC_EMPLEADOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACC_ACCIONES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACC_USUARIO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_USUARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTRASEÑA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROLE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACC_EMPRESA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACC_DEPART)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACC_PUESTOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACC_EMPLEADOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACC_ACCIONES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACC_USUARIO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_USUARIO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_USUARIO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_USUARIO })
+        </td>
+    </tr>
+}
+
+</table>

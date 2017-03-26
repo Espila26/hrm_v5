@@ -416,7 +416,6 @@
           <NavigationProperty Name="HISTORIALES" Relationship="Self.FK_HISTORIAL_EMPLEADO" FromRole="EMPLEADOS" ToRole="HISTORIALES" />
           <NavigationProperty Name="PERMISOS" Relationship="Self.FK_PERMISO_EMPLEADO" FromRole="EMPLEADOS" ToRole="PERMISOS" />
           <NavigationProperty Name="SUSPENSIONES" Relationship="Self.FK_SUSPENSION_EMPLEADO" FromRole="EMPLEADOS" ToRole="SUSPENSIONES" />
-          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="EMPLEADOS" ToRole="USUARIOS" />
           <NavigationProperty Name="VACACIONES" Relationship="Self.FK_VACACIONES_EMPLEADO" FromRole="EMPLEADOS" ToRole="VACACIONES" />
           <Property Name="FECHA_NAC" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FECHA_CONTR" Type="DateTime" Nullable="false" Precision="0" />
@@ -500,10 +499,7 @@
             <PropertyRef Name="ID_USUARIO" />
           </Key>
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CONTRASEÑA" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_USUARIO_EMPLEADO" FromRole="USUARIOS" ToRole="EMPLEADOS" />
           <NavigationProperty Name="HISTORIALES" Relationship="Self.FK_HISTORIAL_USUARIO" FromRole="USUARIOS" ToRole="HISTORIALES" />
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ROLE" Type="Int32" Nullable="false" />
@@ -513,6 +509,7 @@
           <Property Name="ACC_EMPLEADOS" Type="Int32" />
           <Property Name="ACC_ACCIONES" Type="Int32" />
           <Property Name="ACC_USUARIO" Type="Int32" />
+          <Property Name="CONTRASEÑA1" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VACACIONES">
           <Key>
@@ -623,18 +620,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USUARIO_EMPLEADO">
-          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
-          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLEADOS">
-              <PropertyRef Name="EMP_ID" />
-            </Principal>
-            <Dependent Role="USUARIOS">
-              <PropertyRef Name="ID_EMPLEADO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_VACACIONES_EMPLEADO">
           <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
           <End Role="VACACIONES" Type="Self.VACACIONES" Multiplicity="*" />
@@ -702,10 +687,6 @@
           <AssociationSet Name="FK_SUSPENSION_EMPLEADO" Association="Self.FK_SUSPENSION_EMPLEADO">
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
             <End Role="SUSPENSIONES" EntitySet="SUSPENSIONES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USUARIO_EMPLEADO" Association="Self.FK_USUARIO_EMPLEADO">
-            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
-            <End Role="USUARIOS" EntitySet="USUARIOS" />
           </AssociationSet>
           <AssociationSet Name="FK_VACACIONES_EMPLEADO" Association="Self.FK_VACACIONES_EMPLEADO">
             <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
@@ -1038,6 +1019,7 @@
           <EntitySetMapping Name="USUARIOS">
             <EntityTypeMapping TypeName="hrm_dbModel.USUARIOS">
               <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="CONTRASEÑA1" ColumnName="CONTRASEÑA" />
                 <ScalarProperty Name="ACC_USUARIO" ColumnName="ACC_USUARIO" />
                 <ScalarProperty Name="ACC_ACCIONES" ColumnName="ACC_ACCIONES" />
                 <ScalarProperty Name="ACC_EMPLEADOS" ColumnName="ACC_EMPLEADOS" />
@@ -1048,7 +1030,6 @@
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
-                <ScalarProperty Name="CONTRASEÑA" ColumnName="CONTRASEÑA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
